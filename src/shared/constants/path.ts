@@ -4,6 +4,7 @@ export const ROUTE_PATH = {
 
   POSTS: '/posts',
   POST_DETAIL: '/posts/:postId',
+  POST_NEW: '/posts/new',
 
   RECOMMEND: '/recommend',
 
