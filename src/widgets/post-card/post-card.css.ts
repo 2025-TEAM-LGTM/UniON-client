@@ -29,11 +29,7 @@ export const textContainer = style({
 });
 
 export const roleContainer = style({
-  // display: '-webkit-box',
-  // WebkitBoxOrient: 'vertical',
-  // WebkitLineClamp: 2,
   whiteSpace: 'pre-line',
-  // overflow: 'hidden',
 });
 
 export const title = style({
