@@ -57,9 +57,9 @@ export const routes: RouteObject[] = [
         },
       },
       {
-        path: ROUTE_PATH.POST_DETAIL,
+        path: ROUTE_PATH.POST_DETAILS,
         lazy: async () => {
-          const m = await import('@pages/post-detail/post-detail');
+          const m = await import('@pages/post-details/post-details');
           return { Component: m.default };
         },
       },

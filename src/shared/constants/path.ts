@@ -3,7 +3,7 @@ export const ROUTE_PATH = {
   SIGN_UP: '/signup',
 
   POSTS: '/posts',
-  POST_DETAIL: '/posts/:postId',
+  POST_DETAILS: '/posts/:postId',
 
   RECOMMEND: '/recommend',
 
