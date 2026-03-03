@@ -29,6 +29,7 @@ export const textContainer = style({
 });
 
 export const roleContainer = style({
+  minHeight: '4rem',
   whiteSpace: 'pre-line',
 });
 
