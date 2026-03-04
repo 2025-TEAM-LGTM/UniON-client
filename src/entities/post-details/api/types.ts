@@ -7,7 +7,7 @@ export interface PostDetailsResponse {
     leader: {
       userId: number;
       username: string;
-      userImageUrl: string;
+      userImageUrl: string | null;
     };
     title: string;
     domainIds: number[];
@@ -22,6 +22,6 @@ export interface PostDetailsResponse {
     seeking: string;
     aboutUs: string;
     teamCulture: Record<string, number>;
-    imageUrl: string;
+    imageUrl: string | null;
   };
 }
