@@ -1,4 +1,4 @@
-import { TeamIcon } from '@shared/assets';
+import { TeamIcon } from '@shared/assets/icons';
 import Button from '@shared/ui/components/button/button';
 import Chip from '@shared/ui/components/chip/chip';
 import { Link } from 'react-router-dom';

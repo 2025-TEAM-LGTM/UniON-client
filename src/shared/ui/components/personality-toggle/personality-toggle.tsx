@@ -1,4 +1,4 @@
-import { CheckIcon } from '@shared/assets';
+import { CheckIcon } from '@shared/assets/icons';
 import type { ReactNode } from 'react';
 
 import * as styles from './personality-toggle.css';

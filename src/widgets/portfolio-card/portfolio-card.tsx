@@ -1,4 +1,4 @@
-import { ThumbnailIcon } from '@shared/assets';
+import { ThumbnailIcon } from '@shared/assets/icons';
 
 import * as styles from './portfolio-card.css';
 

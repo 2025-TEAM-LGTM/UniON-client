@@ -1,4 +1,4 @@
-import { AlertIcon, CheckIcon } from '@shared/assets';
+import { AlertIcon, CheckIcon } from '@shared/assets/icons';
 import { type ReactNode, useCallback, useMemo, useRef, useState } from 'react';
 
 import Toast from './toast';

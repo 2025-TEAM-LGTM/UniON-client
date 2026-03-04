@@ -1,0 +1,11 @@
+export { default as AlertIcon } from './icn-alert.svg?react';
+export { default as ArrowIcon } from './icn-arrow.svg?react';
+export { default as BackIcon } from './icn-back.svg?react';
+export { default as CheckIcon } from './icn-check.svg?react';
+export { default as DateIcon } from './icn-date.svg?react';
+export { default as StepperLeftIcon } from './icn-stepperLeft.svg?react';
+export { default as StepperRightIcon } from './icn-stepperRight.svg?react';
+export { default as TeamIcon } from './icn-team.svg?react';
+export { default as ThumbnailIcon } from './icn-thumbnail.svg?react';
+export { default as UploadIcon } from './icn-upload.svg?react';
+export { default as XIcon } from './icn-X.svg?react';
