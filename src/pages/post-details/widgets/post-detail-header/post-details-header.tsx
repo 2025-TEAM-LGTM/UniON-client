@@ -10,7 +10,7 @@ export interface PostDetailsHeaderProps {
   username: string;
   userImageUrl?: string | null;
   dday: number;
-  onBackClick: () => void;
+  onBackClick?: () => void;
 }
 
 const PostDetailHeader = ({
@@ -27,7 +27,14 @@ const PostDetailHeader = ({
   const navigate = useNavigate();
 
   const handleBackClick = () => {
-    if (onBackClick) onBackClick();
+    if (onBackClick) {
+      onBackClick();
+      return;
+    }
+    if (window.history.length <= 1) {
+      navigate('/posts', { replace: true });
+      return;
+    }
     navigate(-1);
   };
 
@@ -48,20 +55,12 @@ const PostDetailHeader = ({
       </section>
 
       <section className={styles.profileContainer}>
-        {userImageUrl ? (
-          <img
-            src={userImageUrl}
-            alt={`${username} 프로필 이미지`}
-            className={styles.profileImage}
-          />
-        ) : (
-          <img
-            src={profileImageUrl}
-            onError={handleProfileImageError}
-            alt={`${username} 프로필 이미지`}
-            className={styles.profileImage}
-          />
-        )}
+        <img
+          src={profileImageUrl}
+          onError={handleProfileImageError}
+          alt={`${username} 프로필 이미지`}
+          className={styles.profileImage}
+        />
         <p className={styles.username}>{username}</p>
       </section>
 
