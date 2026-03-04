@@ -1,5 +1,5 @@
-import { UploadIcon } from '@shared/assets';
-import { XIcon } from '@shared/assets';
+import { UploadIcon } from '@shared/assets/icons';
+import { XIcon } from '@shared/assets/icons';
 import { useRef } from 'react';
 
 import * as styles from './add-image-button.css';
