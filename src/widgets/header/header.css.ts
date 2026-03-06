@@ -3,10 +3,13 @@ import { style } from '@vanilla-extract/css';
 import { recipe } from '@vanilla-extract/recipes';
 
 export const headerContainer = style({
+  position: 'sticky',
   display: 'flex',
+  top: 0,
   alignItems: 'center',
   padding: '0 11.8rem',
   gap: '5rem',
+  backgroundColor: themeVars.color.gray_000,
   borderBottom: `1px solid ${themeVars.color.gray_200}`,
 });
 
