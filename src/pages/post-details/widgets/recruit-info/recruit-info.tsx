@@ -6,7 +6,7 @@ import * as styles from './recruit-info.css';
 type Domain = { id: number; name: string };
 type RoleCount = { id: number; name: string; count: number };
 
-interface RecruitInfoProps {
+export interface RecruitInfoProps {
   domains: Domain[];
   recruitPeriod: { startDate: string; endDate: string };
   homepageUrl?: string;
