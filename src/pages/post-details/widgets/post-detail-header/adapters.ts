@@ -3,15 +3,14 @@ import type { PostDetailsResponse } from '@entities/post-details/api/types';
 import type { PostDetailsHeaderProps } from './post-details-header';
 
 export const toPostDetailHeaderProps = (
-  res: PostDetailsResponse,
-): Pick<
-  PostDetailsHeaderProps,
-  'username' | 'title' | 'userImageUrl' | 'dday'
-> => {
+  response: PostDetailsResponse,
+): Omit<PostDetailsHeaderProps, 'onBackClick'> => {
+  const { data, dday } = response;
+
   return {
-    username: res.data.leader.username,
-    title: res.data.title,
-    userImageUrl: res.data.leader.userImageUrl,
-    dday: res.dday,
+    title: data.title,
+    username: data.leader.username,
+    userImageUrl: data.leader.userImageUrl,
+    dday,
   };
 };

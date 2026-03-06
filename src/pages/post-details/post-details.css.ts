@@ -11,5 +11,6 @@ export const pageContainer = style({
   flexDirection: 'column',
   height: '100dvh',
   marginTop: '3rem',
+  marginBottom: '3rem',
   padding: '0 26.6rem',
 });

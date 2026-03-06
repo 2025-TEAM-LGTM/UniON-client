@@ -1,18 +1,18 @@
 import { MOCK_POST_DETAIL } from './mock/mock-post-detail';
-import {
-  mockCurrentRoles,
-  mockDomains,
-  mockRecruitRoles,
-} from './mock/mock-recruit-info';
 import * as styles from './post-details.css';
 import { toPostDetailHeaderProps } from './widgets/post-detail-header/adapters';
 import PostDetailHeader from './widgets/post-detail-header/post-details-header';
+import { toRecruitDetailTextProps } from './widgets/recruit-detail-text/adapter';
+import RecruitDetailText from './widgets/recruit-detail-text/recruit-detail-text';
+import { toRecruitInfoProps } from './widgets/recruit-info/adapter';
 import RecruitInfo from './widgets/recruit-info/recruit-info';
 
 const PostDetailPage = () => {
   const res = MOCK_POST_DETAIL;
-  const headerProps = toPostDetailHeaderProps(res);
 
+  const headerProps = toPostDetailHeaderProps(res);
+  const recruitInfoProps = toRecruitInfoProps(res);
+  const recruitDetailTextProps = toRecruitDetailTextProps(res);
   return (
     <>
       <section className={styles.headerContainer}>
@@ -25,17 +25,8 @@ const PostDetailPage = () => {
       </section>
 
       <section className={styles.pageContainer}>
-        <RecruitInfo
-          domains={mockDomains}
-          recruitPeriod={{
-            startDate: '2026-03-01',
-            endDate: '2026-03-15',
-          }}
-          homepageUrl='https://example.com'
-          contact='team@example.com'
-          currentRoles={mockCurrentRoles}
-          recruitRoles={mockRecruitRoles}
-        />
+        <RecruitInfo {...recruitInfoProps} />
+        <RecruitDetailText {...recruitDetailTextProps} />
       </section>
     </>
   );

@@ -6,13 +6,15 @@ import * as styles from './personality-toggle.css';
 interface PersonalityToggleProps {
   children: ReactNode;
   selected: boolean;
-  onSelect: () => void;
+  onSelect?: () => void;
+  disabled?: boolean;
 }
 
 const PersonalityToggle = ({
   children,
   selected,
   onSelect,
+  disabled,
 }: PersonalityToggleProps) => {
   return (
     <button
@@ -20,6 +22,7 @@ const PersonalityToggle = ({
       className={styles.toggle}
       aria-pressed={selected}
       onClick={onSelect}
+      disabled={disabled}
     >
       <CheckIcon className={styles.icon} />
       {children}
