@@ -20,7 +20,7 @@ export const infoItemContainer = style({
 });
 
 export const infoTitle = style({
-  minWidth: '6.6rem',
+  minWidth: '7rem',
   color: themeVars.color.gray_500,
   ...themeVars.font.body_18sb,
 });
