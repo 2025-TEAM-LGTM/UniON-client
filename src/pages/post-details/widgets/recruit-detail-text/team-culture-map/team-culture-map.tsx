@@ -1,34 +1,27 @@
-import { MOCK_TEAM_CULTURE } from '@pages/post-details/mock/mock-post-detail';
+import type { TeamCulture } from '@entities/post-details/api/types';
 import PersonalityToggle from '@shared/ui/components/personality-toggle/personality-toggle';
+import { toTeamCultureItems } from '@shared/utils/label';
 
 import * as styles from './team-culture-map.css';
 
 interface TeamCultureMapProps {
-  teamCulture: Record<string, number>;
+  teamCulture: TeamCulture;
 }
-
 const TeamCultureMap = ({ teamCulture }: TeamCultureMapProps) => {
-  const entries = Object.entries(teamCulture).filter(
-    ([key]) => MOCK_TEAM_CULTURE[key],
-  );
+  const items = toTeamCultureItems(teamCulture);
 
-  if (!entries.length) return null;
+  if (!items.length) return null;
 
   return (
     <div className={styles.list}>
-      {entries.map(([key, value]) => {
-        const meta = MOCK_TEAM_CULTURE[key];
-        const selectedLabel = meta.labels[value === 1 ? 1 : 0];
-
-        return (
-          <div key={key} className={styles.item}>
-            <p className={styles.itemTitle}>{meta.title}</p>
-            <PersonalityToggle selected disabled>
-              {selectedLabel}
-            </PersonalityToggle>
-          </div>
-        );
-      })}
+      {items.map((item) => (
+        <div key={item.key} className={styles.item}>
+          <p className={styles.itemTitle}>{item.title}</p>
+          <PersonalityToggle selected disabled>
+            {item.selectedLabel}
+          </PersonalityToggle>
+        </div>
+      ))}
     </div>
   );
 };
