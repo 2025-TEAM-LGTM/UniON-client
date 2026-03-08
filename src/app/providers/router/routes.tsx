@@ -63,6 +63,20 @@ export const routes: RouteObject[] = [
           return { Component: m.default };
         },
       },
+      {
+        path: ROUTE_PATH.POST_CREATE,
+        lazy: async () => {
+          const m = await import('@pages/post-create/post-create');
+          return { Component: m.default };
+        },
+      },
+      {
+        path: ROUTE_PATH.POST_EDIT,
+        lazy: async () => {
+          const m = await import('@pages/post-edit/post-edit');
+          return { Component: m.default };
+        },
+      },
     ],
   },
 
