@@ -74,6 +74,7 @@ export const MOCK_POST_DETAIL: PostDetailsResponse = {
       I: 0,
       L: 1,
     },
-    imageUrl: null,
+    imageUrl:
+      'https://cdn.pixabay.com/photo/2026/02/23/11/18/11-18-48-660_1280.jpg',
   },
 };

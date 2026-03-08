@@ -1,3 +1,4 @@
+import type { TeamCulture } from '@entities/post-details/api/types';
 import ReadTextarea from '@shared/ui/components/textarea/read-textarea/read-textarea';
 
 import * as styles from './recruit-detail-text.css';
@@ -7,7 +8,7 @@ export interface RecruitDetailTextProps {
   imageUrl: string | null;
   seeking: string;
   aboutUs: string;
-  teamCulture: Record<string, number>;
+  teamCulture: TeamCulture;
 }
 
 const RecruitDetailText = ({

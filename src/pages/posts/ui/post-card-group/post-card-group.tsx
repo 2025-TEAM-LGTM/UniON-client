@@ -1,6 +1,6 @@
 import PostCard, { type PostCardProps } from '@widgets/post-card/post-card';
 
-import * as styles from './post-card-group.css';
+// import * as styles from './post-card-group.css';
 
 type PostGroupProps = {
   posts: Omit<PostCardProps, 'onToggleApply'>[];
@@ -16,7 +16,7 @@ const PostCardGroup = ({
   const visible = posts.slice(0, 9);
 
   return (
-    <section className={styles.grid} aria-label='팀빌딩 공고 목록'>
+    <section aria-label='팀빌딩 공고 목록'>
       {visible.map((post) => (
         <PostCard
           key={post.postId}
