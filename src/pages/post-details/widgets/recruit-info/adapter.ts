@@ -1,8 +1,9 @@
-import type { PostDetailPageResponse } from '../../mock/mock-post-detail';
+import type { PostDetailsResponse } from '@entities/post-details/api/types';
+
 import type { RecruitInfoProps } from './recruit-info';
 
 export const toRecruitInfoProps = (
-  response: PostDetailPageResponse,
+  response: PostDetailsResponse,
 ): RecruitInfoProps => {
   const { data } = response;
 
@@ -14,12 +15,12 @@ export const toRecruitInfoProps = (
     currentRoles: data.currentRoles.map((role) => ({
       id: role.roleId,
       name: role.roleName,
-      count: role.roleCount,
+      count: role.count,
     })),
-    recruitRoles: data.recruits.map((role) => ({
+    recruitRoles: data.recruitRoles.map((role) => ({
       id: role.roleId,
       name: role.roleName,
-      count: role.roleCount,
+      count: role.count,
     })),
   };
 };

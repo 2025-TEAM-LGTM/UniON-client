@@ -1,7 +1,9 @@
+export type TeamCultureValue = 0 | 1;
+export type TeamCulture = Record<string, TeamCultureValue>;
+
 export interface PostDetailsResponse {
   status: number;
   msg: string;
-  dday: number; // TODO: API 확정 후 수정
   data: {
     postId: number;
     leader: {
@@ -10,8 +12,8 @@ export interface PostDetailsResponse {
       userImageUrl: string | null;
     };
     title: string;
+    dday: number;
     domains: Array<{
-      // TODO: API 확정 후 수정
       id: number;
       name: string;
     }>;
@@ -21,15 +23,19 @@ export interface PostDetailsResponse {
     };
     homepageUrl?: string;
     contact: string;
-    recruits: Array<{
-      // TODO: API 확정 후 수정
+    currentRoles: Array<{
       roleId: number;
       roleName: string;
-      roleCount: number;
+      count: number;
+    }>;
+    recruitRoles: Array<{
+      roleId: number;
+      roleName: string;
+      count: number;
     }>;
     seeking: string;
     aboutUs: string;
-    teamCulture: Record<string, number>;
+    teamCulture: TeamCulture;
     imageUrl: string | null;
   };
 }
