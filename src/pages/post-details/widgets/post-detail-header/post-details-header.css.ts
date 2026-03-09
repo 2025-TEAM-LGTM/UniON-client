@@ -33,6 +33,7 @@ export const profileContainer = style({
   display: 'flex',
   alignItems: 'center',
   gap: '1.7rem',
+  objectFit: 'cover',
 });
 
 export const profileImage = style({
