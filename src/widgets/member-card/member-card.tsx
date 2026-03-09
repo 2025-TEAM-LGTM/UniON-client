@@ -1,7 +1,7 @@
-import type { PersonalityDTO } from '@shared/constants/labels';
+import type { TeamCulture } from '@entities/post-details/api/types';
 import Button from '@shared/ui/components/button/button';
 import Chip from '@shared/ui/components/chip/chip';
-import { toPersonalityLabelsKo, toRoleLabelKo } from '@shared/utils/label';
+import { toTeamCultureItems } from '@shared/utils/label';
 import { useNavigate } from 'react-router-dom';
 
 import * as styles from './member-card.css';
@@ -16,7 +16,7 @@ interface MemberCardProps {
   username: string;
   role: Role;
   skill: Skill[];
-  personality: PersonalityDTO;
+  teamCulture: TeamCulture;
   mainStrength?: string;
 }
 
@@ -28,17 +28,22 @@ const MemberCard = ({
   username,
   role,
   skill,
-  personality,
+  teamCulture,
   mainStrength,
 }: MemberCardProps) => {
   const navigate = useNavigate();
 
-  const roleLabel = toRoleLabelKo(role.name);
+  const roleLabel = role.name;
   const skillText = skill.length ? joinComma(skill.map((s) => s.name)) : '없음';
-  const personalityText = (() => {
-    const labels = toPersonalityLabelsKo(personality);
-    return labels.length ? joinComma(labels) : '없음';
-  })();
+
+  const teamCultureItems = toTeamCultureItems(teamCulture);
+  const teamCultureText = teamCultureItems.length
+    ? joinComma(teamCultureItems.map((item) => item.selectedLabel))
+    : '없음';
+
+  const handleClickProfile = () => {
+    navigate(`/members/${userId}/profile`);
+  };
 
   return (
     <article
@@ -65,18 +70,15 @@ const MemberCard = ({
         </div>
 
         <div className={styles.infoRow}>
-          <span className={styles.infoTitle}>성향</span>
-          <span className={styles.infoText}>{personalityText}</span>
+          <span className={styles.infoTitle}>팀 성향</span>
+          <span className={styles.infoText}>{teamCultureText}</span>
         </div>
       </section>
 
-      {/* TODO: 시트 확정 후 한글 파싱 로직 추가 */}
+      {/* TODO: 시트 확정 후 mainStrength 한글 라벨 파싱 로직 연결 */}
       {mainStrength ? <Chip>{mainStrength}</Chip> : null}
 
-      <Button
-        color='primary'
-        onClick={() => navigate(`/members/${userId}/profile`)}
-      >
+      <Button color='primary' onClick={handleClickProfile}>
         프로필 보기
       </Button>
     </article>

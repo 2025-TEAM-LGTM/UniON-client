@@ -1,4 +1,4 @@
-import { StepperLeftIcon, StepperRightIcon } from '@shared/assets';
+import { StepperLeftIcon, StepperRightIcon } from '@shared/assets/icons';
 
 import * as styles from './stepper.css';
 

@@ -1,4 +1,4 @@
-import { XIcon } from '@shared/assets';
+import { XIcon } from '@shared/assets/icons';
 import type { ReactNode } from 'react';
 
 import * as styles from './chip.css';
