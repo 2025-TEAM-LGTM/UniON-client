@@ -1,5 +1,6 @@
 import { BackIcon } from '@shared/assets/icons';
 import { IMAGES } from '@shared/assets/images';
+import { ROUTE_PATH } from '@shared/constants/path';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -35,7 +36,7 @@ const PostDetailHeader = ({
       navigate('/posts', { replace: true });
       return;
     }
-    navigate(-1);
+    navigate(ROUTE_PATH.POSTS);
   };
 
   const handleProfileImageError = () => {

@@ -45,12 +45,7 @@ const PostDetailPage = () => {
   return (
     <>
       <section className={styles.headerContainer}>
-        <PostDetailHeader
-          {...headerProps}
-          onBackClick={() => {
-            window.history.back();
-          }}
-        />
+        <PostDetailHeader {...headerProps} />
       </section>
 
       <section className={styles.pageContainer}>
