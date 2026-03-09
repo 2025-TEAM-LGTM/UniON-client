@@ -96,7 +96,7 @@ const TEAM_CULTURE_LABEL_MAP: Record<string, TeamCultureLabelMeta> = {
     title: '팀 내 역할 분담 선호',
     labels: {
       0: '역할 고정/분업 중심',
-      1: '역할 유현/교차 참여',
+      1: '역할 유연/교차 참여',
     },
   },
   M: {
