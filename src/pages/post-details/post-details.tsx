@@ -1,7 +1,7 @@
-import { ROUTE_PATH } from '@shared/constants/path';
+import { ROUTE_BUILDER } from '@shared/constants/path';
 import CtaButton from '@shared/ui/components/cta-button/cta-button';
 import { useToast } from '@shared/ui/components/toast/toast-context';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { MOCK_POST_DETAIL } from './mock/mock-post-detail';
 import * as styles from './post-details.css';
@@ -15,6 +15,7 @@ import RecruitInfo from './widgets/recruit-info/recruit-info';
 const PostDetailPage = () => {
   const navigate = useNavigate();
   const toast = useToast();
+  const { postId } = useParams<{ postId: string }>();
 
   const response = MOCK_POST_DETAIL;
 
@@ -37,8 +38,8 @@ const PostDetailPage = () => {
   };
 
   const handleEdit = () => {
-    // TODO: 라우트 경로 팀 규칙에 맞게 확정
-    navigate(ROUTE_PATH.POST_EDIT);
+    if (!postId) return;
+    navigate(ROUTE_BUILDER.postEdit(postId));
   };
 
   return (
