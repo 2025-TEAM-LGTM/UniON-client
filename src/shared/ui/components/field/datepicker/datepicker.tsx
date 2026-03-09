@@ -1,4 +1,4 @@
-import { DateIcon } from '@shared/assets';
+import { DateIcon } from '@shared/assets/icons';
 import type { ChangeEventHandler, ComponentPropsWithoutRef } from 'react';
 
 import FieldBase from '../field-base';
