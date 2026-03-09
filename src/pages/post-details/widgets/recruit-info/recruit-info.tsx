@@ -55,7 +55,7 @@ const RecruitInfo = ({
 
   return (
     <>
-      <p className={styles.sectionTItle}>공고 정보</p>
+      <p className={styles.sectionTitle}>공고 정보</p>
 
       <div className={styles.infoGrid}>
         <InfoItem title='활동 분야'>{domainText}</InfoItem>

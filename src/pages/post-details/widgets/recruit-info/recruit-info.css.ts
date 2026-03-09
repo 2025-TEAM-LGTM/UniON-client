@@ -1,7 +1,7 @@
 import { themeVars } from '@shared/styles';
 import { style } from '@vanilla-extract/css';
 
-export const sectionTItle = style({
+export const sectionTitle = style({
   color: themeVars.color.gray_800,
   ...themeVars.font.body_20sb,
   marginBottom: '3rem',
