@@ -33,10 +33,10 @@ const PostDetailHeader = ({
       return;
     }
     if (window.history.length <= 1) {
-      navigate('/posts', { replace: true });
+      navigate(ROUTE_PATH.POSTS, { replace: true });
       return;
     }
-    navigate(ROUTE_PATH.POSTS);
+    navigate(-1);
   };
 
   const handleProfileImageError = () => {
