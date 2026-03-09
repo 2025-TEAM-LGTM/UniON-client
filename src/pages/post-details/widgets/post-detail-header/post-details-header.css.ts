@@ -33,13 +33,13 @@ export const profileContainer = style({
   display: 'flex',
   alignItems: 'center',
   gap: '1.7rem',
-  objectFit: 'cover',
 });
 
 export const profileImage = style({
   width: '5.3rem',
   height: '5.3rem',
   borderRadius: '50%',
+  objectFit: 'cover',
 });
 
 export const username = style({
