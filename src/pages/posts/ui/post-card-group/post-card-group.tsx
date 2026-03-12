@@ -1,9 +1,10 @@
-import PostCard, { type PostCardProps } from '@widgets/post-card/post-card';
+import type { PostResponse } from '@features/posts/types/post-response-data';
+import PostCard from '@widgets/post-card/post-card';
 
 import * as styles from './post-card-group.css';
 
 type PostGroupProps = {
-  posts: Omit<PostCardProps, 'onToggleApply'>[]; // 데이터만 받기
+  posts: PostResponse[];
   appliedIds: Set<number>;
   onToggleApply: (postId: number) => void;
 };
@@ -20,7 +21,12 @@ const PostCardGroup = ({
       {visible.map((post) => (
         <PostCard
           key={post.postId}
-          {...post}
+          postId={post.postId}
+          title={post.title}
+          domains={post.domains}
+          dday={post.dday}
+          recruits={post.recruits}
+          nowCount={post.nowCount}
           applied={appliedIds.has(post.postId)}
           onToggleApply={onToggleApply}
         />
