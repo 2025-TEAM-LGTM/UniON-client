@@ -1,11 +1,17 @@
+import { filterPosts } from '@features/posts/model/filter-posts';
+import { EMPTY_FILTERS } from '@features/posts/model/filters-state';
+import { parseFieldRoleResponse } from '@shared/lib/filter/parse-field-role-response';
 import Banner from '@shared/ui/components/banner/banner';
 import Button from '@shared/ui/components/button/button';
 import { useToast } from '@shared/ui/components/toast/toast-context';
 import { useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { mockPosts } from './mock-posts';
+import { MOCK_DOMAIN_OPTIONS } from './mock/mock-domain-options';
+import { MOCK_FIELD_ROLE_RESPONSE } from './mock/mock-field-role-response';
+import { MOCK_POST_RESPONSE } from './mock/mock-posts-response';
 import * as styles from './post.css';
+import DropdownGroup from './ui/dropdown-group/dropdown-group';
 import PostCardGroup from './ui/post-card-group/post-card-group';
 
 const PostsPage = () => {
@@ -14,13 +20,27 @@ const PostsPage = () => {
   const onClick = () => navigate('/posts/new');
 
   const pendingRef = useRef<Set<number>>(new Set());
-  const posts = useMemo(() => mockPosts, []);
+
+  const posts = useMemo(() => MOCK_POST_RESPONSE.data.posts, []);
+
+  const [filters, setFilters] = useState(EMPTY_FILTERS);
+  const { fields, rolesByFieldOptions } = useMemo(
+    () => parseFieldRoleResponse(MOCK_FIELD_ROLE_RESPONSE.data),
+    [],
+  );
+
+  const filteredPosts = useMemo(
+    () => filterPosts(posts, filters),
+    [posts, filters],
+  );
 
   const [appliedIds, setAppliedIds] = useState<Set<number>>(() => {
     const set = new Set<number>();
+
     posts.forEach((p) => {
       if (p.applied) set.add(p.postId);
     });
+
     return set;
   });
 
@@ -84,10 +104,18 @@ const PostsPage = () => {
           </div>
         </section>
 
-        <section className={styles.dropdownContainer}></section>
+        <section className={styles.dropdownContainer}>
+          <DropdownGroup
+            domains={MOCK_DOMAIN_OPTIONS}
+            fields={fields}
+            rolesByFieldOptions={rolesByFieldOptions}
+            value={filters}
+            onChange={setFilters}
+          />
+        </section>
 
         <PostCardGroup
-          posts={posts}
+          posts={filteredPosts}
           appliedIds={appliedIds}
           onToggleApply={handleToggleApply}
         />
