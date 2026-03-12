@@ -23,7 +23,6 @@ const DropdownPanel = ({ children }: DropdownPanelProps) => {
   const [pos, setPos] = useState({ top: 0, left: 0 });
   const prevOpenRef = useRef(open);
 
-  // 위치 계산
   useLayoutEffect(() => {
     if (!open || !triggerRef.current) return;
 
@@ -48,7 +47,6 @@ const DropdownPanel = ({ children }: DropdownPanelProps) => {
     };
   }, [open, triggerRef]);
 
-  // 이벤트 핸들러 (ESC, 바깥 클릭)
   useEffect(() => {
     if (!open) return;
 
@@ -75,7 +73,6 @@ const DropdownPanel = ({ children }: DropdownPanelProps) => {
     };
   }, [open, close, triggerRef]);
 
-  // 포커스 복귀
   useEffect(() => {
     if (prevOpenRef.current && !open) {
       triggerRef.current?.focus();
