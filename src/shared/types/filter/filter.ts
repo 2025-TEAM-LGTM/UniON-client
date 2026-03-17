@@ -3,10 +3,7 @@ export interface Option {
   name: string;
 }
 
-export interface DomainResponse {
-  id: number;
-  name: string;
-}
+export type DomainResponse = Option;
 
 export interface FieldRoleItemResponse {
   roleId: number;

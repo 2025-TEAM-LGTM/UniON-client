@@ -60,7 +60,7 @@ const PostCard = ({
       </div>
 
       <div className={styles.domainContainer}>
-        {domains.map((d) => (
+        {domains?.map((d) => (
           <Chip key={d.id}>{d.name}</Chip>
         ))}
       </div>

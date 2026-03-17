@@ -10,7 +10,15 @@ export const pageContainer = style({
   display: 'flex',
   flexDirection: 'column',
   height: '100dvh',
-  padding: '0 15rem',
+  padding: '0 2rem',
+  '@media': {
+    'screen and (min-width: 1024px)': {
+      padding: '0 8rem',
+    },
+    'screen and (min-width: 1440px)': {
+      padding: '0 15rem',
+    },
+  },
 });
 
 export const sectionHeader = style({
