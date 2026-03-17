@@ -11,7 +11,7 @@ export type Domain = { id: number; name: string };
 export interface PostCardProps {
   postId: number;
   title: string;
-  domain: Domain[];
+  domains: Domain[];
   dday: number;
   recruits: Recruit[];
   nowCount: number;
@@ -31,7 +31,7 @@ const formatRecruits = (recruits: Recruit[] = [], visibleCount = 2) => {
 const PostCard = ({
   postId,
   title,
-  domain,
+  domains,
   dday,
   recruits,
   nowCount,
@@ -60,7 +60,7 @@ const PostCard = ({
       </div>
 
       <div className={styles.domainContainer}>
-        {domain.map((d) => (
+        {domains?.map((d) => (
           <Chip key={d.id}>{d.name}</Chip>
         ))}
       </div>

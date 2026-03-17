@@ -1,9 +1,10 @@
-import PostCard, { type PostCardProps } from '@widgets/post-card/post-card';
+import type { PostResponse } from '@features/posts/types/post-response-data';
+import PostCard from '@widgets/post-card/post-card';
 
-// import * as styles from './post-card-group.css';
+import * as styles from './post-card-group.css';
 
 type PostGroupProps = {
-  posts: Omit<PostCardProps, 'onToggleApply'>[];
+  posts: PostResponse[];
   appliedIds: Set<number>;
   onToggleApply: (postId: number) => void;
 };
@@ -16,11 +17,16 @@ const PostCardGroup = ({
   const visible = posts.slice(0, 9);
 
   return (
-    <section aria-label='팀빌딩 공고 목록'>
+    <section className={styles.grid} aria-label='팀빌딩 공고 목록'>
       {visible.map((post) => (
         <PostCard
           key={post.postId}
-          {...post}
+          postId={post.postId}
+          title={post.title}
+          domains={post.domains}
+          dday={post.dday}
+          recruits={post.recruits}
+          nowCount={post.nowCount}
           applied={appliedIds.has(post.postId)}
           onToggleApply={onToggleApply}
         />
