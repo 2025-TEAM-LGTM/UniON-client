@@ -51,6 +51,7 @@ const FieldRoleContent = ({
               <button
                 key={field.id}
                 type='button'
+                aria-pressed={selected}
                 className={selected ? styles.selectedButton : styles.button}
                 onClick={() => handleFieldClick(field.id)}
               >
@@ -77,6 +78,7 @@ const FieldRoleContent = ({
                 <button
                   key={role.id}
                   type='button'
+                  aria-pressed={selected}
                   className={selected ? styles.selectedButton : styles.button}
                   onClick={() => handleRoleClick(role.id)}
                 >

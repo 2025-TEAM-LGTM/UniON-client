@@ -34,7 +34,7 @@ const DropdownGroup = ({
     value.fieldId == null
       ? '분야/역할 선택'
       : value.roleIds.length === 0
-        ? '역할 0개'
+        ? '역할 선택'
         : `역할 ${value.roleIds.length}개 선택`;
 
   return (

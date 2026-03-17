@@ -18,7 +18,6 @@ const DropdownTrigger = ({ label, placeholder }: DropdownTriggerProps) => {
       id={triggerId}
       type='button'
       className={styles.base}
-      aria-haspopup='dialog'
       aria-expanded={open}
       aria-controls={panelId}
       onClick={toggle}

@@ -22,6 +22,7 @@ const DomainContent = ({ options, value, onChange }: DomainContentProps) => {
             <button
               key={option.id}
               type='button'
+              aria-pressed={selected}
               className={selected ? styles.selectedButton : styles.button}
               onClick={() => onChange(toggleId(value, option.id))}
             >
