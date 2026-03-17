@@ -3,7 +3,15 @@ import { style } from '@vanilla-extract/css';
 
 export const bannerContainer = style({
   marginTop: '2rem',
-  padding: '0 6.9rem',
+  padding: '0 2rem',
+  '@media': {
+    'screen and (min-width: 1024px)': {
+      padding: '0 8rem',
+    },
+    'screen and (min-width: 1440px)': {
+      padding: '0 15rem',
+    },
+  },
 });
 
 export const pageContainer = style({
