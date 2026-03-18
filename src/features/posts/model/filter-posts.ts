@@ -1,5 +1,6 @@
 // mock 데이터로 확인용
-import type { PostResponse } from '../types/post-response-data';
+import type { PostResponse } from '@entities/posts/api/types';
+
 import type { FiltersState } from './filters-state';
 
 const includesAny = (source: number[], target: number[]) =>

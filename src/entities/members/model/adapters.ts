@@ -1,5 +1,6 @@
-import type { MembersResponse } from '@features/members/types/members-response-data';
 import type { TeamCulture } from '@shared/utils/team-culture/types';
+
+import type { MembersResponse } from '../api/types';
 
 export interface MemberCardModel {
   userId: number;
