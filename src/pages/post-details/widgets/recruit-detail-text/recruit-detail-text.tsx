@@ -1,5 +1,5 @@
-import type { TeamCulture } from '@entities/post-details/api/types';
 import ReadTextarea from '@shared/ui/components/textarea/read-textarea/read-textarea';
+import type { TeamCulture } from '@shared/utils/team-culture/types';
 
 import * as styles from './recruit-detail-text.css';
 import TeamCultureMap from './team-culture-map/team-culture-map';

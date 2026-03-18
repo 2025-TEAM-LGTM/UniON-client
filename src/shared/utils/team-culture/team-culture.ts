@@ -1,7 +1,4 @@
-import type {
-  TeamCulture,
-  TeamCultureValue,
-} from '@entities/post-details/api/types';
+import type { TeamCulture, TeamCultureValue } from './types';
 
 export interface TeamCultureLabelMeta {
   title: string;

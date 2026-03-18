@@ -1,6 +1,6 @@
-import type { TeamCulture } from '@entities/post-details/api/types';
 import PersonalityToggle from '@shared/ui/components/personality-toggle/personality-toggle';
-import { toTeamCultureItems } from '@shared/utils/label';
+import { toTeamCultureItems } from '@shared/utils/team-culture';
+import type { TeamCulture } from '@shared/utils/team-culture/types';
 
 import * as styles from './team-culture-map.css';
 

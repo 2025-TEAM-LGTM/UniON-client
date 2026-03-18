@@ -1,7 +1,7 @@
-import type { TeamCulture } from '@entities/post-details/api/types';
 import Button from '@shared/ui/components/button/button';
 import Chip from '@shared/ui/components/chip/chip';
-import { toTeamCultureItems } from '@shared/utils/label';
+import { toTeamCultureItems } from '@shared/utils/team-culture';
+import type { TeamCulture } from '@shared/utils/team-culture/types';
 import { useNavigate } from 'react-router-dom';
 
 import * as styles from './member-card.css';

@@ -1,5 +1,4 @@
-export type TeamCultureValue = 0 | 1;
-export type TeamCulture = Record<string, TeamCultureValue>;
+import type { TeamCulture } from '@shared/utils/team-culture/types';
 
 export interface PostDetailsResponse {
   status: number;
