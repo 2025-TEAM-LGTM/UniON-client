@@ -17,14 +17,14 @@ export const bannerContainer = style({
 export const pageContainer = style({
   display: 'flex',
   flexDirection: 'column',
-  height: '100dvh',
-  padding: '0 2rem',
+  minHeight: '100dvh',
+  padding: '0 2rem 4rem',
   '@media': {
     'screen and (min-width: 1024px)': {
-      padding: '0 8rem',
+      padding: '0 8rem 4rem',
     },
     'screen and (min-width: 1440px)': {
-      padding: '0 15rem',
+      padding: '0 15rem 4rem',
     },
   },
 });
