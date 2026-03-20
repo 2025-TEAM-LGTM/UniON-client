@@ -1,0 +1,180 @@
+import type { GetMembersResponse } from '@entities/members/api/types';
+
+export const MOCK_MEMBERS_RESPONSE: GetMembersResponse = {
+  status: 200,
+  msg: 'OK',
+  data: {
+    members: [
+      {
+        userId: 10003,
+        username: '미니멀',
+        imageUrl: null,
+        role: {
+          id: 103,
+          name: 'Digital Marketer',
+        },
+        hardSkills: [
+          { id: 124, name: 'Ahrefs' },
+          { id: 125, name: 'Jasper' },
+          { id: 126, name: 'Miro' },
+          { id: 127, name: 'Pocket' },
+          { id: 128, name: 'MailChimps' },
+        ],
+        personality: {
+          A: 1,
+
+          C: 1,
+          D: 1,
+          E: 1,
+          F: 1,
+          G: 1,
+          H: 1,
+          I: 1,
+          J: 1,
+
+          L: 1,
+        },
+      },
+      {
+        userId: 10012,
+        username: '가람',
+        imageUrl: null,
+        role: {
+          id: 102,
+          name: 'Social Media Marketer',
+        },
+        hardSkills: [
+          { id: 125, name: 'Jasper' },
+          { id: 126, name: 'Miro' },
+          { id: 127, name: 'Pocket' },
+          { id: 128, name: 'MailChimps' },
+        ],
+        personality: {
+          A: 1,
+          B: 1,
+          C: 1,
+          D: 1,
+
+          F: 1,
+          G: 1,
+          H: 1,
+          I: 1,
+          J: 1,
+
+          M: 1,
+          N: 1,
+        },
+      },
+      {
+        userId: 10016,
+        username: '에이미',
+        imageUrl: null,
+        role: {
+          id: 102,
+          name: 'Social Media Marketer',
+        },
+        hardSkills: [
+          { id: 123, name: 'SEMRush' },
+          { id: 124, name: 'Ahrefs' },
+          { id: 125, name: 'Jasper' },
+          { id: 126, name: 'Miro' },
+          { id: 127, name: 'Pocket' },
+        ],
+        personality: {
+          A: 1,
+
+          D: 1,
+
+          F: 1,
+          G: 1,
+
+          I: 1,
+          J: 1,
+          K: 1,
+
+          M: 1,
+        },
+      },
+      {
+        userId: 10021,
+        username: '초아',
+        imageUrl: null,
+        role: {
+          id: 102,
+          name: 'Social Media Marketer',
+        },
+        hardSkills: [
+          { id: 121, name: 'GA4' },
+          { id: 122, name: 'Google Trends' },
+          { id: 127, name: 'Pocket' },
+          { id: 128, name: 'MailChimps' },
+          { id: 129, name: 'Abitly' },
+        ],
+        personality: {
+          A: 1,
+          B: 1,
+
+          D: 1,
+          E: 1,
+
+          I: 1,
+          J: 1,
+
+          L: 1,
+        },
+      },
+      {
+        userId: 10022,
+        username: '노아',
+        imageUrl: null,
+        role: {
+          id: 104,
+          name: 'Product Designer',
+        },
+        hardSkills: [
+          { id: 201, name: 'Figma' },
+          { id: 202, name: 'Photoshop' },
+          { id: 203, name: 'Illustrator' },
+        ],
+        personality: {
+          B: 1,
+          C: 1,
+
+          E: 1,
+          F: 1,
+          H: 1,
+          I: 1,
+
+          K: 1,
+          L: 1,
+          N: 1,
+        },
+      },
+      {
+        userId: 10023,
+        username: '하린',
+        imageUrl: null,
+        role: {
+          id: 105,
+          name: 'Frontend Developer',
+        },
+        hardSkills: [
+          { id: 301, name: 'React' },
+          { id: 302, name: 'TypeScript' },
+          { id: 303, name: 'Vanilla Extract' },
+        ],
+        personality: {
+          A: 1,
+          B: 1,
+          E: 1,
+          F: 1,
+          G: 1,
+          H: 1,
+          J: 1,
+          K: 1,
+          M: 1,
+        },
+      },
+    ],
+  },
+};
