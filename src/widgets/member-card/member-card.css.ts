@@ -49,13 +49,14 @@ export const infoRow = style({
 });
 
 export const infoTitle = style({
-  flexShrink: 0,
+  minWidth: '3.9rem',
   color: themeVars.color.primary,
   ...themeVars.font.body_14m,
 });
 
 export const infoText = style({
   minWidth: 0,
+  minHeight: '4rem',
   flex: 1,
   overflow: 'hidden',
   display: '-webkit-box',

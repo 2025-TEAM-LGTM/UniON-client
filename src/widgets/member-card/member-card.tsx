@@ -25,9 +25,9 @@ const MemberCard = ({ member }: MemberCardProps) => {
     : '없음';
 
   const teamCultureItems = toTeamCultureItems(member.teamCulture);
-  const teamCultureText = teamCultureItems.length
-    ? joinComma(teamCultureItems.map((item) => item.selectedLabel))
-    : '없음';
+  const teamCultureText = joinComma(
+    teamCultureItems.map((item) => item.selectedLabel),
+  );
 
   const handleClickProfile = () => {
     navigate(`/members/${member.userId}/profile`);
