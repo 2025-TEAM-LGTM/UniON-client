@@ -5,8 +5,10 @@ import {
   DropdownPanel,
   DropdownTrigger,
 } from '@shared/ui/components/dropdown';
-import DomainContent from '@shared/ui/components/dropdown/domain-content';
-import FieldRoleContent from '@shared/ui/components/dropdown/field-role-content';
+import {
+  DomainContent,
+  FieldRoleContent,
+} from '@shared/ui/components/dropdown';
 
 import * as styles from './dropdown-group.css';
 
