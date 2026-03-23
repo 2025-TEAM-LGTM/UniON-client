@@ -1,4 +1,4 @@
-import type { TeamCulture } from '@shared/utils/team-culture/types';
+import type { Personality } from '@shared/utils/personality/types';
 
 import type { MembersResponse } from '../api/types';
 
@@ -8,7 +8,7 @@ export interface MemberCardModel {
   username: string;
   roleName: string;
   hardSkills: string[];
-  teamCulture: TeamCulture;
+  personality: Personality;
   mainStrength?: string;
 }
 
@@ -22,7 +22,7 @@ export const toMemberCardModel = (member: MembersResponse): MemberCardModel => {
     username: member.username,
     roleName: member.role.name,
     hardSkills: getHardSkills(member),
-    teamCulture: member.personality,
+    personality: member.personality,
   };
 };
 

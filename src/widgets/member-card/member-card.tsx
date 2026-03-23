@@ -2,7 +2,7 @@ import type { MemberCardModel } from '@entities/members/model/adapters';
 import { IMAGES } from '@shared/assets/images';
 import Button from '@shared/ui/components/button/button';
 import Chip from '@shared/ui/components/chip/chip';
-import { toTeamCultureItems } from '@shared/utils/team-culture';
+import { toPersonalityItems } from '@shared/utils/personality/personality';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -24,9 +24,9 @@ const MemberCard = ({ member }: MemberCardProps) => {
     ? joinComma(member.hardSkills)
     : '없음';
 
-  const teamCultureItems = toTeamCultureItems(member.teamCulture);
-  const teamCultureText = joinComma(
-    teamCultureItems.map((item) => item.selectedLabel),
+  const personalityItems = toPersonalityItems(member.personality);
+  const personalityText = joinComma(
+    personalityItems.map((item) => item.selectedLabel),
   );
 
   const handleClickProfile = () => {
@@ -64,7 +64,7 @@ const MemberCard = ({ member }: MemberCardProps) => {
 
         <div className={styles.infoRow}>
           <span className={styles.infoTitle}>팀 성향</span>
-          <span className={styles.infoText}>{teamCultureText}</span>
+          <span className={styles.infoText}>{personalityText}</span>
         </div>
       </section>
 
