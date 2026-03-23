@@ -37,3 +37,9 @@ export const sectionHeader = style({
   color: themeVars.color.gray_800,
   ...themeVars.font.body_20sb,
 });
+
+export const dropdownContainer = style({
+  display: 'flex',
+  justifyContent: 'space-between',
+  marginBottom: '2rem',
+});
