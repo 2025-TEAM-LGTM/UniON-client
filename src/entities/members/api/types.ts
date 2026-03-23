@@ -1,4 +1,5 @@
-import type { TeamCulture } from '@shared/utils/team-culture/types';
+import type { SuccessResponse } from '@shared/api/types';
+import type { Personality } from '@shared/utils/personality/types';
 
 export interface MemberRole {
   id: number;
@@ -9,19 +10,18 @@ export interface MemberSkill {
   id: number;
   name: string;
 }
+
 export interface MembersResponse {
   userId: number;
   username: string;
   imageUrl: string | null;
   role: MemberRole;
   hardSkills?: MemberSkill[];
-  personality: TeamCulture;
+  personality: Personality;
 }
 
-export interface GetMembersResponse {
-  status: number;
-  msg: string;
-  data: {
-    members: MembersResponse[];
-  };
+export interface GetMembersResponseData {
+  members: MembersResponse[];
 }
+
+export type GetMemberResponse = SuccessResponse<GetMembersResponseData>;
