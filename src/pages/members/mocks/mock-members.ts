@@ -1,6 +1,6 @@
-import type { GetMembersResponse } from '@entities/members/api/types';
+import type { GetMemberResponse } from '@entities/members/api/types';
 
-export const MOCK_MEMBERS_RESPONSE: GetMembersResponse = {
+export const MOCK_MEMBERS_RESPONSE: GetMemberResponse = {
   status: 200,
   msg: 'OK',
   data: {
@@ -22,7 +22,7 @@ export const MOCK_MEMBERS_RESPONSE: GetMembersResponse = {
         ],
         personality: {
           A: 1,
-
+          B: 0,
           C: 1,
           D: 1,
           E: 1,
@@ -31,8 +31,10 @@ export const MOCK_MEMBERS_RESPONSE: GetMembersResponse = {
           H: 1,
           I: 1,
           J: 1,
-
+          K: 0,
           L: 1,
+          M: 0,
+          N: 0,
         },
       },
       {
@@ -54,13 +56,14 @@ export const MOCK_MEMBERS_RESPONSE: GetMembersResponse = {
           B: 1,
           C: 1,
           D: 1,
-
+          E: 0,
           F: 1,
           G: 1,
           H: 1,
           I: 1,
           J: 1,
-
+          K: 0,
+          L: 0,
           M: 1,
           N: 1,
         },
@@ -82,17 +85,19 @@ export const MOCK_MEMBERS_RESPONSE: GetMembersResponse = {
         ],
         personality: {
           A: 1,
-
+          B: 0,
+          C: 0,
           D: 1,
-
+          E: 0,
           F: 1,
           G: 1,
-
+          H: 0,
           I: 1,
           J: 1,
           K: 1,
-
+          L: 0,
           M: 1,
+          N: 0,
         },
       },
       {
@@ -113,14 +118,18 @@ export const MOCK_MEMBERS_RESPONSE: GetMembersResponse = {
         personality: {
           A: 1,
           B: 1,
-
+          C: 0,
           D: 1,
           E: 1,
-
+          F: 0,
+          G: 0,
+          H: 0,
           I: 1,
           J: 1,
-
+          K: 0,
           L: 1,
+          M: 0,
+          N: 0,
         },
       },
       {
@@ -137,16 +146,19 @@ export const MOCK_MEMBERS_RESPONSE: GetMembersResponse = {
           { id: 203, name: 'Illustrator' },
         ],
         personality: {
+          A: 0,
           B: 1,
           C: 1,
-
+          D: 0,
           E: 1,
           F: 1,
+          G: 0,
           H: 1,
           I: 1,
-
+          J: 0,
           K: 1,
           L: 1,
+          M: 0,
           N: 1,
         },
       },
@@ -166,13 +178,18 @@ export const MOCK_MEMBERS_RESPONSE: GetMembersResponse = {
         personality: {
           A: 1,
           B: 1,
+          C: 0,
+          D: 0,
           E: 1,
           F: 1,
           G: 1,
           H: 1,
+          I: 0,
           J: 1,
           K: 1,
+          L: 0,
           M: 1,
+          N: 0,
         },
       },
     ],
