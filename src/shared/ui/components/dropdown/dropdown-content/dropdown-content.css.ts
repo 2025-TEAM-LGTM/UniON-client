@@ -2,10 +2,6 @@ import { themeVars } from '@shared/styles';
 import { style } from '@vanilla-extract/css';
 
 export const contentContainer = style({
-  minWidth: '28rem',
-});
-
-export const fieldRoleContainer = style({
   minWidth: '32rem',
   display: 'flex',
   flexDirection: 'column',

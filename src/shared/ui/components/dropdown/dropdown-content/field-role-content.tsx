@@ -40,7 +40,7 @@ const FieldRoleContent = ({
   };
 
   return (
-    <div className={styles.fieldRoleContainer}>
+    <div className={styles.contentContainer}>
       <section className={styles.section}>
         <p className={styles.sectionTitle}>분야</p>
         <div className={styles.buttonGroup}>
