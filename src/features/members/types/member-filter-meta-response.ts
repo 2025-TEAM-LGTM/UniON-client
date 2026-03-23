@@ -5,19 +5,19 @@ import type {
   PersonalityValue,
 } from '@shared/utils/personality/types';
 
-export interface FieldSkillFilterItem {
+export interface FieldSkillFilterItemResponse {
   field: Option;
   skills: Option[];
 }
 
 export interface FieldSkillFilterResponseData {
-  items: FieldSkillFilterItem[];
+  items: FieldSkillFilterItemResponse[];
 }
 
 export type FieldSkillFilterResponse =
   SuccessResponse<FieldSkillFilterResponseData>;
 
-export interface PersonalityOption {
+export interface PersonalityOptionResponse {
   code: PersonalityValue;
   name: string;
 }
@@ -25,8 +25,8 @@ export interface PersonalityOption {
 export interface PersonalityFilterItem {
   key: PersonalityKey;
   label: string;
-  first: PersonalityOption;
-  second: PersonalityOption;
+  first: PersonalityOptionResponse;
+  second: PersonalityOptionResponse;
 }
 
 export interface PersonalityFilterResponseData {
