@@ -1,15 +1,17 @@
 import type { PersonalityFilterValue } from '@shared/utils/personality/types';
 
 export interface MemberFiltersState {
-  fieldId: number | null;
+  roleFieldId: number | null;
   roleIds: number[];
+  skillFieldId: number | null;
   skillIds: number[];
   personalityFilters: PersonalityFilterValue[];
 }
 
 export const EMPTY_MEMBER_FILTERS: MemberFiltersState = {
-  fieldId: null,
+  roleFieldId: null,
   roleIds: [],
+  skillFieldId: null,
   skillIds: [],
   personalityFilters: [],
 };
