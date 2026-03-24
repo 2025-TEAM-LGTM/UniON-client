@@ -1,6 +1,5 @@
+import type { FieldSkillFilterItemResponse } from '@features/members/types/member-filter-meta-response';
 import type { Option } from '@shared/types/filter/filter';
-
-import type { FieldSkillFilterItemResponse } from '../types/member-filter-meta-response';
 
 export interface ParsedFieldSkillResponse {
   fields: Option[];
