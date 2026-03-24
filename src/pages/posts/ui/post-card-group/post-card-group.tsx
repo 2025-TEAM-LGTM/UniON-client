@@ -1,13 +1,13 @@
-import type { PostResponse } from '@features/posts/types/post-response-data';
+import type { PostResponse } from '@entities/posts/api/types';
 import PostCard from '@widgets/post-card/post-card';
 
 import * as styles from './post-card-group.css';
 
-type PostGroupProps = {
+interface PostGroupProps {
   posts: PostResponse[];
   appliedIds: Set<number>;
   onToggleApply: (postId: number) => void;
-};
+}
 
 const PostCardGroup = ({
   posts,

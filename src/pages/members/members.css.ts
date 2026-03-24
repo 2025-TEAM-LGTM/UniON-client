@@ -38,22 +38,8 @@ export const sectionHeader = style({
   ...themeVars.font.body_20sb,
 });
 
-export const writeButtonContainer = style({
-  width: '15.2rem',
-});
-
 export const dropdownContainer = style({
   display: 'flex',
   justifyContent: 'space-between',
   marginBottom: '2rem',
-});
-
-export const dropdown = style({
-  display: 'flex',
-  gap: '1rem',
-});
-
-export const searchButtonContainer = style({
-  display: 'flex',
-  gap: '1rem',
 });

@@ -1,5 +1,5 @@
-import type { TeamCulture } from '@entities/post-details/api/types';
 import ReadTextarea from '@shared/ui/components/textarea/read-textarea/read-textarea';
+import type { TeamCulture } from '@shared/utils/team-culture/types';
 
 import * as styles from './recruit-detail-text.css';
 import TeamCultureMap from './team-culture-map/team-culture-map';
@@ -35,7 +35,6 @@ const RecruitDetailText = ({
       <div className={styles.sectionContainer}>
         <p className={styles.sectionTitle}>팀 문화 및 정규 일정</p>
         <TeamCultureMap teamCulture={teamCulture} />
-
         <ReadTextarea text={aboutUs} />
       </div>
     </section>

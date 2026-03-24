@@ -1,7 +1,7 @@
-import type { GetPostsResponse } from '@features/posts/types/post-response-data';
+import type { GetPostsResponse } from '@entities/posts/api/types';
 
 export const MOCK_POST_RESPONSE: GetPostsResponse = {
-  status: 0,
+  status: 200,
   msg: 'success',
   data: {
     posts: [

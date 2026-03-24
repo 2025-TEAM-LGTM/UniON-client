@@ -2,45 +2,45 @@ import type { Option } from '@shared/types/filter/filter';
 
 import * as styles from './dropdown-content.css';
 
-interface FieldRoleContentProps {
+interface FieldSkillContentProps {
   fields: Option[];
-  rolesByFieldOptions: Record<number, Option[]>;
+  skillsByFieldOptions: Record<number, Option[]>;
   fieldId: number | null;
-  roleIds: number[];
-  onChange: (next: { fieldId: number | null; roleIds: number[] }) => void;
+  skillIds: number[];
+  onChange: (next: { fieldId: number | null; skillIds: number[] }) => void;
 }
 
 const toggleId = (ids: number[], id: number) =>
   ids.includes(id) ? ids.filter((v) => v !== id) : [...ids, id];
 
-const FieldRoleContent = ({
+const FieldSkillContent = ({
   fields,
-  rolesByFieldOptions,
+  skillsByFieldOptions,
   fieldId,
-  roleIds,
+  skillIds,
   onChange,
-}: FieldRoleContentProps) => {
-  const roleOptions =
-    fieldId == null ? [] : (rolesByFieldOptions[fieldId] ?? []);
+}: FieldSkillContentProps) => {
+  const skillOptions =
+    fieldId == null ? [] : (skillsByFieldOptions[fieldId] ?? []);
 
   const handleFieldClick = (nextFieldId: number) => {
     const isSameField = fieldId === nextFieldId;
 
     onChange({
       fieldId: isSameField ? null : nextFieldId,
-      roleIds: [],
+      skillIds: [],
     });
   };
 
-  const handleRoleClick = (roleId: number) => {
+  const handleSkillClick = (skillId: number) => {
     onChange({
       fieldId,
-      roleIds: toggleId(roleIds, roleId),
+      skillIds: toggleId(skillIds, skillId),
     });
   };
 
   return (
-    <div className={styles.fieldRoleContainer}>
+    <div className={styles.contentContainer}>
       <section className={styles.section}>
         <p className={styles.sectionTitle}>분야</p>
         <div className={styles.buttonGroup}>
@@ -63,26 +63,26 @@ const FieldRoleContent = ({
       </section>
 
       <section className={styles.section}>
-        <p className={styles.sectionTitle}>역할</p>
+        <p className={styles.sectionTitle}>하드스킬</p>
 
         {fieldId == null ? (
           <p className={styles.helperText}>분야를 먼저 선택해 주세요.</p>
-        ) : roleOptions.length === 0 ? (
-          <p className={styles.helperText}>선택 가능한 역할이 없어요.</p>
+        ) : skillOptions.length === 0 ? (
+          <p className={styles.helperText}>선택 가능한 하드스킬이 없어요.</p>
         ) : (
           <div className={styles.buttonGroup}>
-            {roleOptions.map((role) => {
-              const selected = roleIds.includes(role.id);
+            {skillOptions.map((skill) => {
+              const selected = skillIds.includes(skill.id);
 
               return (
                 <button
-                  key={role.id}
+                  key={skill.id}
                   type='button'
                   aria-pressed={selected}
                   className={selected ? styles.selectedButton : styles.button}
-                  onClick={() => handleRoleClick(role.id)}
+                  onClick={() => handleSkillClick(skill.id)}
                 >
-                  {role.name}
+                  {skill.name}
                 </button>
               );
             })}
@@ -93,4 +93,4 @@ const FieldRoleContent = ({
   );
 };
 
-export default FieldRoleContent;
+export default FieldSkillContent;

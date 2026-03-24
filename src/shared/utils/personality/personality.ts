@@ -1,20 +1,17 @@
-import type {
-  TeamCulture,
-  TeamCultureValue,
-} from '@entities/post-details/api/types';
+import { type PersonalityKey, type PersonalityValue } from './types';
 
-export interface TeamCultureLabelMeta {
+export interface PersonalityLabelMeta {
   title: string;
-  labels: Record<TeamCultureValue, string>;
+  labels: Record<PersonalityValue, string>;
 }
 
-export interface TeamCultureItem {
-  key: string;
+export interface PersonalityItem {
+  key: PersonalityKey;
   title: string;
   selectedLabel: string;
 }
 
-const TEAM_CULTURE_LABEL_MAP: Record<string, TeamCultureLabelMeta> = {
+const PERSONALITY_LABEL_MAP: Record<PersonalityKey, PersonalityLabelMeta> = {
   A: {
     title: '의사결정 구조',
     labels: {
@@ -115,26 +112,8 @@ const TEAM_CULTURE_LABEL_MAP: Record<string, TeamCultureLabelMeta> = {
   },
 };
 
-export const getTeamCultureLabelMeta = (
-  key: string,
-): TeamCultureLabelMeta | null => {
-  return TEAM_CULTURE_LABEL_MAP[key] ?? null;
-};
-
-export const toTeamCultureItems = (
-  teamCulture: TeamCulture,
-): TeamCultureItem[] => {
-  return Object.entries(teamCulture).flatMap(([key, value]) => {
-    const meta = getTeamCultureLabelMeta(key);
-
-    if (!meta) return [];
-
-    return [
-      {
-        key,
-        title: meta.title,
-        selectedLabel: meta.labels[value],
-      },
-    ];
-  });
+export const getPersonalityLabelMeta = (
+  key: PersonalityKey,
+): PersonalityLabelMeta => {
+  return PERSONALITY_LABEL_MAP[key];
 };
