@@ -1,9 +1,4 @@
-import {
-  type Personality,
-  PERSONALITY_KEYS,
-  type PersonalityKey,
-  type PersonalityValue,
-} from './types';
+import { type PersonalityKey, type PersonalityValue } from './types';
 
 export interface PersonalityLabelMeta {
   title: string;
@@ -121,18 +116,4 @@ export const getPersonalityLabelMeta = (
   key: PersonalityKey,
 ): PersonalityLabelMeta => {
   return PERSONALITY_LABEL_MAP[key];
-};
-
-export const toPersonalityItems = (
-  personality: Personality,
-): PersonalityItem[] => {
-  return PERSONALITY_KEYS.map((key) => {
-    const meta = getPersonalityLabelMeta(key);
-
-    return {
-      key,
-      title: meta.title,
-      selectedLabel: meta.labels[personality[key]],
-    };
-  });
 };

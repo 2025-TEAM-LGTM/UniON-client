@@ -1,5 +1,5 @@
 import ReadTextarea from '@shared/ui/components/textarea/read-textarea/read-textarea';
-import type { Personality } from '@shared/utils/personality/types';
+import type { TeamCulture } from '@shared/utils/team-culture/types';
 
 import * as styles from './recruit-detail-text.css';
 import TeamCultureMap from './team-culture-map/team-culture-map';
@@ -8,7 +8,7 @@ export interface RecruitDetailTextProps {
   imageUrl: string | null;
   seeking: string;
   aboutUs: string;
-  teamCulture: Personality;
+  teamCulture: TeamCulture;
 }
 
 const RecruitDetailText = ({
@@ -35,7 +35,6 @@ const RecruitDetailText = ({
       <div className={styles.sectionContainer}>
         <p className={styles.sectionTitle}>팀 문화 및 정규 일정</p>
         <TeamCultureMap teamCulture={teamCulture} />
-
         <ReadTextarea text={aboutUs} />
       </div>
     </section>

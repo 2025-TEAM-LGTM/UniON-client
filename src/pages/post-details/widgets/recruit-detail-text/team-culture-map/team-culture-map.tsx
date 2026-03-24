@@ -1,14 +1,14 @@
 import PersonalityToggle from '@shared/ui/components/personality-toggle/personality-toggle';
-import { toPersonalityItems } from '@shared/utils/personality/personality';
-import type { Personality } from '@shared/utils/personality/types';
+import { toTeamCultureItems } from '@shared/utils/team-culture/team-culture';
+import type { TeamCulture } from '@shared/utils/team-culture/types';
 
 import * as styles from './team-culture-map.css';
 
 interface TeamCultureMapProps {
-  teamCulture: Personality;
+  teamCulture: TeamCulture;
 }
 const TeamCultureMap = ({ teamCulture }: TeamCultureMapProps) => {
-  const items = toPersonalityItems(teamCulture);
+  const items = toTeamCultureItems(teamCulture);
 
   if (!items.length) return null;
 

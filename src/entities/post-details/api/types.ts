@@ -1,4 +1,4 @@
-import type { Personality } from '@shared/utils/personality/types';
+import type { TeamCulture } from '@shared/utils/team-culture/types';
 
 export interface PostDetailsResponse {
   status: number;
@@ -34,7 +34,7 @@ export interface PostDetailsResponse {
     }>;
     seeking: string;
     aboutUs: string;
-    teamCulture: Personality;
+    teamCulture: TeamCulture;
     imageUrl: string | null;
   };
 }
