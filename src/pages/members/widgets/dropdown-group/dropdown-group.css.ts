@@ -6,20 +6,19 @@ export const group = style({
   alignItems: 'flex-start',
 });
 
-export const personalityDropdown = style({
-  //   flex: 1,
+const baseDropdown = {
   width: '22rem',
   flexShrink: 0,
+} as const;
+
+export const personalityDropdown = style({
+  ...baseDropdown,
 });
 
 export const fieldRoleDropdown = style({
-  flex: 1,
-  width: '22rem',
-  flexShrink: 0,
+  ...baseDropdown,
 });
 
 export const fieldSkillDropdown = style({
-  flex: 1,
-  width: '22rem',
-  flexShrink: 0,
+  ...baseDropdown,
 });

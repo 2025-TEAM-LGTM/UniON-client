@@ -52,6 +52,13 @@ const DropdownGroup = ({
       ? '성향정보'
       : `성향 ${value.personalityFilters.length}개 선택`;
 
+  const patchFilters = (patch: Partial<MemberFiltersState>) => {
+    onChange({
+      ...value,
+      ...patch,
+    });
+  };
+
   return (
     <div className={styles.group}>
       <div className={styles.fieldRoleDropdown}>
@@ -64,8 +71,7 @@ const DropdownGroup = ({
               fieldId={value.roleFieldId}
               roleIds={value.roleIds}
               onChange={(next) =>
-                onChange({
-                  ...value,
+                patchFilters({
                   roleFieldId: next.fieldId,
                   roleIds: next.roleIds,
                 })
@@ -85,8 +91,7 @@ const DropdownGroup = ({
               fieldId={value.skillFieldId}
               skillIds={value.skillIds}
               onChange={(next) =>
-                onChange({
-                  ...value,
+                patchFilters({
                   skillFieldId: next.fieldId,
                   skillIds: next.skillIds,
                 })
@@ -104,10 +109,7 @@ const DropdownGroup = ({
               items={personalityItems}
               value={value.personalityFilters}
               onChange={(nextPersonalityFilters) =>
-                onChange({
-                  ...value,
-                  personalityFilters: nextPersonalityFilters,
-                })
+                patchFilters({ personalityFilters: nextPersonalityFilters })
               }
             />
           </DropdownPanel>

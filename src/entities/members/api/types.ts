@@ -24,4 +24,4 @@ export interface GetMembersResponseData {
   members: MembersResponse[];
 }
 
-export type GetMemberResponse = SuccessResponse<GetMembersResponseData>;
+export type GetMembersResponse = SuccessResponse<GetMembersResponseData>;

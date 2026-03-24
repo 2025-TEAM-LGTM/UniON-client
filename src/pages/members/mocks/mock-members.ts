@@ -1,6 +1,6 @@
-import type { GetMemberResponse } from '@entities/members/api/types';
+import type { GetMembersResponse } from '@entities/members/api/types';
 
-export const MOCK_MEMBERS_RESPONSE: GetMemberResponse = {
+export const MOCK_MEMBERS_RESPONSE: GetMembersResponse = {
   status: 200,
   msg: 'OK',
   data: {

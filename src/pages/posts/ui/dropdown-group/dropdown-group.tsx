@@ -1,12 +1,10 @@
 import type { FiltersState } from '@features/posts/model/filters-state';
 import type { Option } from '@shared/types/filter/filter';
 import {
+  DomainContent,
   Dropdown,
   DropdownPanel,
   DropdownTrigger,
-} from '@shared/ui/components/dropdown';
-import {
-  DomainContent,
   FieldRoleContent,
 } from '@shared/ui/components/dropdown';
 

@@ -56,12 +56,12 @@ const PersonalityContent = ({
             <p className={styles.sectionTitle}>{item.label}</p>
 
             <div className={styles.buttonGroup}>
-              {[item.first, item.second].map((option) => {
+              {[item.first, item.second].map((option, index) => {
                 const selected = selectedValue === option.code;
 
                 return (
                   <button
-                    key={option.code}
+                    key={index}
                     type='button'
                     aria-pressed={selected}
                     className={selected ? styles.selectedButton : styles.button}
