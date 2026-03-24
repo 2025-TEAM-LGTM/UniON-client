@@ -6,6 +6,7 @@ import { parseFieldSkillResponse } from '@features/members/model/parse-field-ski
 import type { PersonalityFilterItem } from '@features/members/types/member-filter-meta-response';
 import { parseFieldRoleResponse } from '@shared/lib/filter/parse-field-role-response';
 import Banner from '@shared/ui/components/banner/banner';
+import MemberDropdownGroup from '@widgets/member-dropdown-group/member-dropdown-group';
 import { useMemo, useState } from 'react';
 
 import * as styles from './members.css';
@@ -13,7 +14,6 @@ import { MOCK_FIELD_ROLE_RESPONSE } from './mocks/mock-field-role-response';
 import { MOCK_MEMBERS_RESPONSE } from './mocks/mock-members';
 import { MOCK_PERSONALITY_FILTER_RESPONSE } from './mocks/mock-personality-filter-response';
 import { MOCK_FIELD_SKILL_RESPONSE } from './mocks/mock-skill-options';
-import DropdownGroup from './widgets/dropdown-group/dropdown-group';
 import MemberCardGroup from './widgets/member-card-group/member-card-group';
 
 const MembersPage = () => {
@@ -55,7 +55,7 @@ const MembersPage = () => {
         </section>
 
         <section className={styles.dropdownContainer}>
-          <DropdownGroup
+          <MemberDropdownGroup
             roleFields={roleFields}
             rolesByFieldOptions={rolesByFieldOptions}
             skillFields={skillFields}

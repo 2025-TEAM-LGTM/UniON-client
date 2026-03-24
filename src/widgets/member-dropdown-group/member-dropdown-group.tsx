@@ -12,9 +12,9 @@ import {
   PersonalityContent,
 } from '@shared/ui/components/dropdown';
 
-import * as styles from './dropdown-group.css';
+import * as styles from './member-dropdown-group.css';
 
-interface DropdownGroupProps {
+interface MemberDropdownGroupProps {
   roleFields: Option[];
   rolesByFieldOptions: Record<number, Option[]>;
   skillFields: Option[];
@@ -24,7 +24,7 @@ interface DropdownGroupProps {
   onChange: (next: MemberFiltersState) => void;
 }
 
-const DropdownGroup = ({
+const MemberDropdownGroup = ({
   roleFields,
   rolesByFieldOptions,
   skillFields,
@@ -32,7 +32,7 @@ const DropdownGroup = ({
   personalityItems,
   value,
   onChange,
-}: DropdownGroupProps) => {
+}: MemberDropdownGroupProps) => {
   const roleLabel =
     value.roleFieldId == null
       ? '직무'
@@ -119,4 +119,4 @@ const DropdownGroup = ({
   );
 };
 
-export default DropdownGroup;
+export default MemberDropdownGroup;
