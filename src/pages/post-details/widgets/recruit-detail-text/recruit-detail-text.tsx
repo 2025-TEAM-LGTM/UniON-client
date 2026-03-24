@@ -1,5 +1,5 @@
 import ReadTextarea from '@shared/ui/components/textarea/read-textarea/read-textarea';
-import type { TeamCulture } from '@shared/utils/team-culture/types';
+import type { Personality } from '@shared/utils/personality/types';
 
 import * as styles from './recruit-detail-text.css';
 import TeamCultureMap from './team-culture-map/team-culture-map';
@@ -8,7 +8,7 @@ export interface RecruitDetailTextProps {
   imageUrl: string | null;
   seeking: string;
   aboutUs: string;
-  teamCulture: TeamCulture;
+  teamCulture: Personality;
 }
 
 const RecruitDetailText = ({
