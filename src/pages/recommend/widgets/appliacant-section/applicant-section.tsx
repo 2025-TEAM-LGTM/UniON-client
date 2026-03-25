@@ -54,7 +54,7 @@ const ApplicantSection = ({ postId, postTitle }: ApplicantSectionProps) => {
   return (
     <>
       <section className={styles.sectionTitleContainer}>
-        <p className={styles.sectionTitle}>'{postTitle}'에 핏한 팀원 보기</p>
+        <p className={styles.sectionTitle}>'{postTitle}'에 지원한 팀원 보기</p>
         <button
           type='button'
           className={styles.refreshButton}
