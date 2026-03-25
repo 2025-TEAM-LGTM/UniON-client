@@ -60,7 +60,7 @@ const ApplicantSection = ({ postId, postTitle }: ApplicantSectionProps) => {
           className={styles.refreshButton}
           onClick={handleRefresh}
         >
-          새로고침
+          <span>새로고침</span>
           <ResetIcon className={styles.icon} />
         </button>
       </section>

@@ -6,19 +6,20 @@ export const sectionTitleContainer = style({
   justifyContent: 'space-between',
   alignItems: 'center',
   marginTop: '2rem',
+  marginBottom: '1rem',
 });
 
 export const sectionTitle = style({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  marginBottom: '1.1rem',
   color: themeVars.color.gray_800,
   ...themeVars.font.body_20sb,
 });
 
 export const refreshButton = style({
-  display: 'inline-flex',
+  display: 'flex',
+  alignItems: 'center',
   color: themeVars.color.gray_400,
   ...themeVars.font.body_18r,
 });
