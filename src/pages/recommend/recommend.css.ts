@@ -1,4 +1,4 @@
-import { themeVars } from '@shared/styles';
+// import { themeVars } from '@shared/styles';
 import { style } from '@vanilla-extract/css';
 
 export const bannerContainer = style({
@@ -29,11 +29,8 @@ export const pageContainer = style({
   },
 });
 
-export const sectionHeader = style({
+export const sectionContainer = style({
   display: 'flex',
-  justifyContent: 'space-between',
-  alignItems: 'center',
-  margin: '2rem 0',
-  color: themeVars.color.gray_800,
-  ...themeVars.font.body_20sb,
+  flexDirection: 'column',
+  gap: '1rem',
 });
