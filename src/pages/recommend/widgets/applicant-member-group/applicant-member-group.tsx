@@ -11,7 +11,7 @@ const ApplicantMemberGroup = ({ members }: ApplicantMemberGroupProps) => {
   if (members.length === 0) {
     return (
       <section className={styles.emptyContainer}>
-        <p>아직 지원한 팀원이 없어요.</p>
+        <p className={styles.emptyText}>아직 지원한 팀원이 없어요.</p>
       </section>
     );
   }

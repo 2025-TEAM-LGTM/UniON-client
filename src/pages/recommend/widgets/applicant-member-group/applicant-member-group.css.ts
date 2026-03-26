@@ -5,11 +5,12 @@ export const emptyContainer = style({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  minHeight: '10rem',
 });
 
 export const emptyText = style({
-  color: themeVars.color.gray_800,
-  ...themeVars.font.body_16sb,
+  color: themeVars.color.gray_400,
+  ...themeVars.font.display_20r,
 });
 
 export const grid = style({
