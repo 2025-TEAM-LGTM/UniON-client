@@ -4,6 +4,7 @@ export const group = style({
   display: 'flex',
   gap: '1.2rem',
   alignItems: 'flex-start',
+  marginBottom: '0.5rem',
 });
 
 const baseDropdown = {
