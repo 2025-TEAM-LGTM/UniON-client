@@ -16,6 +16,7 @@ import { useMemo, useState } from 'react';
 
 import ApplicantMemberGroup from '../applicant-member-group/applicant-member-group';
 import * as styles from './applicant-section.css';
+
 interface ApplicantSectionProps {
   postId: number;
   postTitle: string;

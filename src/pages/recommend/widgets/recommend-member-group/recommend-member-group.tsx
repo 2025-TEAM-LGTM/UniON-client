@@ -1,7 +1,7 @@
 import type { MemberCardModel } from '@entities/members/model/adapters';
 import MemberCard from '@widgets/member-card/member-card';
 
-import * as styles from './recommend-member-group.css';
+import * as styles from '../member-group-shared.css';
 
 interface RecommendMemberGroupProps {
   members: MemberCardModel[];
