@@ -1,7 +1,8 @@
 import Banner from '@shared/ui/components/banner/banner';
 
 import * as styles from './recommend.css';
-import ApplicantSection from './widgets/appliacant-section/applicant-section';
+import ApplicantSection from './widgets/applicant-section/applicant-section';
+import RecommendSection from './widgets/recommend-section/recommend-section';
 
 interface RecommendPost {
   postId: number;
@@ -23,11 +24,14 @@ const RecommendPage = () => {
       <main className={styles.pageContainer}>
         <section className={styles.sectionContainer}>
           {MOCK_RECOMMEND_POSTS.map((post) => (
-            <ApplicantSection
-              key={post.postId}
-              postId={post.postId}
-              postTitle={post.postTitle}
-            />
+            <div key={post.postId}>
+              <RecommendSection postId={post.postId} />
+
+              <ApplicantSection
+                postId={post.postId}
+                postTitle={post.postTitle}
+              />
+            </div>
           ))}
         </section>
       </main>
