@@ -1,6 +1,9 @@
 import type { Option } from '@shared/types/filter/filter';
 
-import type { FieldSkillFilterItemResponse } from '../types/member-filter-meta-response';
+interface FieldSkillFilterItem {
+  field: Option;
+  skills: Option[];
+}
 
 export interface ParsedFieldSkillResponse {
   fields: Option[];
@@ -8,7 +11,7 @@ export interface ParsedFieldSkillResponse {
 }
 
 export const parseFieldSkillResponse = (
-  items: FieldSkillFilterItemResponse[],
+  items: FieldSkillFilterItem[],
 ): ParsedFieldSkillResponse => {
   const fields = items.map((item) => item.field);
 

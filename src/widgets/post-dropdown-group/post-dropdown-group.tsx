@@ -8,9 +8,9 @@ import {
   FieldRoleContent,
 } from '@shared/ui/components/dropdown';
 
-import * as styles from './dropdown-group.css';
+import * as styles from './post-dropdown-group.css';
 
-interface DropdownGroupProps {
+interface PostDropdownGroupProps {
   domains: Option[];
   fields: Option[];
   rolesByFieldOptions: Record<number, Option[]>;
@@ -18,13 +18,13 @@ interface DropdownGroupProps {
   onChange: (next: FiltersState) => void;
 }
 
-const DropdownGroup = ({
+const PostDropdownGroup = ({
   domains,
   fields,
   rolesByFieldOptions,
   value,
   onChange,
-}: DropdownGroupProps) => {
+}: PostDropdownGroupProps) => {
   const domainLabel =
     value.domainIds.length === 0
       ? '도메인 선택'
@@ -72,4 +72,4 @@ const DropdownGroup = ({
   );
 };
 
-export default DropdownGroup;
+export default PostDropdownGroup;

@@ -4,6 +4,7 @@ import { parseFieldRoleResponse } from '@shared/lib/filter/parse-field-role-resp
 import Banner from '@shared/ui/components/banner/banner';
 import Button from '@shared/ui/components/button/button';
 import { useToast } from '@shared/ui/components/toast/toast-context';
+import PostDropdownGroup from '@widgets/post-dropdown-group/post-dropdown-group';
 import { useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -11,8 +12,7 @@ import { MOCK_DOMAIN_OPTIONS } from './mock/mock-domain-options';
 import { MOCK_FIELD_ROLE_RESPONSE } from './mock/mock-field-role-response';
 import { MOCK_POST_RESPONSE } from './mock/mock-posts-response';
 import * as styles from './post.css';
-import DropdownGroup from './ui/dropdown-group/dropdown-group';
-import PostCardGroup from './ui/post-card-group/post-card-group';
+import PostCardGroup from './widgets/post-card-group/post-card-group';
 
 const PostsPage = () => {
   const navigate = useNavigate();
@@ -105,7 +105,7 @@ const PostsPage = () => {
         </section>
 
         <section className={styles.dropdownContainer}>
-          <DropdownGroup
+          <PostDropdownGroup
             domains={MOCK_DOMAIN_OPTIONS}
             fields={fields}
             rolesByFieldOptions={rolesByFieldOptions}
