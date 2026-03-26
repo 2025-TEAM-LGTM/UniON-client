@@ -2,7 +2,7 @@ import type { MemberCardModel } from '@entities/members/model/adapters';
 import { IMAGES } from '@shared/assets/images';
 import Button from '@shared/ui/components/button/button';
 import Chip from '@shared/ui/components/chip/chip';
-import { toTeamCultureItems } from '@shared/utils/team-culture/team-culture';
+import { toPersonalityItems } from '@shared/utils/personality/to-personality-items';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -24,7 +24,7 @@ const MemberCard = ({ member }: MemberCardProps) => {
     ? joinComma(member.hardSkills)
     : '없음';
 
-  const personalityItems = toTeamCultureItems(member.personality);
+  const personalityItems = toPersonalityItems(member.personality);
   const personalityText = joinComma(
     personalityItems.map((item) => item.selectedLabel),
   );
