@@ -11,7 +11,7 @@ const RecommendMemberGroup = ({ members }: RecommendMemberGroupProps) => {
   if (members.length === 0) {
     return (
       <section className={styles.emptyContainer}>
-        <p>조건에 맞는 추천 팀원이 없어요.</p>
+        <p className={styles.emptyText}>조건에 맞는 추천 팀원이 없어요.</p>
       </section>
     );
   }
