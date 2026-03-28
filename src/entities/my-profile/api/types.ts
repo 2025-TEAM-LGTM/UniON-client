@@ -1,4 +1,5 @@
 import type { SuccessResponse } from '@shared/api/types';
+import type { AcademicStatusKey } from '@shared/utils/academic-status/types';
 import type { Personality } from '@shared/utils/personality/types';
 
 export interface ProfileOptionResponse {
@@ -14,7 +15,7 @@ export interface ProfileResponseData {
   email: string;
   university: ProfileOptionResponse;
   entranceYear: number;
-  status: string;
+  status: AcademicStatusKey;
   hardSkills: ProfileOptionResponse[];
   personality: Personality;
 }
