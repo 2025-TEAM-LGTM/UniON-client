@@ -24,7 +24,7 @@ const MyProfilePage = () => {
   };
 
   const handlePortfolioClick = (portfolioId: number) => {
-    navigate(`/portfolios/${portfolioId}`);
+    navigate(`/portfolio/${portfolioId}`);
   };
 
   return (
