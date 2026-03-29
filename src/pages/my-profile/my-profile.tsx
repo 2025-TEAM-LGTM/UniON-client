@@ -1,5 +1,6 @@
 import { toProfileViewModel } from '@entities/my-profile/model/adapters';
 import { toPortfolios } from '@entities/portfolio/model/adapters';
+import Button from '@shared/ui/components/button/button';
 import ProfilePortfolioSection from '@widgets/portfolio-section/portfolio-section';
 import ProfileContactCard from '@widgets/profile/profile-contact-card/profile-contact-card';
 import ProfileEducationCard from '@widgets/profile/profile-education-card/profile-education-card';
@@ -28,6 +29,14 @@ const MyProfilePage = () => {
 
   return (
     <main className={styles.pageContainer}>
+      <div className={styles.pageHeader}>
+        <p className={styles.headerTitle}>내 프로필</p>
+        <div className={styles.buttonContainer}>
+          <Button color='primary' onClick={handleAddClick}>
+            수정하기
+          </Button>
+        </div>
+      </div>
       <ProfileFormLayout
         summary={
           <ProfileSummaryCard

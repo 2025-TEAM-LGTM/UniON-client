@@ -1,5 +1,22 @@
-// import { themeVars } from '@shared/styles';
+import { themeVars } from '@shared/styles';
 import { style } from '@vanilla-extract/css';
+
+export const pageHeader = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  margin: '3.8rem 0',
+});
+
+export const headerTitle = style({
+  color: themeVars.color.gray_900,
+  ...themeVars.font.body_20sb,
+});
+
+export const buttonContainer = style({
+  display: 'flex',
+  width: '14.1rem',
+});
 
 export const pageContainer = style({
   display: 'flex',
