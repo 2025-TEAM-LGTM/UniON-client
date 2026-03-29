@@ -10,7 +10,9 @@ export const ROUTE_PATH = {
   RECOMMEND: '/recommend',
 
   MY_PROFILE: '/me/profile',
-  MY_PORTFOLIO: '/me/portfolio',
+  MY_PORTFOLIO_DETAILS: '/portfolio/:portfolioId',
+  CREATE_PORTFOLIO: '/portfolio/new',
+  EDIT_PORTFOLIO: '/portfolio/:portfolioId/edit',
 
   MEMBERS: '/members',
 
@@ -21,6 +23,10 @@ export const ROUTE_PATH = {
 export const ROUTE_BUILDER = {
   postDetails: (postId: number | string) => `/posts/${postId}`,
   postEdit: (postId: number | string) => `/posts/${postId}/edit`,
+  portfolioDetails: (portfolioId: number | string) =>
+    `/portfolio/${portfolioId}`,
+  editPortfolio: (portfolioId: number | string) =>
+    `/portfolio/${portfolioId}/edit`,
   memberProfile: (memberId: number | string) => `/members/${memberId}/profile`,
   memberPortfolio: (memberId: number | string) =>
     `/members/${memberId}/portfolio`,
