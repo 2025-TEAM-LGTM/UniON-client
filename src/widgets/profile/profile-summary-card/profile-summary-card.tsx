@@ -16,14 +16,17 @@ const ProfileSummaryCard = ({
   mainRoleName,
   profileImageUrl,
 }: ProfileSummaryCardProps) => {
-  const [hasImageError, setHasImageError] = useState(false);
+  const [failedImageUrl, setFailedImageUrl] = useState<string | null>(null);
 
   const handleImageError = () => {
-    setHasImageError(true);
+    if (!profileImageUrl) return;
+    setFailedImageUrl(profileImageUrl);
   };
 
-  const isValidImage = profileImageUrl != null && !hasImageError;
-  const imageSrc = isValidImage ? profileImageUrl : IMAGES.PROFILE;
+  const imageSrc =
+    profileImageUrl != null && failedImageUrl !== profileImageUrl
+      ? profileImageUrl
+      : IMAGES.PROFILE;
 
   return (
     <section className={styles.sectionContainer}>
