@@ -7,6 +7,5 @@ export { default as ResetIcon } from './icn-reset.svg?react';
 export { default as StepperLeftIcon } from './icn-stepperLeft.svg?react';
 export { default as StepperRightIcon } from './icn-stepperRight.svg?react';
 export { default as TeamIcon } from './icn-team.svg?react';
-export { default as ThumbnailIcon } from './icn-thumbnail.svg?react';
 export { default as UploadIcon } from './icn-upload.svg?react';
 export { default as XIcon } from './icn-X.svg?react';
