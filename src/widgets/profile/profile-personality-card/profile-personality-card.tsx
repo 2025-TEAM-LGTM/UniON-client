@@ -16,7 +16,7 @@ const ProfilePersonalityCard = ({
       <div className={styles.personalityItemContainer}>
         {personalityItems.map((item) => (
           <div key={item.key} className={styles.personalityItem}>
-            <p className={styles.skillTitle}>{item.title}</p>
+            <p className={styles.personalityTitle}>{item.title}</p>
             <Chip>{item.selectedLabel}</Chip>
           </div>
         ))}

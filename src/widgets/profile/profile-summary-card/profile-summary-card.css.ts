@@ -5,7 +5,7 @@ export const sectionContainer = style({
   display: 'flex',
   flexDirection: 'column',
   padding: '2.4rem 3rem',
-  gap: '0.9em',
+  gap: '0.9rem',
   border: `1px solid ${themeVars.color.gray_200}`,
   borderRadius: '10px',
 });

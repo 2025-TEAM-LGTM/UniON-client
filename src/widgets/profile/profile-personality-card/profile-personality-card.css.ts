@@ -14,7 +14,7 @@ export const personalityItem = style({
   gap: '0.5rem',
 });
 
-export const skillTitle = style({
+export const personalityTitle = style({
   color: themeVars.color.gray_500,
   ...themeVars.font.body_14m,
 });
