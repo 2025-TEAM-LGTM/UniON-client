@@ -19,7 +19,7 @@ const MyProfilePage = () => {
 
   const navigate = useNavigate();
   const handleAddClick = () => {
-    navigate('/portfolios/new');
+    navigate('/portfolio/new');
   };
 
   const handlePortfolioClick = (portfolioId: number) => {
