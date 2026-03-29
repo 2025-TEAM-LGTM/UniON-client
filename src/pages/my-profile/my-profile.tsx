@@ -19,6 +19,11 @@ const MyProfilePage = () => {
   const portfolios = toPortfolios(MOCK_PORTFOLIOS_RESPONSE.data.portfolios);
 
   const navigate = useNavigate();
+
+  const handleEditProfileClick = () => {
+    navigate('/me/profile/edit');
+  };
+
   const handleAddClick = () => {
     navigate('/portfolio/new');
   };
@@ -30,9 +35,9 @@ const MyProfilePage = () => {
   return (
     <main className={styles.pageContainer}>
       <div className={styles.pageHeader}>
-        <p className={styles.headerTitle}>내 프로필</p>
+        <p className={styles.headerTitle}>마이페이지</p>
         <div className={styles.buttonContainer}>
-          <Button color='primary' onClick={handleAddClick}>
+          <Button color='primary' onClick={handleEditProfileClick}>
             수정하기
           </Button>
         </div>

@@ -65,6 +65,13 @@ export const routes: RouteObject[] = [
         },
       },
       {
+        path: ROUTE_PATH.MY_PROFILE_EDIT,
+        lazy: async () => {
+          const m = await import('@pages/my-profile-edit/my-profile-edit');
+          return { Component: m.default };
+        },
+      },
+      {
         path: ROUTE_PATH.POSTS,
         lazy: async () => {
           const m = await import('@pages/posts/posts');

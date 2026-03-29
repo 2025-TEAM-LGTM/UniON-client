@@ -10,6 +10,8 @@ export const ROUTE_PATH = {
   RECOMMEND: '/recommend',
 
   MY_PROFILE: '/me/profile',
+  MY_PROFILE_EDIT: '/me/profile/edit',
+
   MY_PORTFOLIO_DETAILS: '/portfolio/:portfolioId',
   CREATE_PORTFOLIO: '/portfolio/new',
   EDIT_PORTFOLIO: '/portfolio/:portfolioId/edit',
