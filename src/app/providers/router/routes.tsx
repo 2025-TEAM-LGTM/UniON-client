@@ -36,9 +36,24 @@ export const routes: RouteObject[] = [
         },
       },
       {
-        path: ROUTE_PATH.MY_PORTFOLIO,
+        path: ROUTE_PATH.MY_PORTFOLIO_DETAILS,
         lazy: async () => {
-          const m = await import('@pages/my-portfolio/my-portfolio');
+          const m =
+            await import('@pages/my-portfolio-details/my-portfolio-details');
+          return { Component: m.default };
+        },
+      },
+      {
+        path: ROUTE_PATH.CREATE_PORTFOLIO,
+        lazy: async () => {
+          const m = await import('@pages/create-portfolio/create-portfolio');
+          return { Component: m.default };
+        },
+      },
+      {
+        path: ROUTE_PATH.EDIT_PORTFOLIO,
+        lazy: async () => {
+          const m = await import('@pages/edit-portfolio/edit-portfolio');
           return { Component: m.default };
         },
       },
