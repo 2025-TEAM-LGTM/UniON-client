@@ -11,8 +11,8 @@ const ProfileSkillCard = ({ hardSkillNames }: ProfileSkillCardProps) => {
   return (
     <ProfileSection title='하드 스킬'>
       <div className={styles.skillContainer}>
-        {hardSkillNames.map((skill) => (
-          <Chip key={skill}>{skill}</Chip>
+        {hardSkillNames.map((skill, index) => (
+          <Chip key={`${skill}-${index}`}>{skill}</Chip>
         ))}
       </div>
     </ProfileSection>

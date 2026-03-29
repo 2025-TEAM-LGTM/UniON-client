@@ -5,11 +5,7 @@ export const educationContainer = style({
   display: 'flex',
   gap: '1.2rem',
   borderLeft: `3px solid ${themeVars.color.primary}`,
-});
-
-export const educationBar = style({
-  width: '3px',
-  color: themeVars.color.primary,
+  paddingLeft: '1.2rem',
 });
 
 export const educationInfoContainer = style({

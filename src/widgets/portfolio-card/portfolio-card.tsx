@@ -27,7 +27,9 @@ const PortfolioCard = ({ portfolio, onClick }: PortfolioCardProps) => {
   };
 
   const handleImageError = (event: React.SyntheticEvent<HTMLImageElement>) => {
-    event.currentTarget.src = fallbackImageSrc;
+    const target = event.currentTarget;
+    target.onerror = null;
+    target.src = fallbackImageSrc;
   };
 
   return (

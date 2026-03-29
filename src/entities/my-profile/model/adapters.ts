@@ -1,6 +1,8 @@
 import { getAcademicStatusMeta } from '@shared/utils/academic-status/academic-status';
-import type { PersonalityItem } from '@shared/utils/personality/personality';
-import { toPersonalityItems } from '@shared/utils/personality/to-personality-items';
+import {
+  type PersonalityItem,
+  toPersonalityItems,
+} from '@shared/utils/personality/to-personality-items';
 
 import type { ProfileResponseData } from '../api/types';
 
@@ -34,6 +36,8 @@ const getHardSkillNames = (
 export const toProfileViewModel = (
   profile: ProfileResponseData,
 ): ProfileViewModel => {
+  const academicStatusMeta = getAcademicStatusMeta(profile.status);
+
   return {
     username: profile.username,
     profileImageUrl: profile.imageUrl || null,
@@ -42,7 +46,7 @@ export const toProfileViewModel = (
     email: profile.email,
     universityName: profile.university.name,
     entranceYearLabel: formatEntranceYearLabel(profile.entranceYear),
-    academicStatusLabel: getAcademicStatusMeta(profile.status).label,
+    academicStatusLabel: academicStatusMeta.label ?? '재휴학 여부 미확인',
     hardSkillNames: getHardSkillNames(profile.hardSkills),
     personalityItems: toPersonalityItems(profile.personality),
   };

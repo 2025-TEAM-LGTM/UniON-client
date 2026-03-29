@@ -15,7 +15,6 @@ const ProfileEducationCard = ({
   return (
     <ProfileSection title='학력'>
       <div className={styles.educationContainer}>
-        <div className={styles.educationBar} />
         <div className={styles.educationInfoContainer}>
           <p className={styles.universityName}>{universityName}</p>
           <p className={styles.academicStatusLabel}>{academicStatusLabel}</p>

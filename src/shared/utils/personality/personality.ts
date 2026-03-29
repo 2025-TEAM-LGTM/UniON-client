@@ -5,12 +5,6 @@ export interface PersonalityLabelMeta {
   labels: Record<PersonalityValue, string>;
 }
 
-export interface PersonalityItem {
-  key: PersonalityKey;
-  title: string;
-  selectedLabel: string;
-}
-
 const PERSONALITY_LABEL_MAP: Record<PersonalityKey, PersonalityLabelMeta> = {
   A: {
     title: '의사결정 구조',

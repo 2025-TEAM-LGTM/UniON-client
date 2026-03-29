@@ -9,7 +9,7 @@ export interface ProfileOptionResponse {
 
 export interface ProfileResponseData {
   username: string;
-  imageUrl: string;
+  imageUrl: string | null;
   birthYear: number;
   mainRole: ProfileOptionResponse;
   email: string;
