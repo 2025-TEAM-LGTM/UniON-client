@@ -10,7 +10,7 @@ interface ProfileSectionProps {
 const ProfileSection = ({ title, children }: ProfileSectionProps) => {
   return (
     <section className={styles.sectionContainer}>
-      <p>{title}</p>
+      <p className={styles.title}>{title}</p>
       <div>{children}</div>
     </section>
   );
