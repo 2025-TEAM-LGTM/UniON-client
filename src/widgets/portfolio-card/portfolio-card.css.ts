@@ -21,6 +21,26 @@ export const cardContainer = style({
   },
 });
 
+export const cardButton = style([
+  cardContainer,
+  {
+    width: '100%',
+    padding: 0,
+    border: 'none',
+    background: 'transparent',
+    textAlign: 'left',
+    cursor: 'pointer',
+  },
+]);
+
+export const fallbackContainer = style({
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'center',
+  width: '100%',
+  height: '100%',
+});
+
 export const imageContainer = style({
   width: '100%',
   aspectRatio: '1.94 / 1',
