@@ -14,15 +14,15 @@ export interface CreatePostRequest {
   title: string;
   domainIds: number[];
   recruitPeriod: RecruitPeriodRequest;
-  homepageUrl: string;
+  homepageUrl: string | null;
   contact: string;
   currentRoles: RoleCountRequest[];
   recruitRoles: RoleCountRequest[];
   aboutUs: string;
   teamCulture: TeamCulture;
   seeking: string;
-  imageKey: string;
-  imageSize: number;
+  imageKey: string | null;
+  imageSize: number | null;
 }
 
 export interface CreatePostResponseData {
