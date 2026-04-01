@@ -1,8 +1,8 @@
-import type { Option } from '@shared/types/filter/filter';
+import type { PostFormOption } from './mock-post-create-options';
 
 interface FieldRoleOptionGroup {
-  field: Option;
-  roles: Option[];
+  field: PostFormOption;
+  roles: PostFormOption[];
 }
 
 const MOCK_FIELD_ROLE_OPTION_GROUPS: FieldRoleOptionGroup[] = [
@@ -11,6 +11,7 @@ const MOCK_FIELD_ROLE_OPTION_GROUPS: FieldRoleOptionGroup[] = [
     roles: [
       { id: 101, name: 'PM' },
       { id: 102, name: '서비스 기획자' },
+      { id: 103, name: '사업 기획자' },
     ],
   },
   {
@@ -40,12 +41,11 @@ const MOCK_FIELD_ROLE_OPTION_GROUPS: FieldRoleOptionGroup[] = [
   },
 ];
 
-export const MOCK_ROLE_FIELDS: Option[] = MOCK_FIELD_ROLE_OPTION_GROUPS.map(
-  ({ field }) => field,
-);
+export const MOCK_ROLE_FIELDS: PostFormOption[] =
+  MOCK_FIELD_ROLE_OPTION_GROUPS.map(({ field }) => field);
 
-export const MOCK_ROLES_BY_FIELD_OPTIONS: Record<number, Option[]> =
-  MOCK_FIELD_ROLE_OPTION_GROUPS.reduce<Record<number, Option[]>>(
+export const MOCK_ROLES_BY_FIELD_OPTIONS: Record<number, PostFormOption[]> =
+  MOCK_FIELD_ROLE_OPTION_GROUPS.reduce<Record<number, PostFormOption[]>>(
     (acc, { field, roles }) => {
       acc[field.id] = roles;
       return acc;
@@ -53,5 +53,5 @@ export const MOCK_ROLES_BY_FIELD_OPTIONS: Record<number, Option[]> =
     {},
   );
 
-export const MOCK_ALL_ROLE_OPTIONS: Option[] =
+export const MOCK_ALL_ROLE_OPTIONS: PostFormOption[] =
   MOCK_FIELD_ROLE_OPTION_GROUPS.flatMap(({ roles }) => roles);
