@@ -68,9 +68,7 @@ const PortfolioBasicInfoSection = ({
             alt='포트폴리오 대표 이미지'
             className={styles.image}
           />
-        ) : (
-          <div className={styles.emptyImage} aria-hidden='true' />
-        )}
+        ) : null}
       </div>
     </section>
   );

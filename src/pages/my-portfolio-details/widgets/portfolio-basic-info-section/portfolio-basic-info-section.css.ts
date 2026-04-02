@@ -81,17 +81,7 @@ export const imageWrapper = style({
 });
 
 export const image = style({
-  display: 'block',
   width: '100%',
   height: '100%',
   objectFit: 'cover',
-});
-
-export const emptyImage = style({
-  width: '100%',
-  height: '100%',
-  background:
-    'linear-gradient(45deg, #f3f3f3 25%, transparent 25%), linear-gradient(-45deg, #f3f3f3 25%, transparent 25%), linear-gradient(45deg, transparent 75%, #f3f3f3 75%), linear-gradient(-45deg, transparent 75%, #f3f3f3 75%)',
-  backgroundSize: '32px 32px',
-  backgroundPosition: '0 0, 0 16px, 16px -16px, -16px 0',
 });
