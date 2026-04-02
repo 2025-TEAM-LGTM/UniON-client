@@ -1,4 +1,3 @@
-// entities/portfolio/api/types.ts
 import type { SuccessResponse } from '@shared/api/types';
 
 export interface PortfolioMetaOptionResponse {

@@ -66,6 +66,7 @@ const PortfolioBasicInfoSection = ({
           <img
             src={imageUrl}
             alt='포트폴리오 대표 이미지'
+            loading='lazy'
             className={styles.image}
           />
         ) : null}

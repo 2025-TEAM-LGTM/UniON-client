@@ -21,7 +21,10 @@ const MyPortfolioDetailsPage = () => {
   );
 
   const handleEdit = () => {
-    if (!portfolioId) return;
+    if (!portfolioId) {
+      toast.error('잘못된 접근입니다.');
+      return;
+    }
     toast.error('준비중인 기능이에요!');
 
     // navigate(ROUTE_BUILDER.editPortfolio(portfolioId));

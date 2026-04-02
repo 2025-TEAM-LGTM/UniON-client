@@ -23,7 +23,7 @@ const normalizeUrl = (url: string): string | null => {
   const trimmed = url.trim();
 
   if (!trimmed) return null;
-  if (trimmed.startsWith('http://') || trimmed.startsWith('https://')) {
+  if (/^https?:\/\//i.test(trimmed)) {
     return trimmed;
   }
 
