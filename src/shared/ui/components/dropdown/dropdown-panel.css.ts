@@ -5,6 +5,7 @@ export const panel = style({
   position: 'absolute',
   zIndex: 1000,
   minWidth: '24rem',
+  maxWidth: '40rem',
   maxHeight: '30rem',
   marginTop: '0.8rem',
   border: `1px solid ${themeVars.color.gray_200}`,

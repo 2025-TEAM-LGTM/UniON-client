@@ -1,4 +1,4 @@
-import { ArrowIcon } from '@shared/assets';
+import { ArrowIcon } from '@shared/assets/icons';
 import type { ReactNode } from 'react';
 
 import { useDropdownContext } from './dropdown-context';
@@ -18,7 +18,6 @@ const DropdownTrigger = ({ label, placeholder }: DropdownTriggerProps) => {
       id={triggerId}
       type='button'
       className={styles.base}
-      aria-haspopup='listbox'
       aria-expanded={open}
       aria-controls={panelId}
       onClick={toggle}

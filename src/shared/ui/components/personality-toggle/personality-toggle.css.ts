@@ -17,6 +17,11 @@ export const toggle = style({
       borderColor: themeVars.color.primary,
       color: themeVars.color.primary,
     },
+    '&:disabled': {
+      borderColor: themeVars.color.primary,
+      color: themeVars.color.primary,
+      cursor: 'not-allowed',
+    },
   },
 });
 

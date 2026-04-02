@@ -36,9 +36,24 @@ export const routes: RouteObject[] = [
         },
       },
       {
-        path: ROUTE_PATH.MY_PORTFOLIO,
+        path: ROUTE_PATH.MY_PORTFOLIO_DETAILS,
         lazy: async () => {
-          const m = await import('@pages/my-portfolio/my-portfolio');
+          const m =
+            await import('@pages/my-portfolio-details/my-portfolio-details');
+          return { Component: m.default };
+        },
+      },
+      {
+        path: ROUTE_PATH.CREATE_PORTFOLIO,
+        lazy: async () => {
+          const m = await import('@pages/create-portfolio/create-portfolio');
+          return { Component: m.default };
+        },
+      },
+      {
+        path: ROUTE_PATH.EDIT_PORTFOLIO,
+        lazy: async () => {
+          const m = await import('@pages/edit-portfolio/edit-portfolio');
           return { Component: m.default };
         },
       },
@@ -50,6 +65,13 @@ export const routes: RouteObject[] = [
         },
       },
       {
+        path: ROUTE_PATH.MY_PROFILE_EDIT,
+        lazy: async () => {
+          const m = await import('@pages/my-profile-edit/my-profile-edit');
+          return { Component: m.default };
+        },
+      },
+      {
         path: ROUTE_PATH.POSTS,
         lazy: async () => {
           const m = await import('@pages/posts/posts');
@@ -57,9 +79,23 @@ export const routes: RouteObject[] = [
         },
       },
       {
-        path: ROUTE_PATH.POST_DETAIL,
+        path: ROUTE_PATH.POST_DETAILS,
         lazy: async () => {
-          const m = await import('@pages/post-detail/post-detail');
+          const m = await import('@pages/post-details/post-details');
+          return { Component: m.default };
+        },
+      },
+      {
+        path: ROUTE_PATH.POST_CREATE,
+        lazy: async () => {
+          const m = await import('@pages/post-create/post-create');
+          return { Component: m.default };
+        },
+      },
+      {
+        path: ROUTE_PATH.POST_EDIT,
+        lazy: async () => {
+          const m = await import('@pages/post-edit/post-edit');
           return { Component: m.default };
         },
       },

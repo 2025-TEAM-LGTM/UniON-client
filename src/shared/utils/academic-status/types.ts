@@ -1,0 +1,18 @@
+export const ACADEMIC_STATUS_KEYS = [
+  'ENROLLED',
+  'LEAVE',
+  'DEFERRED',
+  'GRADUATED',
+] as const;
+
+export type AcademicStatusKey = (typeof ACADEMIC_STATUS_KEYS)[number];
+
+const ACADEMIC_STATUS_KEY_SET: ReadonlySet<string> = new Set(
+  ACADEMIC_STATUS_KEYS,
+);
+
+export const isAcademicStatusKey = (
+  value: string,
+): value is AcademicStatusKey => {
+  return ACADEMIC_STATUS_KEY_SET.has(value);
+};
