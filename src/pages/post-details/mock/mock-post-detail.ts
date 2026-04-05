@@ -15,7 +15,7 @@ export const MOCK_POST_DETAIL: PostDetailsResponse = {
     domains: [
       {
         id: 1,
-        name: 'IT/개발',
+        name: 'IT',
       },
       {
         id: 3,

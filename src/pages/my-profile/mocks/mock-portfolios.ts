@@ -33,7 +33,7 @@ export const MOCK_PORTFOLIOS_RESPONSE: PortfolioListResponse = {
           '가입 퍼널 분석과 화면 개편을 통해 모바일 이탈률을 낮추고 회원가입 전환율을 개선한 프로젝트',
         domain: {
           id: 101,
-          name: 'IT 서비스',
+          name: 'IT',
         },
         role: {
           id: 301,
@@ -49,7 +49,7 @@ export const MOCK_PORTFOLIOS_RESPONSE: PortfolioListResponse = {
           '사용자 탐색 흐름과 정보 구조를 개선해 폰트 탐색 경험을 재설계한 리디자인 프로젝트',
         domain: {
           id: 101,
-          name: 'IT 서비스',
+          name: 'IT',
         },
         role: {
           id: 401,

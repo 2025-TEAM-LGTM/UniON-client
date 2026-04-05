@@ -25,7 +25,7 @@ const PostsPage = () => {
 
   const [filters, setFilters] = useState(EMPTY_FILTERS);
   const { fields, rolesByFieldOptions } = useMemo(
-    () => parseFieldRoleResponse(MOCK_FIELD_ROLE_RESPONSE.data.items),
+    () => parseFieldRoleResponse(MOCK_FIELD_ROLE_RESPONSE.data),
     [],
   );
 
