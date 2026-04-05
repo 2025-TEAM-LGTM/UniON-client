@@ -57,3 +57,16 @@ export const searchButtonContainer = style({
   display: 'flex',
   gap: '1rem',
 });
+
+export const emptyContainer = style({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '100%',
+  minHeight: '24rem',
+});
+
+export const emptyText = style({
+  color: themeVars.color.gray_500,
+  ...themeVars.font.body_18r,
+});

@@ -114,11 +114,17 @@ const PostsPage = () => {
           />
         </section>
 
-        <PostCardGroup
-          posts={filteredPosts}
-          appliedIds={appliedIds}
-          onToggleApply={handleToggleApply}
-        />
+        {filteredPosts.length === 0 ? (
+          <section className={styles.emptyContainer}>
+            <p className={styles.emptyText}>검색 결과가 없어요!</p>
+          </section>
+        ) : (
+          <PostCardGroup
+            posts={filteredPosts}
+            appliedIds={appliedIds}
+            onToggleApply={handleToggleApply}
+          />
+        )}
       </main>
     </>
   );
