@@ -43,6 +43,12 @@ const PostDetailPage = () => {
     if (pendingRef.current) return;
 
     const numericPostId = Number(postId);
+
+    if (!Number.isInteger(numericPostId) || numericPostId <= 0) {
+      toast.error('유효하지 않은 공고입니다.');
+      return;
+    }
+
     const wasApplied = isApplied;
     const nextApplied = !wasApplied;
 
