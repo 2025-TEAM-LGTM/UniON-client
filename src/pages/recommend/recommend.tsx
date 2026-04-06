@@ -1,8 +1,11 @@
 import Banner from '@shared/ui/components/banner/banner';
+import { useState } from 'react';
 
 import * as styles from './recommend.css';
 import ApplicantSection from './widgets/applicant-section/applicant-section';
 import RecommendSection from './widgets/recommend-section/recommend-section';
+import type { TabLabelTypes } from './widgets/tab-bar/tab-bar';
+import TabBar from './widgets/tab-bar/tab-bar';
 
 interface RecommendPost {
   postId: number;
@@ -15,6 +18,8 @@ const MOCK_RECOMMEND_POSTS: RecommendPost[] = [
 ];
 
 const RecommendPage = () => {
+  const [activeTab, setActiveTab] = useState<TabLabelTypes>('recommend');
+
   return (
     <>
       <section className={styles.bannerContainer}>
@@ -22,15 +27,20 @@ const RecommendPage = () => {
       </section>
 
       <main className={styles.pageContainer}>
+        <section className={styles.tabBarContainer}>
+          <TabBar activeTab={activeTab} onChangeTab={setActiveTab} />
+        </section>
         <section className={styles.sectionContainer}>
           {MOCK_RECOMMEND_POSTS.map((post) => (
             <div key={post.postId}>
-              <RecommendSection postId={post.postId} />
-
-              <ApplicantSection
-                postId={post.postId}
-                postTitle={post.postTitle}
-              />
+              {activeTab === 'recommend' ? (
+                <RecommendSection postId={post.postId} />
+              ) : (
+                <ApplicantSection
+                  postId={post.postId}
+                  postTitle={post.postTitle}
+                />
+              )}
             </div>
           ))}
         </section>
