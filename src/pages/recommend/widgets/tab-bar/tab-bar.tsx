@@ -13,6 +13,7 @@ const TabBar = ({ activeTab, onChangeTab }: TabBarProps) => {
       <button
         type='button'
         className={styles.tabButton({ isActive: activeTab === 'recommend' })}
+        aria-pressed={activeTab === 'recommend'}
         onClick={() => onChangeTab('recommend')}
       >
         팀원 추천받기
@@ -21,6 +22,7 @@ const TabBar = ({ activeTab, onChangeTab }: TabBarProps) => {
       <button
         type='button'
         className={styles.tabButton({ isActive: activeTab === 'applicant' })}
+        aria-pressed={activeTab === 'applicant'}
         onClick={() => onChangeTab('applicant')}
       >
         지원한 팀원 보기
