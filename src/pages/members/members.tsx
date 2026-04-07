@@ -3,6 +3,7 @@ import { filterMembers } from '@features/members/model/filter-members';
 import type { MemberFiltersState } from '@features/members/model/filter-state';
 import { EMPTY_MEMBER_FILTERS } from '@features/members/model/filter-state';
 import type { PersonalityFilterItem } from '@features/members/types/member-filter-meta-response';
+import { ResetIcon } from '@shared/assets/icons';
 import { parseFieldRoleResponse } from '@shared/lib/filter/parse-field-role-response';
 import { parseFieldSkillResponse } from '@shared/lib/filter/parse-field-skill-response';
 import Banner from '@shared/ui/components/banner/banner';
@@ -43,6 +44,10 @@ const MembersPage = () => {
     return toMemberCardModels(filteredMembers);
   }, [filteredMembers]);
 
+  const handleRefresh = () => {
+    setFilters(EMPTY_MEMBER_FILTERS);
+  };
+
   return (
     <>
       <section className={styles.bannerContainer}>
@@ -54,7 +59,7 @@ const MembersPage = () => {
           <p>전체 팀원 모아보기</p>
         </section>
 
-        <section className={styles.dropdownContainer}>
+        <section className={styles.filterContainer}>
           <MemberDropdownGroup
             roleFields={roleFields}
             rolesByFieldOptions={rolesByFieldOptions}
@@ -64,6 +69,15 @@ const MembersPage = () => {
             value={filters}
             onChange={setFilters}
           />
+
+          <button
+            type='button'
+            className={styles.refreshButton}
+            onClick={handleRefresh}
+          >
+            <span>새로고침</span>
+            <ResetIcon className={styles.icon} />
+          </button>
         </section>
 
         <MemberCardGroup members={memberCardModels} />

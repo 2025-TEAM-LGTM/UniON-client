@@ -33,13 +33,26 @@ export const sectionHeader = style({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
+  minHeight: '4.1rem',
   margin: '2rem 0',
   color: themeVars.color.gray_800,
   ...themeVars.font.body_20sb,
 });
 
-export const dropdownContainer = style({
+export const filterContainer = style({
   display: 'flex',
   justifyContent: 'space-between',
   marginBottom: '2rem',
+});
+
+export const refreshButton = style({
+  display: 'flex',
+  alignItems: 'center',
+  color: themeVars.color.gray_400,
+  ...themeVars.font.body_18r,
+});
+
+export const icon = style({
+  width: '2.4rem',
+  height: '2.4rem',
 });
