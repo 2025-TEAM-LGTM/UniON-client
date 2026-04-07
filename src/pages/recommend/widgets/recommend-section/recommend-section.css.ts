@@ -30,7 +30,7 @@ export const icon = style({
   height: '2.4rem',
 });
 
-export const dropdownContainer = style({
+export const filterContainer = style({
   display: 'flex',
   justifyContent: 'space-between',
   marginBottom: '1rem',

@@ -308,17 +308,17 @@ const RecommendSection = ({ postId }: RecommendSectionProps) => {
           '{MOCK_RECOMMEND_RESPONSE.data.title}'에 핏한 팀원 보기
         </p>
 
-        <button
+        {/* <button
           type='button'
           className={styles.refreshButton}
           onClick={handleRefresh}
         >
           <span>새로고침</span>
           <ResetIcon className={styles.icon} />
-        </button>
+        </button> */}
       </section>
 
-      <section className={styles.dropdownContainer}>
+      <section className={styles.filterContainer}>
         <MemberDropdownGroup
           roleFields={roleFields}
           rolesByFieldOptions={rolesByFieldOptions}
@@ -328,6 +328,15 @@ const RecommendSection = ({ postId }: RecommendSectionProps) => {
           value={filters}
           onChange={setFilters}
         />
+
+        <button
+          type='button'
+          className={styles.refreshButton}
+          onClick={handleRefresh}
+        >
+          <span>새로고침</span>
+          <ResetIcon className={styles.icon} />
+        </button>
       </section>
 
       <RecommendMemberGroup members={cardMembers} />
