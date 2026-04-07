@@ -1,5 +1,6 @@
 import { filterPosts } from '@features/posts/model/filter-posts';
 import { EMPTY_FILTERS } from '@features/posts/model/filters-state';
+import { ResetIcon } from '@shared/assets/icons';
 import { parseFieldRoleResponse } from '@shared/lib/filter/parse-field-role-response';
 import Banner from '@shared/ui/components/banner/banner';
 import Button from '@shared/ui/components/button/button';
@@ -88,6 +89,11 @@ const PostsPage = () => {
     }
   };
 
+  const handleRefresh = () => {
+    setFilters(EMPTY_FILTERS);
+    // TODO: API 연결 이후에는 필터 초기화와 함께 추천 팀원 목록 재조회도 함께 수행한다.
+  };
+
   return (
     <>
       <section className={styles.bannerContainer}>
@@ -104,7 +110,7 @@ const PostsPage = () => {
           </div>
         </section>
 
-        <section className={styles.dropdownContainer}>
+        <section className={styles.filterContainer}>
           <PostDropdownGroup
             domains={MOCK_DOMAIN_OPTIONS}
             fields={fields}
@@ -112,6 +118,15 @@ const PostsPage = () => {
             value={filters}
             onChange={setFilters}
           />
+
+          <button
+            type='button'
+            className={styles.refreshButton}
+            onClick={handleRefresh}
+          >
+            <span>새로고침</span>
+            <ResetIcon className={styles.icon} />
+          </button>
         </section>
 
         {filteredPosts.length === 0 ? (
