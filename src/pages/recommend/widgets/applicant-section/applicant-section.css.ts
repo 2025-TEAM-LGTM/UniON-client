@@ -13,7 +13,7 @@ export const sectionTitle = style({
   display: 'flex',
   justifyContent: 'space-between',
   alignItems: 'center',
-  marginTop: '1rem',
+  margin: '1rem 0',
   color: themeVars.color.gray_800,
   ...themeVars.font.body_20sb,
 });

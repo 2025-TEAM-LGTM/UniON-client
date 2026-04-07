@@ -59,7 +59,7 @@ const MembersPage = () => {
           <p>전체 팀원 모아보기</p>
         </section>
 
-        <section className={styles.dropdownContainer}>
+        <section className={styles.filterContainer}>
           <MemberDropdownGroup
             roleFields={roleFields}
             rolesByFieldOptions={rolesByFieldOptions}
