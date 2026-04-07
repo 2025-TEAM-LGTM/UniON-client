@@ -3,6 +3,7 @@ import { filterMembers } from '@features/members/model/filter-members';
 import type { MemberFiltersState } from '@features/members/model/filter-state';
 import { EMPTY_MEMBER_FILTERS } from '@features/members/model/filter-state';
 import type { PersonalityFilterItem } from '@features/members/types/member-filter-meta-response';
+import { ResetIcon } from '@shared/assets/icons';
 import { parseFieldRoleResponse } from '@shared/lib/filter/parse-field-role-response';
 import { parseFieldSkillResponse } from '@shared/lib/filter/parse-field-skill-response';
 import Banner from '@shared/ui/components/banner/banner';
@@ -15,7 +16,6 @@ import { MOCK_MEMBERS_RESPONSE } from './mocks/mock-members';
 import { MOCK_PERSONALITY_FILTER_RESPONSE } from './mocks/mock-personality-filter-response';
 import { MOCK_FIELD_SKILL_RESPONSE } from './mocks/mock-skill-options';
 import MemberCardGroup from './widgets/member-card-group/member-card-group';
-import { ResetIcon } from '@shared/assets/icons';
 
 const MembersPage = () => {
   const [filters, setFilters] =
