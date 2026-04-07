@@ -56,17 +56,9 @@ const ApplicantSection = ({ postId, postTitle }: ApplicantSectionProps) => {
     <>
       <section className={styles.sectionTitleContainer}>
         <p className={styles.sectionTitle}>'{postTitle}'에 지원한 팀원 보기</p>
-        <button
-          type='button'
-          className={styles.refreshButton}
-          onClick={handleRefresh}
-        >
-          <span>새로고침</span>
-          <ResetIcon className={styles.icon} />
-        </button>
       </section>
 
-      <section className={styles.dropdownContainer}>
+      <section className={styles.filterContainer}>
         <MemberDropdownGroup
           roleFields={roleFields}
           rolesByFieldOptions={rolesByFieldOptions}
@@ -76,6 +68,15 @@ const ApplicantSection = ({ postId, postTitle }: ApplicantSectionProps) => {
           value={filters}
           onChange={setFilters}
         />
+
+        <button
+          type='button'
+          className={styles.refreshButton}
+          onClick={handleRefresh}
+        >
+          <span>새로고침</span>
+          <ResetIcon className={styles.icon} />
+        </button>
       </section>
 
       <ApplicantMemberGroup members={cardMembers} />
