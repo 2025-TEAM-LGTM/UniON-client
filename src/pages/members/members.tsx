@@ -15,6 +15,7 @@ import { MOCK_MEMBERS_RESPONSE } from './mocks/mock-members';
 import { MOCK_PERSONALITY_FILTER_RESPONSE } from './mocks/mock-personality-filter-response';
 import { MOCK_FIELD_SKILL_RESPONSE } from './mocks/mock-skill-options';
 import MemberCardGroup from './widgets/member-card-group/member-card-group';
+import { ResetIcon } from '@shared/assets/icons';
 
 const MembersPage = () => {
   const [filters, setFilters] =
@@ -43,6 +44,10 @@ const MembersPage = () => {
     return toMemberCardModels(filteredMembers);
   }, [filteredMembers]);
 
+  const handleRefresh = () => {
+    setFilters(EMPTY_MEMBER_FILTERS);
+  };
+
   return (
     <>
       <section className={styles.bannerContainer}>
@@ -64,6 +69,15 @@ const MembersPage = () => {
             value={filters}
             onChange={setFilters}
           />
+
+          <button
+            type='button'
+            className={styles.refreshButton}
+            onClick={handleRefresh}
+          >
+            <span>새로고침</span>
+            <ResetIcon className={styles.icon} />
+          </button>
         </section>
 
         <MemberCardGroup members={memberCardModels} />

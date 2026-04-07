@@ -91,7 +91,6 @@ const PostsPage = () => {
 
   const handleRefresh = () => {
     setFilters(EMPTY_FILTERS);
-    // TODO: API 연결 이후에는 필터 초기화와 함께 추천 팀원 목록 재조회도 함께 수행한다.
   };
 
   return (
