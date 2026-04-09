@@ -12,7 +12,7 @@ export const MOCK_PORTFOLIO_DETAILS_RESPONSE: GetPortfolioDetailResponse = {
       '사용자 탐색 흐름과 정보 구조를 개선해 폰트 탐색 경험을 재설계한 리디자인 프로젝트',
     domain: {
       id: 101,
-      name: 'IT 서비스',
+      name: 'IT',
     },
     role: {
       id: 401,
