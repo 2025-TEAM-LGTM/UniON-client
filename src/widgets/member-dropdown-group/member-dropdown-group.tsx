@@ -35,21 +35,21 @@ const MemberDropdownGroup = ({
 }: MemberDropdownGroupProps) => {
   const roleLabel =
     value.roleFieldId == null
-      ? '직무'
+      ? '직무 선택'
       : value.roleIds.length === 0
-        ? '역할 선택'
-        : `역할 ${value.roleIds.length}개 선택`;
+        ? '직무 선택'
+        : `직무 ${value.roleIds.length}개 선택`;
 
   const skillLabel =
     value.skillFieldId == null
-      ? '하드스킬'
+      ? '하드스킬 선택'
       : value.skillIds.length === 0
-        ? '스킬 선택'
-        : `스킬 ${value.skillIds.length}개 선택`;
+        ? '하드스킬 선택'
+        : `하드스킬 ${value.skillIds.length}개 선택`;
 
   const personalityLabel =
     value.personalityFilters.length === 0
-      ? '성향정보'
+      ? '성향정보 선택'
       : `성향 ${value.personalityFilters.length}개 선택`;
 
   const patchFilters = (patch: Partial<MemberFiltersState>) => {
