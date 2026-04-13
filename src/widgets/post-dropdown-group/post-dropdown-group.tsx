@@ -32,14 +32,14 @@ const PostDropdownGroup = ({
 
   const roleLabel =
     value.fieldId == null
-      ? '분야/역할 선택'
+      ? '직무 선택'
       : value.roleIds.length === 0
-        ? '역할 선택'
-        : `역할 ${value.roleIds.length}개 선택`;
+        ? '직무 선택'
+        : `직무 ${value.roleIds.length}개 선택`;
 
   return (
     <div className={styles.group}>
-      <div className={styles.domainDropdown}>
+      <div className={styles.dropdown}>
         <Dropdown>
           <DropdownTrigger placeholder='도메인 선택' label={domainLabel} />
           <DropdownPanel>
@@ -54,7 +54,7 @@ const PostDropdownGroup = ({
         </Dropdown>
       </div>
 
-      <div className={styles.fieldRoleDropdown}>
+      <div className={styles.dropdown}>
         <Dropdown>
           <DropdownTrigger placeholder='분야/역할 선택' label={roleLabel} />
           <DropdownPanel>

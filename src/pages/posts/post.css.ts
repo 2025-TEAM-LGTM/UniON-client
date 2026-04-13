@@ -42,7 +42,7 @@ export const writeButtonContainer = style({
   width: '15.2rem',
 });
 
-export const dropdownContainer = style({
+export const filterContainer = style({
   display: 'flex',
   justifyContent: 'space-between',
   marginBottom: '2rem',
@@ -56,4 +56,29 @@ export const dropdown = style({
 export const searchButtonContainer = style({
   display: 'flex',
   gap: '1rem',
+});
+
+export const emptyContainer = style({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  width: '100%',
+  minHeight: '24rem',
+});
+
+export const emptyText = style({
+  color: themeVars.color.gray_500,
+  ...themeVars.font.body_18r,
+});
+
+export const refreshButton = style({
+  display: 'flex',
+  alignItems: 'center',
+  color: themeVars.color.gray_400,
+  ...themeVars.font.body_18r,
+});
+
+export const icon = style({
+  width: '2.4rem',
+  height: '2.4rem',
 });

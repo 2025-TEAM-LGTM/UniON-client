@@ -33,3 +33,7 @@ export const sectionContainer = style({
   flexDirection: 'column',
   gap: '1rem',
 });
+
+export const tabBarContainer = style({
+  marginTop: '3rem',
+});

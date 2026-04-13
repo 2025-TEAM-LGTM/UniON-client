@@ -1,5 +1,6 @@
 import { filterPosts } from '@features/posts/model/filter-posts';
 import { EMPTY_FILTERS } from '@features/posts/model/filters-state';
+import { ResetIcon } from '@shared/assets/icons';
 import { parseFieldRoleResponse } from '@shared/lib/filter/parse-field-role-response';
 import Banner from '@shared/ui/components/banner/banner';
 import Button from '@shared/ui/components/button/button';
@@ -88,6 +89,10 @@ const PostsPage = () => {
     }
   };
 
+  const handleRefresh = () => {
+    setFilters(EMPTY_FILTERS);
+  };
+
   return (
     <>
       <section className={styles.bannerContainer}>
@@ -104,7 +109,7 @@ const PostsPage = () => {
           </div>
         </section>
 
-        <section className={styles.dropdownContainer}>
+        <section className={styles.filterContainer}>
           <PostDropdownGroup
             domains={MOCK_DOMAIN_OPTIONS}
             fields={fields}
@@ -112,13 +117,28 @@ const PostsPage = () => {
             value={filters}
             onChange={setFilters}
           />
+
+          <button
+            type='button'
+            className={styles.refreshButton}
+            onClick={handleRefresh}
+          >
+            <span>새로고침</span>
+            <ResetIcon className={styles.icon} />
+          </button>
         </section>
 
-        <PostCardGroup
-          posts={filteredPosts}
-          appliedIds={appliedIds}
-          onToggleApply={handleToggleApply}
-        />
+        {filteredPosts.length === 0 ? (
+          <section className={styles.emptyContainer}>
+            <p className={styles.emptyText}>검색 결과가 없어요!</p>
+          </section>
+        ) : (
+          <PostCardGroup
+            posts={filteredPosts}
+            appliedIds={appliedIds}
+            onToggleApply={handleToggleApply}
+          />
+        )}
       </main>
     </>
   );

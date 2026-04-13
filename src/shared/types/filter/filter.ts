@@ -12,8 +12,4 @@ export interface FieldRoleItemResponse {
   fieldName: string;
 }
 
-export interface GetFieldRoleResponse {
-  status: number;
-  msg: string;
-  data: FieldRoleItemResponse[];
-}
+export type GetFieldRoleResponse = FieldRoleItemResponse[];

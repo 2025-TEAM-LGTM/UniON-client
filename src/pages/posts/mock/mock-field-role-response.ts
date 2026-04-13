@@ -1,50 +1,107 @@
+import type { SuccessResponse } from '@shared/api/types';
 import type { GetFieldRoleResponse } from '@shared/types/filter/filter';
 
-export const MOCK_FIELD_ROLE_RESPONSE: GetFieldRoleResponse = {
-  status: 0,
-  msg: 'success',
+export type FieldRoleResponse = SuccessResponse<GetFieldRoleResponse>;
+
+export const MOCK_FIELD_ROLE_RESPONSE: FieldRoleResponse = {
+  status: 200,
+  msg: 'OK',
   data: [
     {
+      fieldId: 100,
+      fieldName: '기획/마케팅',
       roleId: 101,
-      roleName: '프론트엔드',
-      fieldId: 10,
-      fieldName: '개발',
+      roleName: 'Content Marketer',
     },
     {
+      fieldId: 100,
+      fieldName: '기획/마케팅',
       roleId: 102,
-      roleName: '백엔드',
-      fieldId: 10,
-      fieldName: '개발',
+      roleName: 'Social Media Marketer',
     },
     {
+      fieldId: 100,
+      fieldName: '기획/마케팅',
       roleId: 103,
-      roleName: '앱',
-      fieldId: 10,
-      fieldName: '개발',
+      roleName: 'Digital Marketer',
     },
     {
+      fieldId: 100,
+      fieldName: '기획/마케팅',
+      roleId: 104,
+      roleName: 'Copywriter',
+    },
+    {
+      fieldId: 100,
+      fieldName: '기획/마케팅',
+      roleId: 105,
+      roleName: 'PR/Marketing Planner',
+    },
+    {
+      fieldId: 200,
+      fieldName: '예술',
       roleId: 201,
-      roleName: '브랜딩 디자이너',
-      fieldId: 20,
-      fieldName: '디자인',
+      roleName: 'Director',
     },
     {
+      fieldId: 200,
+      fieldName: '예술',
       roleId: 202,
-      roleName: 'UIUX 디자이너',
-      fieldId: 20,
-      fieldName: '디자인',
+      roleName: 'Photographer',
     },
     {
+      fieldId: 200,
+      fieldName: '예술',
+      roleId: 203,
+      roleName: 'Sound designer',
+    },
+    {
+      fieldId: 300,
+      fieldName: '개발',
       roleId: 301,
-      roleName: '기획',
-      fieldId: 30,
-      fieldName: '기획',
+      roleName: 'Frontend developer',
     },
     {
+      fieldId: 300,
+      fieldName: '개발',
+      roleId: 302,
+      roleName: 'Backend developer',
+    },
+    {
+      fieldId: 300,
+      fieldName: '개발',
+      roleId: 303,
+      roleName: 'Mobile App developer',
+    },
+    {
+      fieldId: 300,
+      fieldName: '개발',
+      roleId: 304,
+      roleName: 'Data/AI engineer',
+    },
+    {
+      fieldId: 300,
+      fieldName: '개발',
+      roleId: 305,
+      roleName: 'Embedded/Hardware engineer',
+    },
+    {
+      fieldId: 400,
+      fieldName: '디자인',
       roleId: 401,
-      roleName: '마케터',
-      fieldId: 40,
-      fieldName: '마케팅',
+      roleName: 'UI/UX Designer',
+    },
+    {
+      fieldId: 400,
+      fieldName: '디자인',
+      roleId: 402,
+      roleName: 'Graphic Designer',
+    },
+    {
+      fieldId: 400,
+      fieldName: '디자인',
+      roleId: 403,
+      roleName: 'Publication Designer',
     },
   ],
 };

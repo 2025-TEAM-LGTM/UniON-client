@@ -44,59 +44,163 @@ const MOCK_RECOMMEND_RESPONSE: GetRecommendMembersResponse = {
     title: 'AI 기반 팀매칭 서비스 프론트엔드 모집',
     members: [
       {
-        userId: 1,
-        username: 'username1',
+        userId: 20001,
+        username: '하린',
         profileImageUrl: null,
         role: {
-          id: 1,
-          name: 'Backend Developer',
+          id: 301,
+          name: 'Frontend developer',
         },
         hardSkill: [
-          { id: 1, name: 'React' },
-          { id: 2, name: 'Spring Boot' },
-          { id: 3, name: 'Java' },
+          { id: 3001, name: 'React' },
+          { id: 3002, name: 'TypeScript' },
+          { id: 3004, name: 'Next.js' },
+          { id: 3005, name: 'Vanilla Extract' },
+          { id: 3009, name: 'MySQL' },
+        ],
+        personality: {
+          A: 1,
+          B: 1,
+          C: 0,
+          D: 0,
+          E: 1,
+          F: 1,
+          G: 1,
+          H: 1,
+          I: 0,
+          J: 1,
+          K: 1,
+          L: 0,
+          M: 1,
+          N: 0,
+        },
+        mainStrength: 'TASK',
+      },
+      {
+        userId: 20002,
+        username: '서진',
+        profileImageUrl: null,
+        role: {
+          id: 302,
+          name: 'Backend developer',
+        },
+        hardSkill: [
+          { id: 3006, name: 'Node.js' },
+          { id: 3007, name: 'NestJS' },
+          { id: 3009, name: 'MySQL' },
+          { id: 3010, name: 'MongoDB' },
+          { id: 3013, name: 'Python' },
         ],
         personality: {
           A: 0,
           B: 0,
           C: 1,
+          D: 1,
+          E: 1,
+          F: 0,
+          G: 1,
+          H: 1,
+          I: 0,
+          J: 1,
+          K: 0,
+          L: 1,
+          M: 1,
+          N: 0,
+        },
+        mainStrength: 'PROBLEM',
+      },
+      {
+        userId: 20003,
+        username: '유진',
+        profileImageUrl: null,
+        role: {
+          id: 304,
+          name: 'Data/AI engineer',
+        },
+        hardSkill: [
+          { id: 3013, name: 'Python' },
+          { id: 3014, name: 'FastAPI' },
+          { id: 3015, name: 'PyTorch' },
+          { id: 3016, name: 'TensorFlow' },
+          { id: 3009, name: 'MySQL' },
+        ],
+        personality: {
+          A: 1,
+          B: 0,
+          C: 1,
           D: 0,
-          E: 0,
+          E: 1,
           F: 1,
           G: 0,
           H: 1,
-          I: 0,
+          I: 1,
           J: 0,
           K: 1,
-          L: 0,
+          L: 1,
           M: 0,
           N: 1,
         },
         mainStrength: 'PROBLEM',
       },
       {
-        userId: 2,
-        username: 'username2',
+        userId: 20004,
+        username: '노아',
         profileImageUrl: null,
         role: {
-          id: 2,
-          name: 'Backend Developer',
+          id: 401,
+          name: 'UI/UX Designer',
         },
         hardSkill: [
-          { id: 1, name: 'React' },
-          { id: 2, name: 'Spring Boot' },
+          { id: 4001, name: 'Figma' },
+          { id: 4005, name: 'Framer' },
+          { id: 4006, name: 'ProtoPie' },
+          { id: 4009, name: 'Design System' },
+          { id: 4010, name: 'Typography' },
         ],
         personality: {
           A: 0,
-          B: 0,
+          B: 1,
+          C: 1,
+          D: 0,
+          E: 1,
+          F: 1,
+          G: 0,
+          H: 1,
+          I: 1,
+          J: 0,
+          K: 1,
+          L: 1,
+          M: 0,
+          N: 1,
+        },
+        mainStrength: 'PERSONALITY',
+      },
+      {
+        userId: 20005,
+        username: '채린',
+        profileImageUrl: null,
+        role: {
+          id: 402,
+          name: 'Graphic Designer',
+        },
+        hardSkill: [
+          { id: 4001, name: 'Figma' },
+          { id: 4002, name: 'Photoshop' },
+          { id: 4003, name: 'Illustrator' },
+          { id: 4007, name: 'Indesign' },
+          { id: 4010, name: 'Typography' },
+        ],
+        personality: {
+          A: 1,
+          B: 1,
           C: 1,
           D: 0,
           E: 0,
           F: 1,
           G: 0,
           H: 1,
-          I: 0,
-          J: 0,
+          I: 1,
+          J: 1,
           K: 1,
           L: 0,
           M: 0,
@@ -105,31 +209,34 @@ const MOCK_RECOMMEND_RESPONSE: GetRecommendMembersResponse = {
         mainStrength: 'TASK',
       },
       {
-        userId: 3,
-        username: 'username3',
+        userId: 20006,
+        username: '가람',
         profileImageUrl: null,
         role: {
-          id: 3,
-          name: 'Backend Developer',
+          id: 102,
+          name: 'Social Media Marketer',
         },
         hardSkill: [
-          { id: 1, name: 'Python' },
-          { id: 2, name: 'FastAPI' },
+          { id: 1005, name: 'Meta Ads Manager' },
+          { id: 1007, name: 'Notion' },
+          { id: 1008, name: 'Miro' },
+          { id: 1010, name: 'Mailchimp' },
+          { id: 1012, name: 'Canva' },
         ],
         personality: {
-          A: 0,
-          B: 0,
+          A: 1,
+          B: 1,
           C: 1,
-          D: 0,
+          D: 1,
           E: 0,
           F: 1,
-          G: 0,
+          G: 1,
           H: 1,
-          I: 0,
-          J: 0,
-          K: 1,
+          I: 1,
+          J: 1,
+          K: 0,
           L: 0,
-          M: 0,
+          M: 1,
           N: 1,
         },
         mainStrength: 'PERSONALITY',
@@ -172,8 +279,6 @@ const RecommendSection = ({ postId }: RecommendSectionProps) => {
   }, [members]);
 
   const filteredMembers = useMemo<RecommendFilterMember[]>(() => {
-    // TODO: API 연결 이후에는 서버 필터링 결과를 그대로 사용할 수 있으면
-    // 이 클라이언트 필터링 로직은 제거하거나 fallback 용도로만 유지한다.
     return filterMembers(membersForFilter, filters) as RecommendFilterMember[];
   }, [membersForFilter, filters]);
 
@@ -202,17 +307,9 @@ const RecommendSection = ({ postId }: RecommendSectionProps) => {
         <p className={styles.sectionTitle}>
           '{MOCK_RECOMMEND_RESPONSE.data.title}'에 핏한 팀원 보기
         </p>
-        <button
-          type='button'
-          className={styles.refreshButton}
-          onClick={handleRefresh}
-        >
-          <span>새로고침</span>
-          <ResetIcon className={styles.icon} />
-        </button>
       </section>
 
-      <section className={styles.dropdownContainer}>
+      <section className={styles.filterContainer}>
         <MemberDropdownGroup
           roleFields={roleFields}
           rolesByFieldOptions={rolesByFieldOptions}
@@ -222,6 +319,15 @@ const RecommendSection = ({ postId }: RecommendSectionProps) => {
           value={filters}
           onChange={setFilters}
         />
+
+        <button
+          type='button'
+          className={styles.refreshButton}
+          onClick={handleRefresh}
+        >
+          <span>새로고침</span>
+          <ResetIcon className={styles.icon} />
+        </button>
       </section>
 
       <RecommendMemberGroup members={cardMembers} />
