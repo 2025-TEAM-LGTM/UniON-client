@@ -1,5 +1,4 @@
 import type { PostFormOption } from '@pages/post-create/mocks/mock-post-create-options';
-import Chip from '@shared/ui/components/chip/chip';
 import {
   DomainContent,
   Dropdown,
@@ -59,9 +58,6 @@ const PostBasicInfoSection = ({
     onChangeDomains(nextDomainIds);
   };
 
-  const handleRemoveDomain = (domainId: number) => {
-    onChangeDomains(domainIds.filter((value) => value !== domainId));
-  };
   return (
     <section className={styles.sectionContainer}>
       <h2 className={styles.sectionTitle}>기본 정보</h2>
@@ -84,38 +80,19 @@ const PostBasicInfoSection = ({
           <Label required>활동 분야</Label>
         </div>
 
-        <div className={styles.domainFieldContainer}>
-          <div className={styles.domainTriggerContainer}>
-            <Dropdown>
-              <DropdownTrigger
-                placeholder='분야 (최대 2개 선택)'
-                label={domainLabel || undefined}
-              />
-              <DropdownPanel>
-                <DomainContent
-                  options={domainOptions}
-                  value={domainIds}
-                  onChange={handleChangeDomains}
-                />
-              </DropdownPanel>
-            </Dropdown>
-          </div>
-
-          <p className={styles.captionText}>최대 2개까지 선택할 수 있어요.</p>
-
-          {selectedDomains.length > 0 && (
-            <div className={styles.chipListContainer}>
-              {selectedDomains.map((domain) => (
-                <Chip
-                  key={domain.id}
-                  onRemove={() => handleRemoveDomain(domain.id)}
-                >
-                  {domain.name}
-                </Chip>
-              ))}
-            </div>
-          )}
-        </div>
+        <Dropdown>
+          <DropdownTrigger
+            placeholder='분야 (최대 2개 선택)'
+            label={domainLabel || undefined}
+          />
+          <DropdownPanel>
+            <DomainContent
+              options={domainOptions}
+              value={domainIds}
+              onChange={handleChangeDomains}
+            />
+          </DropdownPanel>
+        </Dropdown>
       </div>
 
       <div className={styles.fieldRowContainer}>
