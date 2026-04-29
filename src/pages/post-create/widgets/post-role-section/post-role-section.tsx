@@ -1,4 +1,5 @@
 import type { RoleCountValue } from '@entities/posts/model/post-form/post-form';
+import { ProfileIcon, XIcon } from '@shared/assets/icons';
 import type { Option } from '@shared/types/filter/filter';
 import Button from '@shared/ui/components/button/button';
 import {
@@ -49,7 +50,7 @@ const PostRoleSection = ({
 
   return (
     <section className={styles.sectionContainer}>
-      <h3 className={styles.subSectionTitle}>{title}</h3>
+      <p className={styles.subSectionTitle}>{title}</p>
 
       <div className={styles.roleInputRowContainer}>
         <div className={styles.dropdownContainer}>
@@ -89,13 +90,15 @@ const PostRoleSection = ({
           />
         </div>
 
-        <Button
-          color='dark'
-          onClick={onAddItem}
-          disabled={pending.roleId == null}
-        >
-          추가하기
-        </Button>
+        <div className={styles.addButtonContainer}>
+          <Button
+            color='dark'
+            onClick={onAddItem}
+            disabled={pending.roleId == null}
+          >
+            추가하기
+          </Button>
+        </div>
       </div>
 
       <div className={styles.roleListContainer}>
@@ -104,9 +107,10 @@ const PostRoleSection = ({
 
           return (
             <div key={item.roleId} className={styles.roleItemContainer}>
-              <span className={styles.roleItemText}>
+              <div className={styles.roleItemTextContainer}>
+                <ProfileIcon />
                 {role?.name ?? '선택된 역할'}, {item.count}명
-              </span>
+              </div>
 
               <button
                 type='button'
@@ -114,7 +118,7 @@ const PostRoleSection = ({
                 onClick={() => onRemoveItem(item.roleId)}
                 aria-label={`${role?.name ?? '역할'} 삭제`}
               >
-                ×
+                <XIcon />
               </button>
             </div>
           );

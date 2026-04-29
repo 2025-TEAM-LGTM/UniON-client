@@ -14,9 +14,8 @@ export const subSectionTitle = style({
 });
 
 export const roleInputRowContainer = style({
-  display: 'grid',
-  gridTemplateColumns: 'minmax(0, 1fr) auto auto',
-  gap: '1.6rem',
+  display: 'flex',
+  gap: '2rem',
   alignItems: 'center',
   width: '100%',
   '@media': {
@@ -47,15 +46,17 @@ export const roleItemContainer = style({
   display: 'flex',
   alignItems: 'center',
   justifyContent: 'space-between',
-  minHeight: '4.8rem',
-  padding: '0 1.6rem',
-  borderRadius: '1rem',
+  padding: '1.5rem 2rem',
+  borderRadius: '10px',
   backgroundColor: themeVars.color.gray_100,
 });
 
-export const roleItemText = style({
+export const roleItemTextContainer = style({
+  display: 'flex',
+  alignItems: 'center',
+  gap: '1.3rem',
   color: themeVars.color.gray_500,
-  ...themeVars.font.body_16sb,
+  ...themeVars.font.body_18r,
 });
 
 export const removeButton = style({
@@ -65,7 +66,10 @@ export const removeButton = style({
   background: 'transparent',
   color: themeVars.color.gray_400,
   cursor: 'pointer',
-  fontSize: '2rem',
-  lineHeight: 1,
-  padding: 0,
+});
+
+export const addButtonContainer = style({
+  display: 'flex',
+  minWidth: '14rem',
+  height: '100%',
 });
