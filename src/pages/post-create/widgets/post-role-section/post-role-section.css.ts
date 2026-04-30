@@ -60,10 +60,8 @@ export const roleItemTextContainer = style({
 });
 
 export const removeButton = style({
-  width: '2.4rem',
-  height: '2.4rem',
-  border: 'none',
-  background: 'transparent',
+  width: '3.3rem',
+  height: '3.3rem',
   color: themeVars.color.gray_400,
   cursor: 'pointer',
 });
@@ -72,4 +70,14 @@ export const addButtonContainer = style({
   display: 'flex',
   minWidth: '14rem',
   height: '100%',
+});
+
+export const removeIconContainer = style({
+  width: '3.3rem',
+  height: '3.3rem',
+});
+
+export const profileIconContainer = style({
+  width: '2.8rem',
+  height: '2.8rem',
 });

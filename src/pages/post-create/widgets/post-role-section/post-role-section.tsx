@@ -108,7 +108,9 @@ const PostRoleSection = ({
           return (
             <div key={item.roleId} className={styles.roleItemContainer}>
               <div className={styles.roleItemTextContainer}>
-                <ProfileIcon />
+                <div className={styles.profileIconContainer}>
+                  <ProfileIcon />
+                </div>
                 {role?.name ?? '선택된 역할'}, {item.count}명
               </div>
 
@@ -118,7 +120,9 @@ const PostRoleSection = ({
                 onClick={() => onRemoveItem(item.roleId)}
                 aria-label={`${role?.name ?? '역할'} 삭제`}
               >
-                <XIcon />
+                <div className={styles.removeIconContainer}>
+                  <XIcon />
+                </div>
               </button>
             </div>
           );

@@ -15,6 +15,9 @@ export const headerContainer = style({
 });
 
 export const pageContainer = style({
+  display: 'flex',
+  flexDirection: 'column',
+  gap: '3.1rem',
   width: '100%',
   maxWidth: '124rem',
   margin: '0 auto',
