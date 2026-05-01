@@ -5,6 +5,7 @@ export const sectionContainer = style({
   display: 'flex',
   flexDirection: 'column',
   gap: '2.5rem',
+  paddingBottom: '3.1rem',
 });
 
 export const sectionTitle = style({
