@@ -3,15 +3,15 @@ import type {
   RoleCountValue,
 } from '@entities/posts/model/post-form/post-form';
 import type { PostFormOption } from '@pages/post-create/mocks/mock-post-create-options';
-import PostBasicInfoSection from '@pages/post-create/widgets/post-basic-info-section/post-basic-info-section';
-import PostDetailSection from '@pages/post-create/widgets/post-detail-section/post-detail-section';
-import PostImageSection from '@pages/post-create/widgets/post-image-section/post-image-section';
-import PostRoleSection from '@pages/post-create/widgets/post-role-section/post-role-section';
-import PostTeamCultureSection from '@pages/post-create/widgets/post-team-culture-section/post-team-culture-section';
 import CtaButton from '@shared/ui/components/cta-button/cta-button';
 import { useState } from 'react';
 
 import * as styles from './post-form-content.css';
+import PostBasicInfoSection from './ui/post-basic-info-section/post-basic-info-section';
+import PostDetailSection from './ui/post-detail-section/post-detail-section';
+import PostImageSection from './ui/post-image-section/post-image-section';
+import PostRoleSection from './ui/post-role-section/post-role-section';
+import PostTeamCultureSection from './ui/post-team-culture-section/post-team-culture-section';
 
 interface PendingRoleInput {
   fieldId: number | null;
