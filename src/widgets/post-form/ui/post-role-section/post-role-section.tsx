@@ -1,6 +1,6 @@
 import type { RoleCountValue } from '@entities/posts/model/post-form/post-form';
 import { ProfileIcon, XIcon } from '@shared/assets/icons';
-import type { Option } from '@shared/types/filter/filter';
+import type { Option } from '@shared/types/common';
 import Button from '@shared/ui/components/button/button';
 import {
   Dropdown,

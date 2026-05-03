@@ -1,7 +1,5 @@
-import type {
-  FieldRoleItemResponse,
-  Option,
-} from '@shared/types/filter/filter';
+import type { FieldRoleItemResponse } from '@entities/field-role/types';
+import type { Option } from '@shared/types/common';
 
 interface ParsedFieldRoleResponse {
   fields: Option[];

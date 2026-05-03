@@ -1,4 +1,4 @@
-import type { Option } from '@shared/types/filter/filter';
+import type { Option } from '@shared/types/common';
 
 export const MOCK_DOMAIN_OPTIONS: Option[] = [
   { id: 1, name: 'IT' },

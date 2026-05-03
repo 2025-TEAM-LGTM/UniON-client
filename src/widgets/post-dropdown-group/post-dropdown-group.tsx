@@ -1,5 +1,5 @@
 import type { FiltersState } from '@features/posts/model/filters-state';
-import type { Option } from '@shared/types/filter/filter';
+import type { Option } from '@shared/types/common';
 import {
   DomainContent,
   Dropdown,
