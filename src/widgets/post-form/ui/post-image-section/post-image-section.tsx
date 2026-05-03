@@ -1,5 +1,6 @@
 import type { PostImageValue } from '@entities/posts/model/post-form/post-form';
 import AddImageButton from '@shared/ui/components/add-image-button/add-image-button';
+import { useEffect } from 'react';
 
 import * as styles from './post-image-section.css';
 
@@ -9,6 +10,14 @@ interface PostImageSectionProps {
 }
 
 const PostImageSection = ({ image, onChangeImage }: PostImageSectionProps) => {
+  useEffect(() => {
+    return () => {
+      if (image.previewUrl != null) {
+        URL.revokeObjectURL(image.previewUrl);
+      }
+    };
+  }, [image.previewUrl]);
+
   const handleFileChange = (file: File) => {
     if (image.previewUrl != null) {
       URL.revokeObjectURL(image.previewUrl);

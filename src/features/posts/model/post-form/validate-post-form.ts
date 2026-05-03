@@ -23,6 +23,13 @@ const hasCompleteTeamCulture = (values: PostFormValues) => {
   return TEAM_CULTURE_KEYS.every((key) => values.teamCulture[key] != null);
 };
 
+const hasValidRoleCounts = (roles: PostFormValues['currentRoles']) => {
+  return (
+    roles.length > 0 &&
+    roles.every((role) => Number.isInteger(role.count) && role.count > 0)
+  );
+};
+
 export const validatePostForm = (values: PostFormValues): PostFormErrors => {
   const errors: PostFormErrors = {};
 
@@ -38,11 +45,10 @@ export const validatePostForm = (values: PostFormValues): PostFormErrors => {
     errors.recruitPeriod = '모집 기간을 입력해주세요.';
   }
 
-  if (!values.currentRoles.length) {
+  if (!hasValidRoleCounts(values.currentRoles)) {
     errors.currentRoles = '현재 팀 구성을 1개 이상 추가해주세요.';
   }
-
-  if (!values.recruitRoles.length) {
+  if (!hasValidRoleCounts(values.recruitRoles)) {
     errors.recruitRoles = '필요 역할을 1개 이상 추가해주세요.';
   }
 

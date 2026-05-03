@@ -30,7 +30,7 @@ const PostTeamCultureSection = ({
 
   return (
     <section className={styles.sectionContainer}>
-      <Label htmlFor='post-seeking' required>
+      <Label htmlFor='post-about-us' required>
         팀 문화 및 정규 일정
       </Label>
       <div className={styles.cultureListContainer}>
@@ -63,6 +63,7 @@ const PostTeamCultureSection = ({
           value={aboutUs}
           onChange={(event) => onChangeAboutUs(event.target.value)}
           placeholder='팀의 문화, 회의 일정, 지향하는 협업 분위기 등을 자세히 작성해주세요.'
+          required
         />
       </div>
     </section>

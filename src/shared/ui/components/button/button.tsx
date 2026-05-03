@@ -17,15 +17,18 @@ const Button = ({
   onClick,
   disabled = false,
   type = 'button',
+  className,
   ...rest
 }: ButtonProps) => {
   return (
     <button
+      {...rest}
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className={styles.button({ color })}
-      {...rest}
+      className={[styles.button({ color }), className]
+        .filter(Boolean)
+        .join(' ')}
     >
       {children}
     </button>

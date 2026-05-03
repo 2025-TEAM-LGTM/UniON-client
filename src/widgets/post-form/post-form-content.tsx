@@ -4,7 +4,7 @@ import type {
 } from '@entities/posts/model/post-form/post-form';
 import type { PostFormOption } from '@pages/post-create/mocks/mock-post-create-options';
 import CtaButton from '@shared/ui/components/cta-button/cta-button';
-import { useState } from 'react';
+import { type Dispatch, type SetStateAction, useState } from 'react';
 
 import * as styles from './post-form-content.css';
 import PostBasicInfoSection from './ui/post-basic-info-section/post-basic-info-section';
@@ -53,7 +53,7 @@ const PostFormContent = ({
     pending: PendingRoleInput,
     items: RoleCountValue[],
     field: 'currentRoles' | 'recruitRoles',
-    setPending: React.Dispatch<React.SetStateAction<PendingRoleInput>>,
+    setPending: Dispatch<SetStateAction<PendingRoleInput>>,
   ) => {
     const { roleId, count } = pending;
 
