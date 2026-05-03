@@ -1,5 +1,5 @@
 import type { SuccessResponse } from '@shared/api/types';
-import type { Option } from '@shared/types/filter/filter';
+import type { Option } from '@shared/types/common';
 import type {
   PersonalityKey,
   PersonalityValue,
