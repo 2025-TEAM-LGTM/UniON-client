@@ -1,6 +1,6 @@
 import type { MemberFiltersState } from '@features/members/model/filter-state';
 import type { PersonalityFilterItem } from '@features/members/types/member-filter-meta-response';
-import type { Option } from '@shared/types/filter/filter';
+import type { Option } from '@shared/types/common';
 import {
   Dropdown,
   DropdownPanel,

@@ -1,4 +1,4 @@
-import type { PostFormOption } from '@pages/post-create/mocks/mock-post-create-options';
+import type { Option } from '@shared/types/common';
 import {
   DomainContent,
   Dropdown,
@@ -21,7 +21,7 @@ interface PostBasicInfoSectionProps {
   };
   homepageUrl: string;
   contact: string;
-  domainOptions: PostFormOption[];
+  domainOptions: Option[];
   onChangeTitle: (value: string) => void;
   onChangeDomains: (value: number[]) => void;
   onChangeRecruitPeriod: (next: { startDate: string; endDate: string }) => void;

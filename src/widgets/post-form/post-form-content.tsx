@@ -2,7 +2,7 @@ import type {
   PostFormValues,
   RoleCountValue,
 } from '@entities/posts/model/post-form/post-form';
-import type { PostFormOption } from '@pages/post-create/mocks/mock-post-create-options';
+import type { Option } from '@shared/types/common';
 import CtaButton from '@shared/ui/components/cta-button/cta-button';
 import { type Dispatch, type SetStateAction, useState } from 'react';
 
@@ -28,10 +28,10 @@ const createEmptyPendingRoleInput = (): PendingRoleInput => ({
 interface PostFormContentProps {
   values: PostFormValues;
   onChange: (next: PostFormValues) => void;
-  domainOptions: PostFormOption[];
-  roleFields: PostFormOption[];
-  rolesByFieldOptions: Record<number, PostFormOption[]>;
-  allRoleOptions: PostFormOption[];
+  domainOptions: Option[];
+  roleFields: Option[];
+  rolesByFieldOptions: Record<number, Option[]>;
+  allRoleOptions: Option[];
   onSubmit: () => void;
 }
 

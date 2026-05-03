@@ -1,4 +1,4 @@
-import type { Option } from '@shared/types/filter/filter';
+import type { Option } from '@shared/types/common';
 
 interface FieldSkillFilterItem {
   field: Option;
