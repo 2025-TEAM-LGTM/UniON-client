@@ -33,6 +33,7 @@ interface PostFormContentProps {
   rolesByFieldOptions: Record<number, Option[]>;
   allRoleOptions: Option[];
   onSubmit: () => void;
+  submitLabel: string;
 }
 
 const PostFormContent = ({
@@ -43,6 +44,7 @@ const PostFormContent = ({
   rolesByFieldOptions,
   allRoleOptions,
   onSubmit,
+  submitLabel,
 }: PostFormContentProps) => {
   const [pendingCurrentRole, setPendingCurrentRole] =
     useState<PendingRoleInput>(createEmptyPendingRoleInput());
@@ -161,7 +163,7 @@ const PostFormContent = ({
 
       <div className={styles.submitContainer}>
         <CtaButton color='primary' onClick={onSubmit}>
-          업로드
+          {submitLabel}
         </CtaButton>
       </div>
     </>
