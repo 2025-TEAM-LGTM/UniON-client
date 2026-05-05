@@ -13,8 +13,8 @@ import PageBackHeader from '@widgets/page-back-header/page-back-header';
 import PostFormContent from '@widgets/post-form/post-form-content';
 import { useState } from 'react';
 
-import * as styles from './post-edit.css';
 import { MOCK_CURRENT_USER_ID, MOCK_POST_EDIT } from './mock/mock-post-edit';
+import * as styles from './post-edit.css';
 
 const PostEditPage = () => {
   // TODO: useParams 등으로 postId 받아서 GET /api/posts/:postId 호출
