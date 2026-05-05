@@ -13,7 +13,7 @@ import PageBackHeader from '@widgets/page-back-header/page-back-header';
 import PostFormContent from '@widgets/post-form/post-form-content';
 import { useState } from 'react';
 
-import * as styles from './/post-edit.css';
+import * as styles from './post-edit.css';
 import { MOCK_CURRENT_USER_ID, MOCK_POST_EDIT } from './mock/mock-post-edit';
 
 const PostEditPage = () => {
