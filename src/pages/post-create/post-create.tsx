@@ -37,6 +37,7 @@ const PostCreatePage = () => {
             // TODO: POST /api/posts 연결
             console.log(formValues);
           }}
+          submitLabel='업로드'
         />
       </main>
     </>
