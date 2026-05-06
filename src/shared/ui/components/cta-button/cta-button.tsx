@@ -7,12 +7,19 @@ interface CtaButtonProps {
   children: ReactNode;
   disabled?: boolean;
   onClick: () => void;
+  type?: 'button' | 'submit';
 }
 
-const CtaButton = ({ color, children, disabled, onClick }: CtaButtonProps) => {
+const CtaButton = ({
+  color,
+  children,
+  disabled,
+  onClick,
+  type = 'button',
+}: CtaButtonProps) => {
   return (
     <button
-      type='button'
+      type={type}
       disabled={disabled}
       onClick={onClick}
       className={styles.base({ color })}
