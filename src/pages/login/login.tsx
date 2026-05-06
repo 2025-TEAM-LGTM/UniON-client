@@ -28,7 +28,6 @@ const LoginPage = () => {
 
     // TODO: POST /api/auth/login 연결
     // 아래는 뼈대 - 실제 API 연결 시 교체
-    console.log(formValues);
 
     // API 연결 후 아래 패턴으로 처리:
     // const response = await fetch('/api/auth/login', {
@@ -73,6 +72,7 @@ const LoginPage = () => {
           <div className={styles.fieldContainer}>
             <div className={styles.fieldWrapper}>
               <TextField
+                name='loginId'
                 value={formValues.loginId}
                 onChange={(e) =>
                   setFormValues({ ...formValues, loginId: e.target.value })
@@ -84,6 +84,7 @@ const LoginPage = () => {
               )}
 
               <TextField
+                name='password'
                 value={formValues.password}
                 onChange={(e) =>
                   setFormValues({ ...formValues, password: e.target.value })
@@ -93,7 +94,7 @@ const LoginPage = () => {
               />
             </div>
 
-            <CtaButton color='primary' onClick={handleSubmit}>
+            <CtaButton color='primary' onClick={handleSubmit} type='submit'>
               로그인
             </CtaButton>
           </div>
@@ -102,7 +103,7 @@ const LoginPage = () => {
 
           <div className={styles.signUpContainer}>
             <p className={styles.signUpText}>계정이 없으신가요?</p>
-            <CtaButton color='gray' onClick={handleClickSignUp}>
+            <CtaButton color='gray' onClick={handleClickSignUp} type='button'>
               회원가입
             </CtaButton>
           </div>

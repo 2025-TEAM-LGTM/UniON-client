@@ -1,4 +1,5 @@
 import { ENV } from '@shared/constants/env';
+import { ROUTE_PATH } from '@shared/constants/path';
 import {
   clearAccessToken,
   getAccessToken,
@@ -36,8 +37,8 @@ const fetchWithAuth = async (
 
     if (!refreshed) {
       clearAccessToken();
-      window.location.href = '/login';
-      return response;
+      window.location.href = ROUTE_PATH.LOGIN;
+      throw new Error('Unauthorized: redirecting to /login');
     }
 
     const newToken = getAccessToken();
@@ -51,7 +52,19 @@ const fetchWithAuth = async (
   return response;
 };
 
-const tryRefreshToken = async (): Promise<boolean> => {
+let refreshPromise: Promise<boolean> | null = null;
+
+const tryRefreshToken = (): Promise<boolean> => {
+  if (refreshPromise != null) {
+    return refreshPromise;
+  }
+  refreshPromise = doRefresh().finally(() => {
+    refreshPromise = null;
+  });
+  return refreshPromise;
+};
+
+const doRefresh = async (): Promise<boolean> => {
   try {
     const response = await fetch(REFRESH_URL, {
       method: 'POST',
