@@ -6,6 +6,7 @@ export const headerContainer = style({
   position: 'sticky',
   display: 'flex',
   top: 0,
+  zIndex: 100,
   alignItems: 'center',
   padding: '0 11.8rem',
   gap: '5rem',
