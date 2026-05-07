@@ -7,7 +7,7 @@ export const base = style({
   justifyContent: 'center',
   alignItems: 'center',
   width: '100%',
-  padding: '1rem 0',
+  padding: '1rem 2rem',
   borderRadius: '10px',
   color: themeVars.color.gray_000,
   ...themeVars.font.body_18sb,

@@ -21,3 +21,16 @@ export interface ProfileResponseData {
 }
 
 export type ProfileResponse = SuccessResponse<ProfileResponseData>;
+
+export interface UpdateProfileRequest {
+  imageKey?: string;
+  imageSize?: number;
+  email?: string;
+  universityId?: number;
+  entranceYear?: number;
+  status?: AcademicStatusKey;
+  hardSkills?: number[];
+  personality?: Personality;
+}
+
+export type UpdateProfileResponse = SuccessResponse<ProfileResponseData>;
