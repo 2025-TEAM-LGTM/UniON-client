@@ -36,7 +36,6 @@ const UniversityContent = ({
           onChange={handleSearchChange}
           className={styles.searchInput}
           placeholder='학교명을 검색하세요'
-          autoFocus
         />
       </div>
       <ul className={styles.list}>
