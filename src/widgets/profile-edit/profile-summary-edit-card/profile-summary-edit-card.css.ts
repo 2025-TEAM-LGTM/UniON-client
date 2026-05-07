@@ -18,7 +18,6 @@ export const profileImageButton = style({
   overflow: 'hidden',
   cursor: 'pointer',
   border: 'none',
-  padding: 0,
   flexShrink: 0,
 
   ':hover': {
@@ -50,7 +49,7 @@ export const imageOverlay = style({
 });
 
 export const imageOverlayText = style({
-  color: '#ffffff',
+  color: themeVars.color.gray_000,
   ...themeVars.font.body_14m,
 });
 

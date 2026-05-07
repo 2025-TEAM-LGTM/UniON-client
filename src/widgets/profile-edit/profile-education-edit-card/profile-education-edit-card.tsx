@@ -68,7 +68,11 @@ const ProfileEducationEditCard = ({
         <TextField
           type='number'
           value={entranceYear}
-          onChange={(e) => onEntranceYearChange(Number(e.target.value))}
+          onChange={(e) => {
+            const next = e.target.value;
+            if (next === '') return;
+            onEntranceYearChange(Number(next));
+          }}
           placeholder='입학년도'
         />
         <div className={styles.statusContainer}>

@@ -1,5 +1,5 @@
 import { IMAGES } from '@shared/assets/images';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 
 import * as styles from './profile-summary-edit-card.css';
 
@@ -21,6 +21,14 @@ const ProfileSummaryEditCard = ({
   const [previewUrl, setPreviewUrl] = useState<string | null>(null);
   const [failedImageUrl, setFailedImageUrl] = useState<string | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    return () => {
+      if (previewUrl) {
+        URL.revokeObjectURL(previewUrl);
+      }
+    };
+  }, [previewUrl]);
 
   const handleImageError = () => {
     if (!profileImageUrl) return;

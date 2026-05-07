@@ -11,7 +11,7 @@ import ProfileContactEditCard from '@widgets/profile-edit/profile-contact-edit-c
 import ProfileEducationEditCard from '@widgets/profile-edit/profile-education-edit-card/profile-education-edit-card';
 import ProfilePersonalityEditCard from '@widgets/profile-edit/profile-personality-edit-card/profile-personality-edit-card';
 import ProfileSkillEditCard from '@widgets/profile-edit/profile-skill-edit-card/profile-skill-edit-card';
-import ProfileSummaryEditCard from '@widgets/profile-edit/profile-summary-edit-card/profile-summary-edit';
+import ProfileSummaryEditCard from '@widgets/profile-edit/profile-summary-edit-card/profile-summary-edit-card';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -112,7 +112,7 @@ const MyProfileEditPage = () => {
         contact={
           <ProfileContactEditCard
             email={values.email}
-            onEmailChange={(email) => setValues({ ...values, email })}
+            onEmailChange={(email) => setValues((prev) => ({ ...prev, email }))}
           />
         }
         education={
