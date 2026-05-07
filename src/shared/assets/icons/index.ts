@@ -5,7 +5,6 @@ export { default as CheckIcon } from './icn-check.svg?react';
 export { default as DateIcon } from './icn-date.svg?react';
 export { default as ProfileIcon } from './icn-profile.svg?react';
 export { default as ResetIcon } from './icn-reset.svg?react';
-export { default as searchIcon } from './icn-search.svg?react';
 export { default as StepperLeftIcon } from './icn-stepperLeft.svg?react';
 export { default as StepperRightIcon } from './icn-stepperRight.svg?react';
 export { default as TeamIcon } from './icn-team.svg?react';
