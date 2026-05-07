@@ -15,8 +15,8 @@ export const chipContainer = style({
 
 export const inputRow = style({
   display: 'flex',
-  gap: '0.8rem',
   alignItems: 'center',
+  gap: '0.8rem',
 });
 
 export const dropdownWrapper = style({
@@ -25,17 +25,11 @@ export const dropdownWrapper = style({
 });
 
 export const addButton = style({
-  flexShrink: 0,
-  padding: '0.6rem 1.6rem',
+  padding: '1.8rem 2rem',
   backgroundColor: themeVars.color.primary,
-  color: '#fff',
-  ...themeVars.font.body_14m,
-  fontWeight: 600,
-  borderRadius: '0.6rem',
-  border: 'none',
-  cursor: 'pointer',
-  whiteSpace: 'nowrap',
-
+  color: themeVars.color.gray_000,
+  ...themeVars.font.body_18sb,
+  borderRadius: '10px',
   ':hover': {
     opacity: 0.9,
   },
