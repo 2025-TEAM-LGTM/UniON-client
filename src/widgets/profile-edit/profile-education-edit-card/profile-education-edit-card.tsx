@@ -21,22 +21,20 @@ const ACADEMIC_STATUS_OPTIONS: { value: AcademicStatusKey; label: string }[] = [
 
 interface ProfileEducationEditCardProps {
   university: UniversityOption | null;
-  major: string;
   entranceYear: number;
   academicStatus: AcademicStatusKey;
   onUniversityChange: (university: UniversityOption) => void;
-  onMajorChange: (value: string) => void;
   onEntranceYearChange: (value: number) => void;
   onAcademicStatusChange: (value: AcademicStatusKey) => void;
 }
 
+// TODO: 전공 수정 기능은 API 수정 후 추가
+
 const ProfileEducationEditCard = ({
   university,
-  major,
   entranceYear,
   academicStatus,
   onUniversityChange,
-  onMajorChange,
   onEntranceYearChange,
   onAcademicStatusChange,
 }: ProfileEducationEditCardProps) => {
@@ -55,6 +53,8 @@ const ProfileEducationEditCard = ({
                 { id: 373, name: '연세대학교' },
                 { id: 374, name: '고려대학교' },
                 { id: 375, name: '서울대학교' },
+                { id: 376, name: 'ㅇㅇㅇㅇ' },
+                { id: 377, name: 'ㅁㅁㅁㅁ' },
               ]}
               value={university?.id ?? null}
               onChange={onUniversityChange}
@@ -65,11 +65,6 @@ const ProfileEducationEditCard = ({
             />
           </DropdownPanel>
         </Dropdown>
-        <TextField
-          value={major}
-          onChange={(e) => onMajorChange(e.target.value)}
-          placeholder='전공'
-        />
         <TextField
           type='number'
           value={entranceYear}
