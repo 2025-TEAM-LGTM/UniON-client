@@ -1,6 +1,7 @@
 import { toPortfolios } from '@entities/portfolio/model/adapters';
 import { toProfileViewModel } from '@entities/profile/model/adapters';
 import { ROUTE_BUILDER } from '@shared/constants/path';
+import { useToast } from '@shared/ui/components/toast/toast-context';
 import ProfilePortfolioSection from '@widgets/portfolio-section/portfolio-section';
 import ProfileContactCard from '@widgets/profile/profile-contact-card/profile-contact-card';
 import ProfileEducationCard from '@widgets/profile/profile-education-card/profile-education-card';
@@ -17,17 +18,19 @@ import { MOCK_MEMBER_PROFILE_RESPONSE } from './mock/mock-member-profile';
 const MembersProfilePage = () => {
   const { memberId } = useParams();
   const navigate = useNavigate();
+  const toast = useToast();
 
   // TODO: GET /api/members/:memberId/profile 연결
   const profile = toProfileViewModel(MOCK_MEMBER_PROFILE_RESPONSE.data);
 
-  // TODO: GET /api/members/:memberId/portfolio 연결
+  // TODO: GET /api/members/:memberId/portfolio/:portfolioId 연결
   const portfolios = toPortfolios(
     MOCK_MEMBER_PORTFOLIOS_RESPONSE.data.portfolios,
   );
 
   const handlePortfolioClick = (portfolioId: number) => {
     if (memberId == null) {
+      toast.error('멤버 정보를 불러오는 데 실패했습니다.');
       return;
     }
 
