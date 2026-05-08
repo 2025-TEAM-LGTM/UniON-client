@@ -28,6 +28,7 @@ const MyPortfolioDetailsPage = () => {
 
     navigate(ROUTE_BUILDER.editPortfolio(portfolioId));
   };
+
   const handleDelete = () => {
     toast.error('준비중인 기능이에요!');
   };

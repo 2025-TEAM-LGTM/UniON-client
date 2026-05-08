@@ -1,4 +1,4 @@
-import type { ProfileResponse } from '@entities/my-profile/api/types';
+import type { ProfileResponse } from '@entities/profile/api/types';
 
 export const MOCK_PROFILE_RESPONSE: ProfileResponse = {
   status: 200,

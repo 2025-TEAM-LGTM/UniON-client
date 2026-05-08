@@ -1,5 +1,5 @@
-import { toProfileViewModel } from '@entities/my-profile/model/adapters';
 import { toPortfolios } from '@entities/portfolio/model/adapters';
+import { toProfileViewModel } from '@entities/profile/model/adapters';
 import { MOCK_FIELD_SKILL_RESPONSE } from '@pages/members/mocks/mock-skill-options';
 import Button from '@shared/ui/components/button/button';
 import type { UniversityOption } from '@shared/ui/components/dropdown/dropdown-content/university-content';
