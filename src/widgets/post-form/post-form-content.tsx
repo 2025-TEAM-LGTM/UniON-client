@@ -4,12 +4,12 @@ import type {
 } from '@entities/posts/model/post-form/post-form';
 import type { Option } from '@shared/types/common';
 import CtaButton from '@shared/ui/components/cta-button/cta-button';
+import PostImageSection from '@shared/ui/components/post-image-section/post-image-section';
 import { type Dispatch, type SetStateAction, useState } from 'react';
 
 import * as styles from './post-form-content.css';
 import PostBasicInfoSection from './ui/post-basic-info-section/post-basic-info-section';
 import PostDetailSection from './ui/post-detail-section/post-detail-section';
-import PostImageSection from './ui/post-image-section/post-image-section';
 import PostRoleSection from './ui/post-role-section/post-role-section';
 import PostTeamCultureSection from './ui/post-team-culture-section/post-team-culture-section';
 
