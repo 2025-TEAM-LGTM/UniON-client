@@ -4,7 +4,7 @@ import { style } from '@vanilla-extract/css';
 export const sectionContainer = style({
   display: 'flex',
   flexDirection: 'column',
-  margin: '3.1rem 0',
+  margin: '2rem 0',
   width: '100%',
 });
 

@@ -4,7 +4,7 @@ import { style } from '@vanilla-extract/css';
 export const sectionContainer = style({
   display: 'flex',
   flexDirection: 'column',
-  paddingBottom: '3.1rem',
+  paddingBottom: '2rem',
   gap: '2rem',
   width: '100%',
 });
