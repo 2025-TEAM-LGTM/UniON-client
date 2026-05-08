@@ -1,10 +1,10 @@
 import { toPortfolioDetailViewModel } from '@entities/my-portfolio-details/model/adapters';
 import { ROUTE_PATH } from '@shared/constants/path';
-// import { ROUTE_BUILDER } from '@shared/constants/path';
+import { ROUTE_BUILDER } from '@shared/constants/path';
 import CtaButton from '@shared/ui/components/cta-button/cta-button';
 import { useToast } from '@shared/ui/components/toast/toast-context';
 import PageBackHeader from '@widgets/page-back-header/page-back-header';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import { MOCK_PORTFOLIO_DETAILS_RESPONSE } from './mocks/mock-portfolio-details';
 import * as styles from './my-portfolio-details.css';
@@ -12,7 +12,7 @@ import PortfolioBasicInfoSection from './widgets/portfolio-basic-info-section/po
 import StarTextSection from './widgets/star-text-section/star-text-section';
 
 const MyPortfolioDetailsPage = () => {
-  // const navigate = useNavigate();
+  const navigate = useNavigate();
   const { portfolioId } = useParams();
   const toast = useToast();
 
@@ -21,15 +21,13 @@ const MyPortfolioDetailsPage = () => {
   );
 
   const handleEdit = () => {
-    if (!portfolioId) {
+    if (portfolioId == null) {
       toast.error('잘못된 접근입니다.');
       return;
     }
-    toast.error('준비중인 기능이에요!');
 
-    // navigate(ROUTE_BUILDER.editPortfolio(portfolioId));
+    navigate(ROUTE_BUILDER.editPortfolio(portfolioId));
   };
-
   const handleDelete = () => {
     toast.error('준비중인 기능이에요!');
   };
