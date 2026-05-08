@@ -1,5 +1,5 @@
-import { toProfileViewModel } from '@entities/my-profile/model/adapters';
 import { toPortfolios } from '@entities/portfolio/model/adapters';
+import { toProfileViewModel } from '@entities/profile/model/adapters';
 import Button from '@shared/ui/components/button/button';
 import ProfilePortfolioSection from '@widgets/portfolio-section/portfolio-section';
 import ProfileContactCard from '@widgets/profile/profile-contact-card/profile-contact-card';

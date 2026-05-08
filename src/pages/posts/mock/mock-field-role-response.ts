@@ -1,5 +1,5 @@
+import type { GetFieldRoleResponse } from '@entities/field-role/types';
 import type { SuccessResponse } from '@shared/api/types';
-import type { GetFieldRoleResponse } from '@shared/types/filter/filter';
 
 export type FieldRoleResponse = SuccessResponse<GetFieldRoleResponse>;
 

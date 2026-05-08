@@ -7,10 +7,15 @@ export const base = style({
   justifyContent: 'center',
   alignItems: 'center',
   width: '100%',
-  padding: '1rem 0',
+  padding: '1rem 2rem',
   borderRadius: '10px',
   color: themeVars.color.gray_000,
   ...themeVars.font.body_18sb,
+  selectors: {
+    '&:disabled': {
+      cursor: 'not-allowed',
+    },
+  },
 });
 
 export const button = recipe({
@@ -25,6 +30,9 @@ export const button = recipe({
       },
       gray: {
         backgroundColor: themeVars.color.gray_400,
+      },
+      disabled: {
+        backgroundColor: themeVars.color.gray_200,
       },
     },
   },

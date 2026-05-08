@@ -1,4 +1,4 @@
-import type { Option } from '@shared/types/filter/filter';
+import type { Option } from '@shared/types/common';
 
 import * as styles from './dropdown-content.css';
 
@@ -8,6 +8,7 @@ interface FieldRoleContentProps {
   fieldId: number | null;
   roleIds: number[];
   onChange: (next: { fieldId: number | null; roleIds: number[] }) => void;
+  singleSelect?: boolean;
 }
 
 const toggleId = (ids: number[], id: number) =>
@@ -19,6 +20,7 @@ const FieldRoleContent = ({
   fieldId,
   roleIds,
   onChange,
+  singleSelect = false,
 }: FieldRoleContentProps) => {
   const roleOptions =
     fieldId == null ? [] : (rolesByFieldOptions[fieldId] ?? []);
@@ -33,6 +35,16 @@ const FieldRoleContent = ({
   };
 
   const handleRoleClick = (roleId: number) => {
+    if (singleSelect) {
+      const isSelected = roleIds.includes(roleId);
+
+      onChange({
+        fieldId,
+        roleIds: isSelected ? [] : [roleId],
+      });
+      return;
+    }
+
     onChange({
       fieldId,
       roleIds: toggleId(roleIds, roleId),

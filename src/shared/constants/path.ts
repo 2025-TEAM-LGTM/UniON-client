@@ -19,7 +19,7 @@ export const ROUTE_PATH = {
   MEMBERS: '/members',
 
   MEMBER_PROFILE: '/members/:memberId/profile',
-  MEMBER_PORTFOLIO: '/members/:memberId/portfolio',
+  MEMBER_PORTFOLIO: '/members/:memberId/portfolio/:portfolioId',
 } as const;
 
 export const ROUTE_BUILDER = {
@@ -30,6 +30,6 @@ export const ROUTE_BUILDER = {
   editPortfolio: (portfolioId: number | string) =>
     `/portfolio/${portfolioId}/edit`,
   memberProfile: (memberId: number | string) => `/members/${memberId}/profile`,
-  memberPortfolio: (memberId: number | string) =>
-    `/members/${memberId}/portfolio`,
+  memberPortfolio: (memberId: number | string, portfolioId: number | string) =>
+    `/members/${memberId}/portfolio/${portfolioId}`,
 } as const;
