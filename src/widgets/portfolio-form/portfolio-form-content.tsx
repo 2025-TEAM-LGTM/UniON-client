@@ -37,7 +37,9 @@ const PortfolioFormContent = ({
         rolesByFieldOptions={rolesByFieldOptions}
         onChangeTitle={(title) => onChange({ ...values, title })}
         onChangeSummary={(summary) => onChange({ ...values, summary })}
-        onChangeField={(fieldId) => onChange({ ...values, fieldId })}
+        onChangeField={(fieldId) =>
+          onChange({ ...values, fieldId, roleId: null })
+        }
         onChangeRole={(roleId) => onChange({ ...values, roleId })}
         onChangeHeadcount={(headcount) => onChange({ ...values, headcount })}
         onChangeExternUrl={(externUrl) => onChange({ ...values, externUrl })}

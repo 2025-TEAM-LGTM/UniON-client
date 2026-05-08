@@ -51,6 +51,10 @@ const PortfolioBasicInfoFormSection = ({
 
   const roleLabel = selectedRole != null ? selectedRole.name : undefined;
 
+  const selectedField =
+    fieldId != null ? roleFields.find((f) => f.id === fieldId) : null;
+  const fieldLabel = selectedField != null ? selectedField.name : undefined;
+
   const handleFieldRoleChange = (next: {
     fieldId: number | null;
     roleIds: number[];
@@ -62,9 +66,7 @@ const PortfolioBasicInfoFormSection = ({
   return (
     <section className={styles.sectionContainer}>
       <h2>
-        <Label htmlFor='portfolio-basic-info' required>
-          기본 정보
-        </Label>
+        <Label required>기본 정보</Label>
       </h2>
 
       <div className={styles.fieldRowContainer}>
@@ -90,7 +92,7 @@ const PortfolioBasicInfoFormSection = ({
       <div className={styles.fieldRowContainer}>
         <Label>활동 분야</Label>
         <Dropdown>
-          <DropdownTrigger placeholder='분야' label={undefined} />
+          <DropdownTrigger placeholder='분야' label={fieldLabel} />
           <DropdownPanel>
             <FieldRoleContent
               fields={roleFields}
