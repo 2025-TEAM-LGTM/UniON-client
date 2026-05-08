@@ -1,4 +1,4 @@
-import type { PortfolioDetailResponse } from '@entities/my-portfolio-details/api/types';
+import type { PortfolioDetailResponse } from '@entities/portfolio-details/api/types';
 
 export const MOCK_PORTFOLIO_DETAIL: PortfolioDetailResponse = {
   portfolioId: 407,

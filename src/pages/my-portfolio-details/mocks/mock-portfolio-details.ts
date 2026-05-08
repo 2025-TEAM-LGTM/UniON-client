@@ -1,4 +1,4 @@
-import type { GetPortfolioDetailResponse } from '@entities/my-portfolio-details/api/types';
+import type { GetPortfolioDetailResponse } from '@entities/portfolio-details/api/types';
 
 import nn from '../../my-profile/mocks/nn.png';
 
