@@ -6,7 +6,7 @@ import * as styles from './portfolio-section.css';
 
 interface ProfilePortfolioSectionProps {
   portfolios: Portfolio[];
-  onAddClick: () => void;
+  onAddClick?: () => void;
   onPortfolioClick: (portfolioId: number) => void;
 }
 
@@ -20,11 +20,13 @@ const ProfilePortfolioSection = ({
       <div className={styles.contentContainer}>
         <div className={styles.headerContainer}>
           <p className={styles.headerTitle}>포트폴리오</p>
-          <div className={styles.buttonContainer}>
-            <Button color='primary' onClick={onAddClick}>
-              추가하기
-            </Button>
-          </div>
+          {onAddClick != null && (
+            <div className={styles.buttonContainer}>
+              <Button color='primary' onClick={onAddClick}>
+                추가하기
+              </Button>
+            </div>
+          )}
         </div>
 
         {portfolios.length > 0 ? (
