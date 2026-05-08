@@ -1,4 +1,4 @@
-import { toPortfolioDetailViewModel } from '@entities/my-portfolio-details/model/adapters';
+import { toPortfolioDetailViewModel } from '@entities/portfolio-details/model/adapters';
 import { ROUTE_BUILDER, ROUTE_PATH } from '@shared/constants/path';
 import CtaButton from '@shared/ui/components/cta-button/cta-button';
 import { useToast } from '@shared/ui/components/toast/toast-context';

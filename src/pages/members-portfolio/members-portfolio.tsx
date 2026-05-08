@@ -1,4 +1,4 @@
-import { toPortfolioDetailViewModel } from '@entities/my-portfolio-details/model/adapters';
+import { toPortfolioDetailViewModel } from '@entities/portfolio-details/model/adapters';
 import PortfolioBasicInfoSection from '@pages/my-portfolio-details/widgets/portfolio-basic-info-section/portfolio-basic-info-section';
 import StarTextSection from '@pages/my-portfolio-details/widgets/star-text-section/star-text-section';
 import { ROUTE_BUILDER } from '@shared/constants/path';
