@@ -36,10 +36,6 @@ const MembersProfilePage = () => {
 
   return (
     <main className={styles.pageContainer}>
-      <div className={styles.pageHeader}>
-        <p className={styles.headerTitle}>{profile.username}</p>
-      </div>
-
       <ProfileFormLayout
         summary={
           <ProfileSummaryCard
