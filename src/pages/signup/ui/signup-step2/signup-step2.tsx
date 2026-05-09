@@ -21,6 +21,10 @@ const ACADEMIC_STATUS_OPTIONS = ACADEMIC_STATUS_KEYS.map((key) => ({
   label: getAcademicStatusLabel(key),
 }));
 
+const isValidEntranceYear = (value: string): boolean => {
+  return /^\d{4}$/.test(value);
+};
+
 interface SignupStep2Props {
   values: SignupFormValues;
   onChange: (next: SignupFormValues) => void;
@@ -36,7 +40,7 @@ const isStep2Complete = (values: SignupFormValues): boolean => {
     values.mainRoleId != null &&
     values.universityId != null &&
     values.major.trim() !== '' &&
-    values.entranceYear.trim() !== '' &&
+    isValidEntranceYear(values.entranceYear.trim()) &&
     values.status != null
   );
 };

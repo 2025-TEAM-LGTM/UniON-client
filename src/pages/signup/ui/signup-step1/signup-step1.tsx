@@ -67,7 +67,6 @@ const SignupStep1 = ({
           />
           <button
             className={styles.checkButton}
-            color={values.username.trim() !== '' ? 'primary' : 'gray'}
             disabled={values.username.trim() === ''}
             onClick={onCheckUsername}
           >
