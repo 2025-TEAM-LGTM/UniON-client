@@ -4,6 +4,7 @@ export { default as BackIcon } from './icn-back.svg?react';
 export { default as CheckIcon } from './icn-check.svg?react';
 export { default as DateIcon } from './icn-date.svg?react';
 export { default as ProfileIcon } from './icn-profile.svg?react';
+export { default as ProgressCompletedIcon } from './icn-progress-completed.svg?react';
 export { default as ResetIcon } from './icn-reset.svg?react';
 export { default as StepperLeftIcon } from './icn-stepperLeft.svg?react';
 export { default as StepperRightIcon } from './icn-stepperRight.svg?react';
