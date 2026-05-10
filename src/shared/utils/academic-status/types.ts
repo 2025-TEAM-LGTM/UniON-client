@@ -14,5 +14,5 @@ const ACADEMIC_STATUS_KEY_SET: ReadonlySet<string> = new Set(
 export const isAcademicStatusKey = (
   value: string,
 ): value is AcademicStatusKey => {
-  return ACADEMIC_STATUS_KEY_SET.has(value);
+  return (ACADEMIC_STATUS_KEY_SET as ReadonlySet<string>).has(value);
 };
