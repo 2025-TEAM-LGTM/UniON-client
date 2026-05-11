@@ -5,8 +5,11 @@ import { getMemberProfile } from './profile-api';
 
 export const useGetMemberProfile = (memberId: string | undefined) => {
   return useQuery({
-    queryKey: queryKeys.member.profile(memberId!),
-    queryFn: () => getMemberProfile(memberId!),
+    queryKey: memberId
+      ? queryKeys.member.profile(memberId)
+      : (['member', 'profile', 'placeholder'] as const),
+    queryFn: () => getMemberProfile(memberId as string),
+
     enabled: memberId != null,
   });
 };
