@@ -5,8 +5,11 @@ import { getMemberPortfolios } from './portfolio-api';
 
 export const useGetMemberPortfolios = (memberId: string | undefined) => {
   return useQuery({
-    queryKey: queryKeys.member.portfolios(memberId!),
-    queryFn: () => getMemberPortfolios(memberId!),
+    queryKey: memberId
+      ? queryKeys.member.portfolios(memberId)
+      : (['member', 'portfolios', 'placeholder'] as const),
+    queryFn: () => getMemberPortfolios(memberId as string),
+
     enabled: memberId != null,
   });
 };
