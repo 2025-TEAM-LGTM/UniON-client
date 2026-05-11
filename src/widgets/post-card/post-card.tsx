@@ -45,7 +45,7 @@ const PostCard = ({
         aria-label={`${title} 상세 페이지로 이동`}
         className={styles.overlay}
       />
-      <span className={styles.dday}>D-{dday}</span>
+      <span className={styles.dday}>D{dday}</span>
 
       <div className={styles.textContainer}>
         <p className={styles.title}>{title}</p>
