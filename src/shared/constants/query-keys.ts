@@ -4,6 +4,7 @@ export const queryKeys = {
   posts: {
     all: ['posts'] as const,
     list: (params: GetPostsParams) => ['posts', 'list', params] as const,
+    detail: (postId: number) => ['posts', 'detail', postId] as const,
   },
   fieldRole: {
     all: ['fieldRole'] as const,
