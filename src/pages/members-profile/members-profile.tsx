@@ -1,4 +1,6 @@
+import { useGetMemberPortfolios } from '@entities/portfolio/api/use-get-portfolio';
 import { toPortfolios } from '@entities/portfolio/model/adapters';
+import { useGetMemberProfile } from '@entities/profile/api/use-get-profile';
 import { toProfileViewModel } from '@entities/profile/model/adapters';
 import { ROUTE_BUILDER } from '@shared/constants/path';
 import { useToast } from '@shared/ui/components/toast/toast-context';
@@ -12,21 +14,19 @@ import ProfileSummaryCard from '@widgets/profile/profile-summary-card/profile-su
 import { useNavigate, useParams } from 'react-router-dom';
 
 import * as styles from './member-profile.css';
-import { MOCK_MEMBER_PORTFOLIOS_RESPONSE } from './mock/mock-member-portfolios';
-import { MOCK_MEMBER_PROFILE_RESPONSE } from './mock/mock-member-profile';
 
 const MembersProfilePage = () => {
   const { memberId } = useParams();
   const navigate = useNavigate();
   const toast = useToast();
 
-  // TODO: GET /api/members/:memberId/profile 연결
-  const profile = toProfileViewModel(MOCK_MEMBER_PROFILE_RESPONSE.data);
+  const { data: profileData } = useGetMemberProfile(memberId);
+  const { data: portfoliosData } = useGetMemberPortfolios(memberId);
 
-  // TODO: GET /api/members/:memberId/portfolio/:portfolioId 연결
-  const portfolios = toPortfolios(
-    MOCK_MEMBER_PORTFOLIOS_RESPONSE.data.portfolios,
-  );
+  const profile = profileData ? toProfileViewModel(profileData) : null;
+  const portfolios = portfoliosData
+    ? toPortfolios(portfoliosData.portfolios)
+    : [];
 
   const handlePortfolioClick = (portfolioId: number) => {
     if (memberId == null) {
@@ -36,6 +36,8 @@ const MembersProfilePage = () => {
 
     navigate(ROUTE_BUILDER.memberPortfolio(memberId, portfolioId));
   };
+
+  if (profile == null) return null;
 
   return (
     <main className={styles.pageContainer}>
