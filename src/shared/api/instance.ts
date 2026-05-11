@@ -1,7 +1,8 @@
+import { ENV } from '@shared/constants/env';
 import axios from 'axios';
 
 export const instance = axios.create({
-  baseURL: '', // TODO: baseURL 연결
+  baseURL: ENV.API_BASE_URL,
   timeout: 15000,
 });
 
