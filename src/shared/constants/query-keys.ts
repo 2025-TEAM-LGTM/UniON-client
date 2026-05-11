@@ -6,6 +6,12 @@ export const queryKeys = {
     list: (params: GetPostsParams) => ['posts', 'list', params] as const,
     detail: (postId: number) => ['posts', 'detail', postId] as const,
   },
+  member: {
+    all: ['member'] as const,
+    profile: (memberId: string) => ['member', 'profile', memberId] as const,
+    portfolios: (memberId: string) =>
+      ['member', 'portfolios', memberId] as const,
+  },
   fieldRole: {
     all: ['fieldRole'] as const,
     list: (fieldId?: number | null) =>

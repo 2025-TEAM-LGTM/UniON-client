@@ -10,11 +10,17 @@ interface ProfileSkillCardProps {
 const ProfileSkillCard = ({ hardSkillNames }: ProfileSkillCardProps) => {
   return (
     <ProfileSection title='하드 스킬'>
-      <div className={styles.skillContainer}>
-        {hardSkillNames.map((skill, index) => (
-          <Chip key={`${skill}-${index}`}>{skill}</Chip>
-        ))}
-      </div>
+      {hardSkillNames.length === 0 ? (
+        <div className={styles.emptyContainer}>
+          <p className={styles.emptyText}>등록된 하드 스킬이 없습니다.</p>
+        </div>
+      ) : (
+        <div className={styles.skillContainer}>
+          {hardSkillNames.map((skill, index) => (
+            <Chip key={`${skill}-${index}`}>{skill}</Chip>
+          ))}
+        </div>
+      )}
     </ProfileSection>
   );
 };
