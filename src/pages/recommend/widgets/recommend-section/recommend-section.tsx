@@ -5,9 +5,9 @@ import {
   type MemberFiltersState,
 } from '@features/members/model/filter-state';
 import { toRecommendMemberCardModels } from '@features/recommend/model/to-main-strength-label';
-import { MOCK_FIELD_ROLE_RESPONSE } from '@pages/members/mocks/mock-field-role-response';
-import { MOCK_PERSONALITY_FILTER_RESPONSE } from '@pages/members/mocks/mock-personality-filter-response';
-import { MOCK_FIELD_SKILL_RESPONSE } from '@pages/members/mocks/mock-skill-options';
+import { MOCK_FIELD_ROLE_RESPONSE } from '@pages/recommend/mock/mock-field-role-response';
+import { MOCK_PERSONALITY_FILTER_RESPONSE } from '@pages/recommend/mock/mock-personality-filter-response';
+import { MOCK_FIELD_SKILL_RESPONSE } from '@pages/recommend/mock/mock-skill-options';
 import { ResetIcon } from '@shared/assets/icons';
 import { parseFieldRoleResponse } from '@shared/lib/filter/parse-field-role-response';
 import { parseFieldSkillResponse } from '@shared/lib/filter/parse-field-skill-response';
