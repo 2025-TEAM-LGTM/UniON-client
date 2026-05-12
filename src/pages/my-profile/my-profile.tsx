@@ -17,13 +17,28 @@ import * as styles from './my-profile.css';
 const MyProfilePage = () => {
   const navigate = useNavigate();
 
-  const { data: profileData } = useGetMyProfile();
-  const { data: portfoliosData } = useGetMyPortfolios();
+  const {
+    data: profileData,
+    isLoading: isProfileLoading,
+    error: profileError,
+  } = useGetMyProfile();
+  const {
+    data: portfoliosData,
+    isLoading: isPortfoliosLoading,
+    error: portfoliosError,
+  } = useGetMyPortfolios();
 
   const profile = profileData ? toProfileViewModel(profileData) : null;
   const portfolios = portfoliosData
     ? toPortfolios(portfoliosData.portfolios)
     : [];
+
+  if (isProfileLoading || isPortfoliosLoading) {
+    return <div>로딩 중...</div>; // TODO: 로띠 추가
+  }
+  if (profileError || portfoliosError) {
+    return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
+  }
 
   const handleEditProfileClick = () => {
     navigate('/me/profile/edit');
