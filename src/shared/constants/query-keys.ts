@@ -14,6 +14,13 @@ export const queryKeys = {
     portfolios: (memberId: string) =>
       ['member', 'portfolios', memberId] as const,
   },
+  me: {
+    all: ['me'] as const,
+    profile: () => ['me', 'profile'] as const,
+    portfolios: () => ['me', 'portfolios'] as const,
+  },
+
+  // dropdown
   fieldRole: {
     all: ['fieldRole'] as const,
     list: (fieldId?: number | null) =>
