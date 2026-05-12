@@ -1,3 +1,4 @@
+import type { GetMembersParams } from '@entities/members/api/members-api';
 import type { GetPostsParams } from '@entities/posts/api/posts-api';
 
 export const queryKeys = {
@@ -8,6 +9,7 @@ export const queryKeys = {
   },
   member: {
     all: ['member'] as const,
+    list: (params: GetMembersParams) => ['member', 'list', params] as const,
     profile: (memberId: string) => ['member', 'profile', memberId] as const,
     portfolios: (memberId: string) =>
       ['member', 'portfolios', memberId] as const,
@@ -19,5 +21,13 @@ export const queryKeys = {
   },
   domain: {
     all: ['domain'] as const,
+  },
+  skill: {
+    all: ['skill'] as const,
+    list: (fieldId?: number | null) =>
+      ['skill', 'list', fieldId ?? null] as const,
+  },
+  personality: {
+    all: ['personality'] as const,
   },
 } as const;
