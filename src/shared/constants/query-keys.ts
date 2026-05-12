@@ -13,6 +13,8 @@ export const queryKeys = {
     profile: (memberId: string) => ['member', 'profile', memberId] as const,
     portfolios: (memberId: string) =>
       ['member', 'portfolios', memberId] as const,
+    portfolioDetail: (memberId: string, portfolioId: string) =>
+      ['member', 'portfolioDetail', memberId, portfolioId] as const,
   },
   fieldRole: {
     all: ['fieldRole'] as const,
