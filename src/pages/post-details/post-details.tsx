@@ -3,7 +3,7 @@ import { useToggleApply } from '@entities/posts/api/use-toggle-apply';
 import { ROUTE_BUILDER } from '@shared/constants/path';
 import CtaButton from '@shared/ui/components/cta-button/cta-button';
 import { useToast } from '@shared/ui/components/toast/toast-context';
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 
 import * as styles from './post-details.css';
@@ -28,9 +28,9 @@ const PostDetailPage = () => {
   const [isApplied, setIsApplied] = useState(false);
   const pendingRef = useRef(false);
 
-  // useEffect(() => {
-  //   if (data) setIsApplied(data.applied ?? false);
-  // }, [data]);
+  useEffect(() => {
+    if (data) setIsApplied(data.applied);
+  }, [data]);
 
   const handleToggleApply = async () => {
     if (!postId || pendingRef.current) return;
