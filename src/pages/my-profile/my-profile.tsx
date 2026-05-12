@@ -1,4 +1,6 @@
+import { useGetMyPortfolios } from '@entities/portfolio/api/use-get-portfolio';
 import { toPortfolios } from '@entities/portfolio/model/adapters';
+import { useGetMyProfile } from '@entities/profile/api/use-get-profile';
 import { toProfileViewModel } from '@entities/profile/model/adapters';
 import Button from '@shared/ui/components/button/button';
 import ProfilePortfolioSection from '@widgets/portfolio-section/portfolio-section';
@@ -10,15 +12,33 @@ import ProfileSkillCard from '@widgets/profile/profile-skill-card/profile-skill-
 import ProfileSummaryCard from '@widgets/profile/profile-summary-card/profile-summary-card';
 import { useNavigate } from 'react-router-dom';
 
-import { MOCK_PORTFOLIOS_RESPONSE } from './mocks/mock-portfolios';
-import { MOCK_PROFILE_RESPONSE } from './mocks/mock-profile-response';
 import * as styles from './my-profile.css';
 
 const MyProfilePage = () => {
-  const profile = toProfileViewModel(MOCK_PROFILE_RESPONSE.data);
-  const portfolios = toPortfolios(MOCK_PORTFOLIOS_RESPONSE.data.portfolios);
-
   const navigate = useNavigate();
+
+  const {
+    data: profileData,
+    isLoading: isProfileLoading,
+    error: profileError,
+  } = useGetMyProfile();
+  const {
+    data: portfoliosData,
+    isLoading: isPortfoliosLoading,
+    error: portfoliosError,
+  } = useGetMyPortfolios();
+
+  const profile = profileData ? toProfileViewModel(profileData) : null;
+  const portfolios = portfoliosData
+    ? toPortfolios(portfoliosData.portfolios)
+    : [];
+
+  if (isProfileLoading || isPortfoliosLoading) {
+    return <div>로딩 중...</div>; // TODO: 로띠 추가
+  }
+  if (profileError || portfoliosError) {
+    return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;
+  }
 
   const handleEditProfileClick = () => {
     navigate('/me/profile/edit');
@@ -31,6 +51,8 @@ const MyProfilePage = () => {
   const handlePortfolioClick = (portfolioId: number) => {
     navigate(`/portfolio/${portfolioId}`);
   };
+
+  if (profile == null) return null;
 
   return (
     <main className={styles.pageContainer}>

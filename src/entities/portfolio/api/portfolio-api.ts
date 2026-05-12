@@ -7,3 +7,7 @@ export const getMemberPortfolios = (
 ): Promise<PortfolioListDataResponse> => {
   return get<PortfolioListDataResponse>(`/api/members/${memberId}/portfolio`);
 };
+
+export const getMyPortfolios = (): Promise<PortfolioListDataResponse> => {
+  return get<PortfolioListDataResponse>('/api/me/portfolio');
+};

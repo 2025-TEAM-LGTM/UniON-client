@@ -7,3 +7,7 @@ export const getMemberProfile = (
 ): Promise<ProfileResponseData> => {
   return get<ProfileResponseData>(`/api/members/${memberId}/profile`);
 };
+
+export const getMyProfile = (): Promise<ProfileResponseData> => {
+  return get<ProfileResponseData>('/api/me/profile');
+};
