@@ -1,10 +1,5 @@
 import type { PortfolioListResponse } from '@entities/portfolio/api/types';
 
-import amp from './amp.png';
-import mock1 from './mock1.jpg';
-import mock2 from './mock2.jpg';
-import nn from './nn.png';
-
 export const MOCK_PORTFOLIOS_RESPONSE: PortfolioListResponse = {
   status: 200,
   msg: 'OK',
@@ -24,7 +19,7 @@ export const MOCK_PORTFOLIOS_RESPONSE: PortfolioListResponse = {
           name: 'Frontend developer',
         },
         headcount: 3,
-        imageUrl: amp,
+        imageUrl: null,
       },
       {
         portfolioId: 2,
@@ -40,7 +35,7 @@ export const MOCK_PORTFOLIOS_RESPONSE: PortfolioListResponse = {
           name: 'Frontend developer',
         },
         headcount: 4,
-        imageUrl: mock1,
+        imageUrl: null,
       },
       {
         portfolioId: 3,
@@ -56,7 +51,7 @@ export const MOCK_PORTFOLIOS_RESPONSE: PortfolioListResponse = {
           name: 'UI/UX Designer',
         },
         headcount: 4,
-        imageUrl: nn,
+        imageUrl: null,
       },
       {
         portfolioId: 4,
@@ -71,7 +66,7 @@ export const MOCK_PORTFOLIOS_RESPONSE: PortfolioListResponse = {
           name: 'Content Marketer',
         },
         headcount: 1,
-        imageUrl: mock2,
+        imageUrl: null,
       },
     ],
   },

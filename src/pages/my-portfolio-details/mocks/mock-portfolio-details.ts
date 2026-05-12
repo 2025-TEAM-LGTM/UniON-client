@@ -1,7 +1,5 @@
 import type { GetPortfolioDetailResponse } from '@entities/portfolio-details/api/types';
 
-import nn from '../../my-profile/mocks/nn.png';
-
 export const MOCK_PORTFOLIO_DETAILS_RESPONSE: GetPortfolioDetailResponse = {
   status: 200,
   msg: 'OK',
@@ -20,7 +18,7 @@ export const MOCK_PORTFOLIO_DETAILS_RESPONSE: GetPortfolioDetailResponse = {
     },
     headcount: 4,
     externUrl: 'https://noonnu.cc',
-    imageUrl: nn,
+    imageUrl: null,
     Stext:
       '눈누는 다양한 무료 한글 폰트를 한곳에서 탐색하고 다운로드할 수 있어 많은 사용자가 찾는 플랫폼이지만, 실제 사용 과정에서는 원하는 폰트를 빠르게 찾거나 서로 비교해보는 흐름이 다소 아쉽다고 느꼈습니다. 특히 폰트 수가 많아질수록 탐색 구조가 직관적으로 느껴지지 않았고, 미리보기와 다운로드까지 이어지는 정보 배치도 사용자의 탐색 맥락을 충분히 고려하지 못한 부분이 있었습니다. 폰트를 단순히 “나열”하는 방식에서 벗어나, 사용자가 목적에 맞는 폰트를 더 빠르고 편하게 발견할 수 있도록 전체 경험을 다시 설계할 필요가 있다고 판단했습니다.',
     Ttext:
