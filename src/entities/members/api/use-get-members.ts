@@ -5,7 +5,7 @@ import { getMembers, type GetMembersParams } from './members-api';
 
 export const useGetMembers = (params: GetMembersParams) => {
   return useQuery({
-    queryKey: queryKeys.members.list(params),
+    queryKey: queryKeys.member.list(params),
     queryFn: () => getMembers(params),
   });
 };
