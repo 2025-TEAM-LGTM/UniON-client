@@ -27,8 +27,11 @@ const MembersPage = () => {
   );
 
   const { data: fieldRoleData } = useGetFieldRole();
+
   const { data: skillData } = useGetSkills();
+
   const { data: personalityData } = useGetPersonalityFilter();
+
   const {
     data: membersData,
     isLoading,
@@ -39,17 +42,14 @@ const MembersPage = () => {
     p: personalityParams,
   });
 
+  const { fields: skillFields, skillsByFieldOptions } = useMemo(
+    () => parseFieldSkillResponse(skillData ?? []),
+    [skillData],
+  );
+
   const { fields: roleFields, rolesByFieldOptions } = useMemo(
     () => parseFieldRoleResponse(fieldRoleData ?? []),
     [fieldRoleData],
-  );
-
-  const { fields: skillFields, skillsByFieldOptions } = useMemo(
-    () =>
-      parseFieldSkillResponse(
-        skillData ? [{ field: { id: 0, name: '' }, skills: skillData }] : [],
-      ),
-    [skillData],
   );
 
   const personalityItems: PersonalityFilterItem[] =

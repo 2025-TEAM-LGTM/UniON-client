@@ -61,9 +61,10 @@ export const emptyContainer = style({
   display: 'flex',
   justifyContent: 'center',
   alignItems: 'center',
+  marginTop: '5rem',
 });
 
 export const emptyText = style({
-  color: themeVars.color.gray_800,
-  ...themeVars.font.display_20r,
+  color: themeVars.color.gray_400,
+  ...themeVars.font.body_18r,
 });
