@@ -1,4 +1,6 @@
+import { useGetMyPortfolios } from '@entities/portfolio/api/use-get-portfolio';
 import { toPortfolios } from '@entities/portfolio/model/adapters';
+import { useGetMyProfile } from '@entities/profile/api/use-get-profile';
 import { toProfileViewModel } from '@entities/profile/model/adapters';
 import Button from '@shared/ui/components/button/button';
 import ProfilePortfolioSection from '@widgets/portfolio-section/portfolio-section';
@@ -10,15 +12,18 @@ import ProfileSkillCard from '@widgets/profile/profile-skill-card/profile-skill-
 import ProfileSummaryCard from '@widgets/profile/profile-summary-card/profile-summary-card';
 import { useNavigate } from 'react-router-dom';
 
-import { MOCK_PORTFOLIOS_RESPONSE } from './mocks/mock-portfolios';
-import { MOCK_PROFILE_RESPONSE } from './mocks/mock-profile-response';
 import * as styles from './my-profile.css';
 
 const MyProfilePage = () => {
-  const profile = toProfileViewModel(MOCK_PROFILE_RESPONSE.data);
-  const portfolios = toPortfolios(MOCK_PORTFOLIOS_RESPONSE.data.portfolios);
-
   const navigate = useNavigate();
+
+  const { data: profileData } = useGetMyProfile();
+  const { data: portfoliosData } = useGetMyPortfolios();
+
+  const profile = profileData ? toProfileViewModel(profileData) : null;
+  const portfolios = portfoliosData
+    ? toPortfolios(portfoliosData.portfolios)
+    : [];
 
   const handleEditProfileClick = () => {
     navigate('/me/profile/edit');
@@ -31,6 +36,8 @@ const MyProfilePage = () => {
   const handlePortfolioClick = (portfolioId: number) => {
     navigate(`/portfolio/${portfolioId}`);
   };
+
+  if (profile == null) return null;
 
   return (
     <main className={styles.pageContainer}>
