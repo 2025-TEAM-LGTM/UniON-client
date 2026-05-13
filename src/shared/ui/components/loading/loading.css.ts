@@ -6,5 +6,10 @@ export const container = style({
   alignItems: 'center',
   width: '100%',
   height: '100%',
-  minHeight: '200px',
+  minHeight: '100px',
+});
+
+export const lottie = style({
+  width: '500px',
+  height: '500px',
 });
