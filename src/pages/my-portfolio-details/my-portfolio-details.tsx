@@ -32,8 +32,13 @@ const MyPortfolioDetailsPage = () => {
     toast.error('준비중인 기능이에요!');
   };
 
-  if (portfolio == null) return null;
-
+  if (portfolio == null) {
+    return (
+      <main className={styles.pageContainer}>
+        포트폴리오 정보를 불러오지 못했어요.
+      </main>
+    );
+  }
   return (
     <>
       <section className={styles.headerContainer}>
