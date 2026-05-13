@@ -10,3 +10,9 @@ export const getMemberPortfolioDetail = (
     `/api/members/${memberId}/portfolio/${portfolioId}`,
   );
 };
+
+export const getMyPortfolioDetail = (
+  portfolioId: string,
+): Promise<PortfolioDetailResponse> => {
+  return get<PortfolioDetailResponse>(`/api/users/portfolios/${portfolioId}`);
+};

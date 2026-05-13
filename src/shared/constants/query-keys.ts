@@ -22,6 +22,8 @@ export const queryKeys = {
     all: ['me'] as const,
     profile: () => ['me', 'profile'] as const,
     portfolios: () => ['me', 'portfolios'] as const,
+    portfolioDetail: (portfolioId: string) =>
+      ['me', 'portfolioDetail', portfolioId] as const,
     myPost: () => ['me', 'myPost'] as const,
   },
   applicants: {
