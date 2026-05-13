@@ -74,6 +74,7 @@ const PostCreatePage = () => {
           allRoleOptions={allRoleOptions}
           onSubmit={handleSubmit}
           submitLabel={isPending ? '업로드 중...' : '업로드'}
+          disabled={isPending}
         />
       </main>
     </>
