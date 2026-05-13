@@ -1,3 +1,4 @@
+import { useGetMyPosts } from '@entities/my-post/api/use-get-my-posts';
 import Banner from '@shared/ui/components/banner/banner';
 import { useState } from 'react';
 
@@ -7,18 +8,11 @@ import RecommendSection from './widgets/recommend-section/recommend-section';
 import type { TabLabelTypes } from './widgets/tab-bar/tab-bar';
 import TabBar from './widgets/tab-bar/tab-bar';
 
-interface RecommendPost {
-  postId: number;
-  postTitle: string;
-}
-
-const MOCK_RECOMMEND_POSTS: RecommendPost[] = [
-  { postId: 11, postTitle: 'AI 기반 팀매칭 서비스 프론트엔드 모집' },
-  { postId: 12, postTitle: '대학생 연합 해커톤 디자이너 모집' },
-];
-
 const RecommendPage = () => {
   const [activeTab, setActiveTab] = useState<TabLabelTypes>('recommend');
+  const { data, isLoading, isError } = useGetMyPosts();
+
+  const postIds = data?.postIds ?? [];
 
   return (
     <>
@@ -30,20 +24,40 @@ const RecommendPage = () => {
         <section className={styles.tabBarContainer}>
           <TabBar activeTab={activeTab} onChangeTab={setActiveTab} />
         </section>
-        <section className={styles.sectionContainer}>
-          {MOCK_RECOMMEND_POSTS.map((post) => (
-            <div key={post.postId}>
-              {activeTab === 'recommend' ? (
-                <RecommendSection postId={post.postId} />
-              ) : (
-                <ApplicantSection
-                  postId={post.postId}
-                  postTitle={post.postTitle}
-                />
-              )}
-            </div>
-          ))}
-        </section>
+
+        {isLoading && (
+          <div className={styles.emptyContainer}>
+            <p className={styles.emptyText}>불러오는 중...</p>
+          </div>
+        )}
+
+        {isError && (
+          <div className={styles.emptyContainer}>
+            <p className={styles.emptyText}>
+              오류가 발생했어요. 다시 시도해 주세요.
+            </p>
+          </div>
+        )}
+
+        {!isLoading && !isError && postIds.length === 0 && (
+          <div className={styles.emptyContainer}>
+            <p className={styles.emptyText}>아직 작성한 공고가 없어요.</p>
+          </div>
+        )}
+
+        {!isLoading && !isError && postIds.length > 0 && (
+          <section className={styles.sectionContainer}>
+            {postIds.map((postId) => (
+              <div key={postId}>
+                {activeTab === 'recommend' ? (
+                  <RecommendSection postId={postId} />
+                ) : (
+                  <ApplicantSection postId={postId} />
+                )}
+              </div>
+            ))}
+          </section>
+        )}
       </main>
     </>
   );
