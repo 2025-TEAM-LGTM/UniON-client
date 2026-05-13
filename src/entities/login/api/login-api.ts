@@ -27,7 +27,11 @@ export const login = async (body: LoginRequest): Promise<void> => {
   }
 
   const accessToken = response.headers.get('Authorization');
-  if (accessToken != null) {
-    setAccessToken(accessToken.replace('Bearer ', ''));
+  if (accessToken == null) {
+    throw new Error('SERVER_ERROR');
   }
+
+  setAccessToken(
+    accessToken.startsWith('Bearer ') ? accessToken.slice(7) : accessToken,
+  );
 };
