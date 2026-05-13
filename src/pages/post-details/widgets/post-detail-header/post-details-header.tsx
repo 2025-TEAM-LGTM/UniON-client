@@ -32,11 +32,7 @@ const PostDetailHeader = ({
       onBackClick();
       return;
     }
-    if (window.history.length <= 1) {
-      navigate(ROUTE_PATH.POSTS, { replace: true });
-      return;
-    }
-    navigate(-1);
+    navigate(ROUTE_PATH.POSTS, { replace: true });
   };
 
   const handleProfileImageError = () => {
