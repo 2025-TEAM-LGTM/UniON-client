@@ -9,6 +9,7 @@ import * as styles from './signup-step3.css';
 
 interface SignupStep3Props {
   values: SignupFormValues;
+  isSubmitting: boolean;
   onChange: (next: SignupFormValues) => void;
   onNext: () => void;
 }
@@ -17,7 +18,12 @@ const isStep3Complete = (values: SignupFormValues): boolean => {
   return PERSONALITY_KEYS.every((key) => values.personality[key] != null);
 };
 
-const SignupStep3 = ({ values, onChange, onNext }: SignupStep3Props) => {
+const SignupStep3 = ({
+  values,
+  onChange,
+  onNext,
+  isSubmitting,
+}: SignupStep3Props) => {
   const isComplete = isStep3Complete(values);
 
   const handleToggle = (
@@ -59,7 +65,7 @@ const SignupStep3 = ({ values, onChange, onNext }: SignupStep3Props) => {
       <div className={styles.buttonContainer}>
         <CtaButton
           color={isComplete ? 'primary' : 'gray'}
-          disabled={!isComplete}
+          disabled={!isComplete || isSubmitting}
           onClick={onNext}
         >
           다음

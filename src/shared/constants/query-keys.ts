@@ -54,4 +54,8 @@ export const queryKeys = {
   personality: {
     all: ['personality'] as const,
   },
+  university: {
+    all: ['university'] as const,
+    list: (query: string) => ['university', 'list', query] as const,
+  },
 } as const;
