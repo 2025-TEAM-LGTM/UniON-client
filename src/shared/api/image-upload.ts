@@ -13,7 +13,9 @@ export interface UploadedImageMeta {
 export const getPresignedUrl = (
   contentType: string,
 ): Promise<PresignResponseData> => {
-  return post<PresignResponseData>(`/api/presign?contentType=${contentType}`);
+  return post<PresignResponseData>(
+    `/api/presign?contentType=${encodeURIComponent(contentType)}`,
+  );
 };
 
 export const uploadImageToS3 = async (
