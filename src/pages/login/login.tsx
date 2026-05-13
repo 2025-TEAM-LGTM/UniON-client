@@ -1,3 +1,4 @@
+import { useLogin } from '@entities/login/api/use-login';
 import { ROUTE_PATH } from '@shared/constants/path';
 import CtaButton from '@shared/ui/components/cta-button/cta-button';
 import TextField from '@shared/ui/components/field/textfield/textfield';
@@ -22,32 +23,21 @@ const LoginPage = () => {
     createEmptyLoginFormValues(),
   );
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const { mutateAsync: loginMutate, isPending } = useLogin();
 
   const handleSubmit = async () => {
     setErrorMessage(null);
 
-    // TODO: POST /api/auth/login 연결
-    // 아래는 뼈대 - 실제 API 연결 시 교체
-
-    // API 연결 후 아래 패턴으로 처리:
-    // const response = await fetch('/api/auth/login', {
-    //   method: 'POST',
-    //   headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-    //   body: new URLSearchParams(formValues),
-    //   credentials: 'include',
-    // });
-    //
-    // if (response.status === 401) {
-    //   setErrorMessage('이메일 또는 비밀번호를 확인해주세요.');
-    //   return;
-    // }
-    //
-    // const accessToken = response.headers.get('Authorization');
-    // if (accessToken != null) {
-    //   setAccessToken(accessToken.replace('Bearer ', ''));
-    // }
-    //
-    // navigate(ROUTE_PATH.POSTS);
+    try {
+      await loginMutate(formValues);
+      navigate(ROUTE_PATH.POSTS);
+    } catch (error) {
+      if (error instanceof Error && error.message === 'UNAUTHORIZED') {
+        setErrorMessage('이메일 또는 비밀번호를 확인해주세요.');
+      } else {
+        setErrorMessage('서버 오류가 발생했어요. 잠시 후 다시 시도해 주세요.');
+      }
+    }
   };
 
   const handleClickSignUp = () => {
@@ -82,7 +72,6 @@ const LoginPage = () => {
               {errorMessage != null && (
                 <p className={styles.errorText}>{errorMessage}</p>
               )}
-
               <TextField
                 name='password'
                 value={formValues.password}
@@ -94,8 +83,13 @@ const LoginPage = () => {
               />
             </div>
 
-            <CtaButton color='primary' onClick={handleSubmit} type='submit'>
-              로그인
+            <CtaButton
+              color='primary'
+              onClick={handleSubmit}
+              type='submit'
+              disabled={isPending}
+            >
+              {isPending ? '로그인 중...' : '로그인'}
             </CtaButton>
           </div>
 
