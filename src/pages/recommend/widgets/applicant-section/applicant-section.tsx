@@ -2,6 +2,7 @@ import { useGetApplicants } from '@entities/applicant/api/use-get-applicant';
 import { toApplicantMemberCardModels } from '@entities/applicant/model/adapter';
 import { useGetFieldRole } from '@entities/field-role/api/use-field-role';
 import { useGetPersonalityFilter } from '@entities/personality/api/use-get-personality-filter';
+import { useGetPostDetail } from '@entities/post-details/api/use-get-post-detail';
 import { useGetSkills } from '@entities/skill/api/use-get-skills';
 import {
   EMPTY_MEMBER_FILTERS,
@@ -18,10 +19,11 @@ import * as styles from './applicant-section.css';
 
 interface ApplicantSectionProps {
   postId: number;
-  postTitle: string;
 }
 
-const ApplicantSection = ({ postId, postTitle }: ApplicantSectionProps) => {
+const ApplicantSection = ({ postId }: ApplicantSectionProps) => {
+  const { data: postDetail } = useGetPostDetail(postId);
+
   const [filters, setFilters] =
     useState<MemberFiltersState>(EMPTY_MEMBER_FILTERS);
 
@@ -61,7 +63,9 @@ const ApplicantSection = ({ postId, postTitle }: ApplicantSectionProps) => {
   return (
     <>
       <section className={styles.sectionTitleContainer}>
-        <p className={styles.sectionTitle}>'{postTitle}'에 지원한 팀원 보기</p>
+        <p className={styles.sectionTitle}>
+          '{postDetail?.title ?? ''}'에 지원한 팀원 보기
+        </p>
       </section>
 
       <section className={styles.filterContainer}>
