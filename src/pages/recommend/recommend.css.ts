@@ -1,3 +1,4 @@
+import { themeVars } from '@shared/styles';
 import { style } from '@vanilla-extract/css';
 
 export const bannerContainer = style({
@@ -36,4 +37,16 @@ export const sectionContainer = style({
 
 export const tabBarContainer = style({
   marginTop: '3rem',
+});
+
+export const emptyContainer = style({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginTop: '5rem',
+});
+
+export const emptyText = style({
+  color: themeVars.color.gray_400,
+  ...themeVars.font.body_18r,
 });

@@ -1,5 +1,7 @@
+import type { GetApplicantsParams } from '@entities/applicant/api/applicant-api';
 import type { GetMembersParams } from '@entities/members/api/members-api';
 import type { GetPostsParams } from '@entities/posts/api/posts-api';
+import type { GetRecommendParams } from '@entities/recommend/api/recommend-api';
 
 export const queryKeys = {
   posts: {
@@ -20,6 +22,17 @@ export const queryKeys = {
     all: ['me'] as const,
     profile: () => ['me', 'profile'] as const,
     portfolios: () => ['me', 'portfolios'] as const,
+    myPost: () => ['me', 'myPost'] as const,
+  },
+  applicants: {
+    all: ['applicants'] as const,
+    list: (postId: number, params: GetApplicantsParams) =>
+      ['applicants', 'list', postId, params] as const,
+  },
+  recommend: {
+    all: ['recommend'] as const,
+    list: (postId: number, params: GetRecommendParams) =>
+      ['recommend', 'list', postId, params] as const,
   },
 
   // dropdown
