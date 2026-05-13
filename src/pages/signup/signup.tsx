@@ -1,15 +1,15 @@
-// pages/signup/signup-page.tsx
-
+import { useGetFieldRole } from '@entities/field-role/api/use-field-role';
+import { useCheckUsername } from '@entities/signup/api/use-check-username';
+import { useSignup } from '@entities/signup/api/use-signup';
+import { toSignupRequest } from '@entities/signup/model/adapters';
 import { createEmptySignupFormValues } from '@entities/signup/model/signup-form';
+import { useGetUniversities } from '@entities/university/api/use-get-universities';
 import { ROUTE_PATH } from '@shared/constants/path';
-import { useState } from 'react';
+import { parseFieldRoleResponse } from '@shared/lib/filter/parse-field-role-response';
+import { useToast } from '@shared/ui/components/toast/toast-context';
+import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import {
-  SIGNUP_ROLE_FIELDS,
-  SIGNUP_ROLES_BY_FIELD,
-} from './mock/mock-signup-roles';
-import { MOCK_UNIVERSITIES } from './mock/mock-signup-universities';
 import * as styles from './signup.css';
 import SignupComplete from './ui/signup-complete/signup-complete';
 import SignupProgress from './ui/signup-progress/signup-progress';
@@ -21,27 +21,53 @@ type SignupStep = 1 | 2 | 3 | 'complete';
 
 const SignupPage = () => {
   const navigate = useNavigate();
+  const toast = useToast();
+
   const [step, setStep] = useState<SignupStep>(1);
   const [formValues, setFormValues] = useState(createEmptySignupFormValues());
   const [isUsernameChecked, setIsUsernameChecked] = useState(false);
-  const [universityOptions, setUniversityOptions] = useState(MOCK_UNIVERSITIES);
+  const [universityQuery, setUniversityQuery] = useState('');
 
-  const handleCheckUsername = () => {
-    // TODO: GET /api/auth/username?q=:username 연결
-    console.log('중복확인:', formValues.username);
-    setIsUsernameChecked(true);
+  const { data: fieldRoleData } = useGetFieldRole();
+  const { data: universityData } = useGetUniversities(universityQuery);
+  const { mutateAsync: checkUsername, isPending: isCheckingUsername } =
+    useCheckUsername();
+  const { mutateAsync: signupMutate, isPending: isSigningUp } = useSignup();
+
+  const { fields: roleFields, rolesByFieldOptions } = useMemo(
+    () => parseFieldRoleResponse(fieldRoleData ?? []),
+    [fieldRoleData],
+  );
+
+  const universityOptions = universityData ?? [];
+
+  const handleCheckUsername = async () => {
+    try {
+      const { available } = await checkUsername(formValues.username);
+      if (available) {
+        toast.success('사용 가능한 닉네임이에요.');
+        setIsUsernameChecked(true);
+      } else {
+        toast.error('이미 사용 중인 닉네임이에요.');
+        setIsUsernameChecked(false);
+      }
+    } catch {
+      toast.error('닉네임 확인 중 오류가 발생했어요. 다시 시도해 주세요.');
+    }
   };
 
   const handleSearchUniversity = (query: string) => {
-    // TODO: GET /api/university?q=:query 연결
-    const filtered = MOCK_UNIVERSITIES.filter((u) => u.name.includes(query));
-    setUniversityOptions(filtered);
+    setUniversityQuery(query);
   };
 
-  const handleSubmit = () => {
-    // TODO: POST /api/auth/signup 연결
-    console.log(formValues);
-    setStep('complete');
+  const handleSubmit = async () => {
+    try {
+      const body = toSignupRequest(formValues);
+      await signupMutate(body);
+      setStep('complete');
+    } catch {
+      toast.error('회원가입 중 오류가 발생했어요. 다시 시도해 주세요.');
+    }
   };
 
   const handleStart = () => {
@@ -80,6 +106,7 @@ const SignupPage = () => {
           <SignupStep1
             values={formValues}
             onChange={handleUsernameChange}
+            isCheckingUsername={isCheckingUsername}
             isUsernameChecked={isUsernameChecked}
             onCheckUsername={handleCheckUsername}
             onNext={() => setStep(2)}
@@ -89,8 +116,8 @@ const SignupPage = () => {
           <SignupStep2
             values={formValues}
             onChange={setFormValues}
-            roleFields={SIGNUP_ROLE_FIELDS}
-            rolesByFieldOptions={SIGNUP_ROLES_BY_FIELD}
+            roleFields={roleFields}
+            rolesByFieldOptions={rolesByFieldOptions}
             universityOptions={universityOptions}
             onSearchUniversity={handleSearchUniversity}
             onNext={() => setStep(3)}
@@ -98,6 +125,7 @@ const SignupPage = () => {
         )}
         {step === 3 && (
           <SignupStep3
+            isSubmitting={isSigningUp}
             values={formValues}
             onChange={setFormValues}
             onNext={handleSubmit}
