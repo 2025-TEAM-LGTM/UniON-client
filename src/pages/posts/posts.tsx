@@ -7,6 +7,7 @@ import { ResetIcon } from '@shared/assets/icons';
 import { parseFieldRoleResponse } from '@shared/lib/filter/parse-field-role-response';
 import Banner from '@shared/ui/components/banner/banner';
 import Button from '@shared/ui/components/button/button';
+import Loading from '@shared/ui/components/loading/loading';
 import { useToast } from '@shared/ui/components/toast/toast-context';
 import PostDropdownGroup from '@widgets/post-dropdown-group/post-dropdown-group';
 import { useEffect, useMemo, useRef, useState } from 'react';
@@ -123,11 +124,7 @@ const PostsPage = () => {
           </button>
         </section>
 
-        {isLoading && (
-          <section className={styles.emptyContainer}>
-            <p className={styles.emptyText}>불러오는 중...</p>
-          </section>
-        )}
+        {isLoading && <Loading />}
 
         {isError && (
           <section className={styles.emptyContainer}>

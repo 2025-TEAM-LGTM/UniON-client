@@ -11,6 +11,7 @@ import {
 import { ResetIcon } from '@shared/assets/icons';
 import { parseFieldRoleResponse } from '@shared/lib/filter/parse-field-role-response';
 import { parseFieldSkillResponse } from '@shared/lib/filter/parse-field-skill-response';
+import Loading from '@shared/ui/components/loading/loading';
 import MemberDropdownGroup from '@widgets/member-dropdown-group/member-dropdown-group';
 import { useMemo, useState } from 'react';
 
@@ -88,7 +89,7 @@ const ApplicantSection = ({ postId }: ApplicantSectionProps) => {
         </button>
       </section>
 
-      {isLoading && <p>불러오는 중...</p>}
+      {isLoading && <Loading />}
       {isError && <p>오류가 발생했어요. 다시 시도해 주세요.</p>}
       {!isLoading && !isError && <ApplicantMemberGroup members={cardMembers} />}
     </>
