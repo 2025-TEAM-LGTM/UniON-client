@@ -3,6 +3,9 @@ export const ACADEMIC_STATUS_KEYS = [
   'LEAVE',
   'DEFERRED',
   'GRADUATED',
+  'TRANSFER',
+  'EXCHANGE',
+  'OTHER',
 ] as const;
 
 export type AcademicStatusKey = (typeof ACADEMIC_STATUS_KEYS)[number];
