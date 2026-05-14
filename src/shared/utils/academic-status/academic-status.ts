@@ -17,6 +17,15 @@ const ACADEMIC_STATUS_MAP: Record<AcademicStatusKey, AcademicStatusMeta> = {
   GRADUATED: {
     label: '졸업',
   },
+  TRANSFER: {
+    label: '편입',
+  },
+  EXCHANGE: {
+    label: '교환학생',
+  },
+  OTHER: {
+    label: '기타',
+  },
 };
 
 export const getAcademicStatusMeta = (
