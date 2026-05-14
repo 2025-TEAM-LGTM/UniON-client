@@ -14,11 +14,9 @@ const PostCardGroup = ({
   appliedIds,
   onToggleApply,
 }: PostGroupProps) => {
-  const visible = posts.slice(0, 9);
-
   return (
     <section className={styles.grid} aria-label='팀빌딩 공고 목록'>
-      {visible.map((post) => (
+      {posts.map((post) => (
         <PostCard
           key={post.postId}
           postId={post.postId}

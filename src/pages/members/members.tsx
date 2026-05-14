@@ -1,5 +1,8 @@
+import { useGetFieldRole } from '@entities/field-role/api/use-field-role';
+import { useGetMembers } from '@entities/members/api/use-get-members';
 import { toMemberCardModels } from '@entities/members/model/adapters';
-import { filterMembers } from '@features/members/model/filter-members';
+import { useGetPersonalityFilter } from '@entities/personality/api/use-get-personality-filter';
+import { useGetSkills } from '@entities/skill/api/use-get-skills';
 import type { MemberFiltersState } from '@features/members/model/filter-state';
 import { EMPTY_MEMBER_FILTERS } from '@features/members/model/filter-state';
 import type { PersonalityFilterItem } from '@features/members/types/member-filter-meta-response';
@@ -7,42 +10,57 @@ import { ResetIcon } from '@shared/assets/icons';
 import { parseFieldRoleResponse } from '@shared/lib/filter/parse-field-role-response';
 import { parseFieldSkillResponse } from '@shared/lib/filter/parse-field-skill-response';
 import Banner from '@shared/ui/components/banner/banner';
+import Loading from '@shared/ui/components/loading/loading';
 import MemberDropdownGroup from '@widgets/member-dropdown-group/member-dropdown-group';
 import { useMemo, useState } from 'react';
 
 import * as styles from './members.css';
-import { MOCK_FIELD_ROLE_RESPONSE } from './mocks/mock-field-role-response';
-import { MOCK_MEMBERS_RESPONSE } from './mocks/mock-members';
-import { MOCK_PERSONALITY_FILTER_RESPONSE } from './mocks/mock-personality-filter-response';
-import { MOCK_FIELD_SKILL_RESPONSE } from './mocks/mock-skill-options';
 import MemberCardGroup from './widgets/member-card-group/member-card-group';
 
 const MembersPage = () => {
   const [filters, setFilters] =
     useState<MemberFiltersState>(EMPTY_MEMBER_FILTERS);
 
-  const members = MOCK_MEMBERS_RESPONSE.data.members;
-
-  const { fields: roleFields, rolesByFieldOptions } = useMemo(
-    () => parseFieldRoleResponse(MOCK_FIELD_ROLE_RESPONSE.data.items),
-    [],
+  const personalityParams = useMemo(
+    () => filters.personalityFilters.map((f) => f.key),
+    [filters.personalityFilters],
   );
 
+  const { data: fieldRoleData } = useGetFieldRole();
+
+  const { data: skillData } = useGetSkills();
+
+  const { data: personalityData } = useGetPersonalityFilter();
+
+  const {
+    data: membersData,
+    isLoading,
+    isError,
+  } = useGetMembers({
+    r: filters.roleIds,
+    hs: filters.skillIds,
+    p: personalityParams,
+  });
+
   const { fields: skillFields, skillsByFieldOptions } = useMemo(
-    () => parseFieldSkillResponse(MOCK_FIELD_SKILL_RESPONSE.data.items),
-    [],
+    () => parseFieldSkillResponse(skillData ?? []),
+    [skillData],
+  );
+
+  const { fields: roleFields, rolesByFieldOptions } = useMemo(
+    () => parseFieldRoleResponse(fieldRoleData ?? []),
+    [fieldRoleData],
   );
 
   const personalityItems: PersonalityFilterItem[] =
-    MOCK_PERSONALITY_FILTER_RESPONSE.data.items;
+    personalityData?.items ?? [];
 
-  const filteredMembers = useMemo(() => {
-    return filterMembers(members, filters);
-  }, [members, filters]);
+  const members = useMemo(() => membersData?.members ?? [], [membersData]);
 
-  const memberCardModels = useMemo(() => {
-    return toMemberCardModels(filteredMembers);
-  }, [filteredMembers]);
+  const memberCardModels = useMemo(
+    () => toMemberCardModels(members),
+    [members],
+  );
 
   const handleRefresh = () => {
     setFilters(EMPTY_MEMBER_FILTERS);
@@ -80,15 +98,28 @@ const MembersPage = () => {
           </button>
         </section>
 
-        <MemberCardGroup members={memberCardModels} />
+        {isLoading && <Loading />}
+
+        {isError && (
+          <section className={styles.emptyContainer}>
+            <p className={styles.emptyText}>
+              오류가 발생했어요. 다시 시도해 주세요.
+            </p>
+          </section>
+        )}
+
+        {!isLoading && !isError && members.length === 0 && (
+          <section className={styles.emptyContainer}>
+            <p className={styles.emptyText}>검색 결과가 없어요!</p>
+          </section>
+        )}
+
+        {!isLoading && !isError && members.length > 0 && (
+          <MemberCardGroup members={memberCardModels} />
+        )}
       </main>
     </>
   );
 };
 
 export default MembersPage;
-
-// TODO: API 연결 후 수정
-// - mock 제거
-// - dropdown API 연결
-// - filterMembers 제거 → 서버 필터링으로 변경

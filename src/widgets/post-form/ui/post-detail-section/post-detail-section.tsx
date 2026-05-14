@@ -8,6 +8,9 @@ interface PostDetailSectionProps {
   onChangeSeeking: (value: string) => void;
 }
 
+const placeholder =
+  '팀에서 원하는 인재상과 함께, 우대하는 관련 업무 경험이나 문제 해결 경험을 구체적으로 작성해주세요.\n\n예)\n- React 기반 웹 개발 경험이 있는 분\n- 생성형 AI API를 활용해본 경험이 있는 분\n- 프로젝트 중 발생한 오류를 직접 해결해본 경험이 있는 분\n- 디자이너/기획자와 협업해본 경험이 있는 분\n- 헬스케어/교육 등 관련 활동 분야 경험 우대';
+
 const PostDetailSection = ({
   seeking,
   onChangeSeeking,
@@ -24,7 +27,7 @@ const PostDetailSection = ({
           id='post-seeking'
           value={seeking}
           onChange={(event) => onChangeSeeking(event.target.value)}
-          placeholder='팀에서 찾고 있는 인재사항과 요구사항을 자세히 작성해주세요.'
+          placeholder={placeholder}
           required
         />
       </div>

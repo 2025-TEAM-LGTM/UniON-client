@@ -1,15 +1,11 @@
 import type { CreatePostRequest } from '@entities/post-create/api/types';
+import type { UploadedImageMeta } from '@shared/api/image-upload';
 import {
   TEAM_CULTURE_KEYS,
   type TeamCulture,
 } from '@shared/utils/team-culture/types';
 
 import type { DraftTeamCulture, PostFormValues } from './post-form';
-
-export interface UploadedImageMeta {
-  imageKey: string | null;
-  imageSize: number | null;
-}
 
 const toTeamCulture = (draft: DraftTeamCulture): TeamCulture => {
   for (const key of TEAM_CULTURE_KEYS) {

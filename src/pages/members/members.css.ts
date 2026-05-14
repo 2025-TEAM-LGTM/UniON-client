@@ -56,3 +56,15 @@ export const icon = style({
   width: '2.4rem',
   height: '2.4rem',
 });
+
+export const emptyContainer = style({
+  display: 'flex',
+  justifyContent: 'center',
+  alignItems: 'center',
+  marginTop: '5rem',
+});
+
+export const emptyText = style({
+  color: themeVars.color.gray_400,
+  ...themeVars.font.body_18r,
+});

@@ -1,3 +1,4 @@
+import { useGetMyPortfolioDetail } from '@entities/portfolio-details/api/use-get-portfolio-details';
 import { toPortfolioDetailViewModel } from '@entities/portfolio-details/model/adapters';
 import { ROUTE_BUILDER, ROUTE_PATH } from '@shared/constants/path';
 import CtaButton from '@shared/ui/components/cta-button/cta-button';
@@ -5,7 +6,6 @@ import { useToast } from '@shared/ui/components/toast/toast-context';
 import PageBackHeader from '@widgets/page-back-header/page-back-header';
 import { useNavigate, useParams } from 'react-router-dom';
 
-import { MOCK_PORTFOLIO_DETAILS_RESPONSE } from './mocks/mock-portfolio-details';
 import * as styles from './my-portfolio-details.css';
 import PortfolioBasicInfoSection from './widgets/portfolio-basic-info-section/portfolio-basic-info-section';
 import StarTextSection from './widgets/star-text-section/star-text-section';
@@ -15,9 +15,9 @@ const MyPortfolioDetailsPage = () => {
   const { portfolioId } = useParams();
   const toast = useToast();
 
-  const portfolio = toPortfolioDetailViewModel(
-    MOCK_PORTFOLIO_DETAILS_RESPONSE.data,
-  );
+  const { data } = useGetMyPortfolioDetail(portfolioId);
+
+  const portfolio = data ? toPortfolioDetailViewModel(data) : null;
 
   const handleEdit = () => {
     if (portfolioId == null) {
@@ -32,6 +32,13 @@ const MyPortfolioDetailsPage = () => {
     toast.error('준비중인 기능이에요!');
   };
 
+  if (portfolio == null) {
+    return (
+      <main className={styles.pageContainer}>
+        포트폴리오 정보를 불러오지 못했어요.
+      </main>
+    );
+  }
   return (
     <>
       <section className={styles.headerContainer}>

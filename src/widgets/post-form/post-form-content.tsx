@@ -34,6 +34,7 @@ interface PostFormContentProps {
   allRoleOptions: Option[];
   onSubmit: () => void;
   submitLabel: string;
+  disabled?: boolean;
 }
 
 const PostFormContent = ({
@@ -45,6 +46,7 @@ const PostFormContent = ({
   allRoleOptions,
   onSubmit,
   submitLabel,
+  disabled,
 }: PostFormContentProps) => {
   const [pendingCurrentRole, setPendingCurrentRole] =
     useState<PendingRoleInput>(createEmptyPendingRoleInput());
@@ -162,7 +164,7 @@ const PostFormContent = ({
       />
 
       <div className={styles.submitContainer}>
-        <CtaButton color='primary' onClick={onSubmit}>
+        <CtaButton color='primary' onClick={onSubmit} disabled={disabled}>
           {submitLabel}
         </CtaButton>
       </div>

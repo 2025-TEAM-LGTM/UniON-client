@@ -1,3 +1,4 @@
+import { useGetMemberPortfolioDetail } from '@entities/portfolio-details/api/use-get-portfolio-details';
 import { toPortfolioDetailViewModel } from '@entities/portfolio-details/model/adapters';
 import PortfolioBasicInfoSection from '@pages/my-portfolio-details/widgets/portfolio-basic-info-section/portfolio-basic-info-section';
 import StarTextSection from '@pages/my-portfolio-details/widgets/star-text-section/star-text-section';
@@ -6,13 +7,15 @@ import PageBackHeader from '@widgets/page-back-header/page-back-header';
 import { useParams } from 'react-router-dom';
 
 import * as styles from './members-portfolio.css';
-import { MOCK_MEMBER_PORTFOLIO_DETAIL } from './mock/mock-member-portfolio-detail';
 
 const MembersPortfolioDetailsPage = () => {
-  const { memberId } = useParams();
+  const { memberId, portfolioId } = useParams();
 
-  // TODO: GET /api/members/:memberId/portfolio/:portfolioId 연결
-  const portfolio = toPortfolioDetailViewModel(MOCK_MEMBER_PORTFOLIO_DETAIL);
+  const { data } = useGetMemberPortfolioDetail(memberId, portfolioId);
+
+  const portfolio = data ? toPortfolioDetailViewModel(data) : null;
+
+  if (portfolio == null) return null;
 
   return (
     <>

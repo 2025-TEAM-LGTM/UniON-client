@@ -9,7 +9,7 @@ type ReadTextareaProps = Omit<HTMLAttributes<HTMLDivElement>, 'className'> & {
 const ReadTextarea = ({ text, ...props }: ReadTextareaProps) => {
   return (
     <div className={styles.readTextarea} {...props}>
-      {text}
+      {text.replace(/\r\n/g, '\n')}
     </div>
   );
 };

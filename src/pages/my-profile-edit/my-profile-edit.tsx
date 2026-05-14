@@ -1,6 +1,5 @@
 import { toPortfolios } from '@entities/portfolio/model/adapters';
 import { toProfileViewModel } from '@entities/profile/model/adapters';
-import { MOCK_FIELD_SKILL_RESPONSE } from '@pages/members/mocks/mock-skill-options';
 import Button from '@shared/ui/components/button/button';
 import type { UniversityOption } from '@shared/ui/components/dropdown/dropdown-content/university-content';
 import type { AcademicStatusKey } from '@shared/utils/academic-status/types';
@@ -15,8 +14,9 @@ import ProfileSummaryEditCard from '@widgets/profile-edit/profile-summary-edit-c
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { MOCK_PORTFOLIOS_RESPONSE } from '../my-profile/mocks/mock-portfolios';
-import { MOCK_PROFILE_RESPONSE } from '../my-profile/mocks/mock-profile-response';
+import { MOCK_PORTFOLIOS_RESPONSE } from './mocks/mock-portfolios';
+import { MOCK_PROFILE_RESPONSE } from './mocks/mock-profile-response';
+import { MOCK_FIELD_SKILL_RESPONSE } from './mocks/mock-skill-options';
 import * as styles from './my-profile-edit.css';
 
 interface HardSkill {

@@ -1,17 +1,18 @@
-import { filterPosts } from '@features/posts/model/filter-posts';
+import { useGetDomains } from '@entities/domain/api/use-get-domain';
+import { useGetFieldRole } from '@entities/field-role/api/use-field-role';
+import { useGetPosts } from '@entities/posts/api/use-get-posts';
+import { useToggleApply } from '@entities/posts/api/use-toggle-apply';
 import { EMPTY_FILTERS } from '@features/posts/model/filters-state';
 import { ResetIcon } from '@shared/assets/icons';
 import { parseFieldRoleResponse } from '@shared/lib/filter/parse-field-role-response';
 import Banner from '@shared/ui/components/banner/banner';
 import Button from '@shared/ui/components/button/button';
+import Loading from '@shared/ui/components/loading/loading';
 import { useToast } from '@shared/ui/components/toast/toast-context';
 import PostDropdownGroup from '@widgets/post-dropdown-group/post-dropdown-group';
-import { useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { MOCK_DOMAIN_OPTIONS } from './mock/mock-domain-options';
-import { MOCK_FIELD_ROLE_RESPONSE } from './mock/mock-field-role-response';
-import { MOCK_POST_RESPONSE } from './mock/mock-posts-response';
 import * as styles from './post.css';
 import PostCardGroup from './widgets/post-card-group/post-card-group';
 
@@ -21,47 +22,47 @@ const PostsPage = () => {
   const onClick = () => navigate('/posts/new');
 
   const pendingRef = useRef<Set<number>>(new Set());
-
-  const posts = useMemo(() => MOCK_POST_RESPONSE.data.posts, []);
-
   const [filters, setFilters] = useState(EMPTY_FILTERS);
+
+  const { data: fieldRoleData } = useGetFieldRole();
+  const { data: domainData } = useGetDomains();
+  const {
+    data: postsData,
+    isLoading,
+    isError,
+  } = useGetPosts({
+    d: filters.domainIds,
+    f: filters.fieldId,
+    r: filters.roleIds,
+  });
+  const { mutateAsync: toggleApply } = useToggleApply();
+
   const { fields, rolesByFieldOptions } = useMemo(
-    () => parseFieldRoleResponse(MOCK_FIELD_ROLE_RESPONSE.data),
-    [],
+    () => parseFieldRoleResponse(fieldRoleData ?? []),
+    [fieldRoleData],
   );
 
-  const filteredPosts = useMemo(
-    () => filterPosts(posts, filters),
-    [posts, filters],
-  );
+  const domains = domainData ?? [];
+  const posts = useMemo(() => postsData?.posts ?? [], [postsData]);
 
-  const [appliedIds, setAppliedIds] = useState<Set<number>>(() => {
+  const [appliedIds, setAppliedIds] = useState<Set<number>>(new Set());
+
+  useEffect(() => {
     const set = new Set<number>();
-
     posts.forEach((p) => {
       if (p.applied) set.add(p.postId);
     });
-
-    return set;
-  });
-
-  const requestToggleApply = async (postId: number, nextApplied: boolean) => {
-    // TODO: API 연결 후 수정
-    void postId;
-    void nextApplied;
-    if (Math.random() < 0.2) throw new Error('server error');
-  };
+    setAppliedIds(set);
+  }, [posts]);
 
   const handleToggleApply = async (postId: number) => {
-    // TODO: API 연결
     if (pendingRef.current.has(postId)) return;
 
     const wasApplied = appliedIds.has(postId);
-    const nextApplied = !wasApplied;
 
     setAppliedIds((prev) => {
       const next = new Set(prev);
-      if (next.has(postId)) next.delete(postId);
+      if (wasApplied) next.delete(postId);
       else next.add(postId);
       return next;
     });
@@ -69,12 +70,8 @@ const PostsPage = () => {
     pendingRef.current.add(postId);
 
     try {
-      // TODO: 수정
-      await requestToggleApply(postId, nextApplied);
-
-      toast.success(
-        nextApplied ? '지원이 완료되었어요' : '지원이 취소되었어요',
-      );
+      await toggleApply({ postId, wasApplied });
+      toast.success(wasApplied ? '지원이 취소되었어요' : '지원이 완료되었어요');
     } catch {
       setAppliedIds((prev) => {
         const next = new Set(prev);
@@ -82,7 +79,6 @@ const PostsPage = () => {
         else next.delete(postId);
         return next;
       });
-
       toast.error('서버 오류가 발생했어요. 잠시 후 다시 시도해 주세요.');
     } finally {
       pendingRef.current.delete(postId);
@@ -91,6 +87,7 @@ const PostsPage = () => {
 
   const handleRefresh = () => {
     setFilters(EMPTY_FILTERS);
+    console.log(import.meta.env.VITE_API_BASE_URL);
   };
 
   return (
@@ -111,13 +108,12 @@ const PostsPage = () => {
 
         <section className={styles.filterContainer}>
           <PostDropdownGroup
-            domains={MOCK_DOMAIN_OPTIONS}
+            domains={domains}
             fields={fields}
             rolesByFieldOptions={rolesByFieldOptions}
             value={filters}
             onChange={setFilters}
           />
-
           <button
             type='button'
             className={styles.refreshButton}
@@ -128,13 +124,25 @@ const PostsPage = () => {
           </button>
         </section>
 
-        {filteredPosts.length === 0 ? (
+        {isLoading && <Loading />}
+
+        {isError && (
+          <section className={styles.emptyContainer}>
+            <p className={styles.emptyText}>
+              오류가 발생했어요. 다시 시도해 주세요.
+            </p>
+          </section>
+        )}
+
+        {!isLoading && !isError && posts.length === 0 && (
           <section className={styles.emptyContainer}>
             <p className={styles.emptyText}>검색 결과가 없어요!</p>
           </section>
-        ) : (
+        )}
+
+        {!isLoading && !isError && posts.length > 0 && (
           <PostCardGroup
-            posts={filteredPosts}
+            posts={posts}
             appliedIds={appliedIds}
             onToggleApply={handleToggleApply}
           />

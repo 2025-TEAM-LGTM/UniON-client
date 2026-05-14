@@ -14,6 +14,7 @@ const GENDER_OPTIONS = [
 interface SignupStep1Props {
   values: SignupFormValues;
   onChange: (next: SignupFormValues) => void;
+  isCheckingUsername: boolean;
   isUsernameChecked: boolean;
   onCheckUsername: () => void;
   onNext: () => void;
@@ -38,6 +39,7 @@ const SignupStep1 = ({
   values,
   onChange,
   isUsernameChecked,
+  isCheckingUsername,
   onCheckUsername,
   onNext,
 }: SignupStep1Props) => {
@@ -67,7 +69,7 @@ const SignupStep1 = ({
           />
           <button
             className={styles.checkButton}
-            disabled={values.username.trim() === ''}
+            disabled={values.username.trim() === '' || isCheckingUsername}
             onClick={onCheckUsername}
           >
             중복확인
