@@ -2,6 +2,7 @@ import { useGetPostDetail } from '@entities/post-details/api/use-get-post-detail
 import { useToggleApply } from '@entities/posts/api/use-toggle-apply';
 import { ROUTE_BUILDER } from '@shared/constants/path';
 import CtaButton from '@shared/ui/components/cta-button/cta-button';
+import Loading from '@shared/ui/components/loading/loading';
 import { useToast } from '@shared/ui/components/toast/toast-context';
 import { useEffect, useRef, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
@@ -69,11 +70,7 @@ const PostDetailPage = () => {
   };
 
   if (isLoading) {
-    return (
-      <div className={styles.pageContainer}>
-        <p>불러오는 중...</p>
-      </div>
-    );
+    return <Loading />;
   }
 
   if (isError || !data) {

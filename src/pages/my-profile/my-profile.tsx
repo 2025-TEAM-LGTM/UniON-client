@@ -3,6 +3,7 @@ import { toPortfolios } from '@entities/portfolio/model/adapters';
 import { useGetMyProfile } from '@entities/profile/api/use-get-profile';
 import { toProfileViewModel } from '@entities/profile/model/adapters';
 import Button from '@shared/ui/components/button/button';
+import Loading from '@shared/ui/components/loading/loading';
 import ProfilePortfolioSection from '@widgets/portfolio-section/portfolio-section';
 import ProfileContactCard from '@widgets/profile/profile-contact-card/profile-contact-card';
 import ProfileEducationCard from '@widgets/profile/profile-education-card/profile-education-card';
@@ -34,7 +35,7 @@ const MyProfilePage = () => {
     : [];
 
   if (isProfileLoading || isPortfoliosLoading) {
-    return <div>로딩 중...</div>; // TODO: 로띠 추가
+    return <Loading />;
   }
   if (profileError || portfoliosError) {
     return <div>데이터를 불러오는 중 오류가 발생했습니다.</div>;

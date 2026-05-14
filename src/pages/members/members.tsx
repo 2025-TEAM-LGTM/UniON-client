@@ -10,6 +10,7 @@ import { ResetIcon } from '@shared/assets/icons';
 import { parseFieldRoleResponse } from '@shared/lib/filter/parse-field-role-response';
 import { parseFieldSkillResponse } from '@shared/lib/filter/parse-field-skill-response';
 import Banner from '@shared/ui/components/banner/banner';
+import Loading from '@shared/ui/components/loading/loading';
 import MemberDropdownGroup from '@widgets/member-dropdown-group/member-dropdown-group';
 import { useMemo, useState } from 'react';
 
@@ -20,7 +21,6 @@ const MembersPage = () => {
   const [filters, setFilters] =
     useState<MemberFiltersState>(EMPTY_MEMBER_FILTERS);
 
-  // personality 파라미터 변환: value가 1인 key만 추출
   const personalityParams = useMemo(
     () => filters.personalityFilters.map((f) => f.key),
     [filters.personalityFilters],
@@ -98,11 +98,7 @@ const MembersPage = () => {
           </button>
         </section>
 
-        {isLoading && (
-          <section className={styles.emptyContainer}>
-            <p className={styles.emptyText}>불러오는 중...</p>
-          </section>
-        )}
+        {isLoading && <Loading />}
 
         {isError && (
           <section className={styles.emptyContainer}>

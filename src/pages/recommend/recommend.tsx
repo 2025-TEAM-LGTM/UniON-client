@@ -1,5 +1,6 @@
 import { useGetMyPosts } from '@entities/my-post/api/use-get-my-posts';
 import Banner from '@shared/ui/components/banner/banner';
+import Loading from '@shared/ui/components/loading/loading';
 import { useState } from 'react';
 
 import * as styles from './recommend.css';
@@ -25,11 +26,7 @@ const RecommendPage = () => {
           <TabBar activeTab={activeTab} onChangeTab={setActiveTab} />
         </section>
 
-        {isLoading && (
-          <div className={styles.emptyContainer}>
-            <p className={styles.emptyText}>불러오는 중...</p>
-          </div>
-        )}
+        {isLoading && <Loading />}
 
         {isError && (
           <div className={styles.emptyContainer}>
