@@ -23,7 +23,7 @@ const PostDetailPage = () => {
   const { data, isLoading, isError } = useGetPostDetail(numericPostId);
   const { mutateAsync: toggleApply } = useToggleApply();
 
-  const isAuthor = false; // TODO: 유저 권한 기반으로 분기
+  const isAuthor = data?.owner ?? false;
 
   const [isApplied, setIsApplied] = useState(false);
   const pendingRef = useRef(false);

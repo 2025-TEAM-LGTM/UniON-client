@@ -35,6 +35,7 @@ export interface PostDetailsResponse {
     seeking: string;
     aboutUs: string;
     applied: boolean;
+    owner: boolean;
     teamCulture: TeamCulture;
     imageUrl: string | null;
   };
