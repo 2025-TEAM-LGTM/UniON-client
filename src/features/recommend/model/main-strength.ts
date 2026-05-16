@@ -1,4 +1,4 @@
-export type MainStrength = 'PROBLEM' | 'TASK' | 'PERSONALITY';
+export type MainStrength = 'TROUBLE' | 'TASK' | 'PERSONALITY';
 
 const MAIN_STRENGTH_LABEL_MAP: Record<MainStrength, string> = {
   TROUBLE: '비슷한 문제 해결 경험자',
