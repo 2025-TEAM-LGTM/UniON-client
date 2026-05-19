@@ -12,8 +12,10 @@ interface PortfolioFormContentProps {
   onChange: (next: PortfolioFormValues) => void;
   roleFields: Option[];
   rolesByFieldOptions: Record<number, Option[]>;
+  domainOptions: Option[];
   onSubmit: () => void;
   submitLabel: string;
+  disabled?: boolean;
 }
 
 const PortfolioFormContent = ({
@@ -21,14 +23,18 @@ const PortfolioFormContent = ({
   onChange,
   roleFields,
   rolesByFieldOptions,
+  domainOptions,
   onSubmit,
   submitLabel,
+  disabled,
 }: PortfolioFormContentProps) => {
   return (
     <>
       <PortfolioBasicInfoFormSection
         title={values.title}
         summary={values.summary}
+        domainId={values.domainId}
+        domainOptions={domainOptions}
         fieldId={values.fieldId}
         roleId={values.roleId}
         headcount={values.headcount}
@@ -37,6 +43,7 @@ const PortfolioFormContent = ({
         rolesByFieldOptions={rolesByFieldOptions}
         onChangeTitle={(title) => onChange({ ...values, title })}
         onChangeSummary={(summary) => onChange({ ...values, summary })}
+        onChangeDomain={(domainId) => onChange({ ...values, domainId })}
         onChangeField={(fieldId) =>
           onChange({ ...values, fieldId, roleId: null })
         }
@@ -61,7 +68,7 @@ const PortfolioFormContent = ({
       />
 
       <div className={styles.submitContainer}>
-        <CtaButton color='primary' onClick={onSubmit}>
+        <CtaButton color='primary' onClick={onSubmit} disabled={disabled}>
           {submitLabel}
         </CtaButton>
       </div>
