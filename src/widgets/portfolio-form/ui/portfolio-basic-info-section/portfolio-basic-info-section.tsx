@@ -27,8 +27,10 @@ interface PortfolioBasicInfoFormSectionProps {
   onChangeTitle: (value: string) => void;
   onChangeSummary: (value: string) => void;
   onChangeDomain: (domainId: number | null) => void;
-  onChangeField: (fieldId: number | null) => void;
-  onChangeRole: (roleId: number | null) => void;
+  onChangeFieldRole: (next: {
+    fieldId: number | null;
+    roleId: number | null;
+  }) => void;
   onChangeHeadcount: (value: number) => void;
   onChangeExternUrl: (value: string) => void;
 }
@@ -47,8 +49,7 @@ const PortfolioBasicInfoFormSection = ({
   onChangeTitle,
   onChangeSummary,
   onChangeDomain,
-  onChangeField,
-  onChangeRole,
+  onChangeFieldRole,
   onChangeHeadcount,
   onChangeExternUrl,
 }: PortfolioBasicInfoFormSectionProps) => {
@@ -65,14 +66,6 @@ const PortfolioBasicInfoFormSection = ({
   );
 
   const domainLabel = selectedDomain?.name;
-
-  const handleFieldRoleChange = (next: {
-    fieldId: number | null;
-    roleIds: number[];
-  }) => {
-    onChangeField(next.fieldId);
-    onChangeRole(next.roleIds[0] != null ? next.roleIds[0] : null);
-  };
 
   const handleDomainChange = (nextDomainIds: number[]) => {
     const last = nextDomainIds[nextDomainIds.length - 1] ?? null;
@@ -130,7 +123,12 @@ const PortfolioBasicInfoFormSection = ({
                 rolesByFieldOptions={rolesByFieldOptions}
                 fieldId={fieldId}
                 roleIds={roleId != null ? [roleId] : []}
-                onChange={handleFieldRoleChange}
+                onChange={(next) =>
+                  onChangeFieldRole({
+                    fieldId: next.fieldId,
+                    roleId: next.roleIds[0] ?? null,
+                  })
+                }
                 singleSelect
               />
             </DropdownPanel>
