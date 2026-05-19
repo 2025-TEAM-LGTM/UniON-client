@@ -9,7 +9,7 @@ export const createPortfolio = (
   body: CreatePortfolioRequest,
 ): Promise<CreatePortfolioResponseData> => {
   return post<CreatePortfolioResponseData, CreatePortfolioRequest>(
-    '/api/portfolios',
+    '/api/me/portfolio',
     body,
   );
 };
