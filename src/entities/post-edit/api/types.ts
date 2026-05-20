@@ -28,14 +28,14 @@ export interface PostDetailResponse {
     startDate: string;
     endDate: string;
   };
-  homepageUrl: string;
+  homepageUrl?: string;
   contact: string;
   currentRoles: PostDetailRoleResponse[];
   recruitRoles: PostDetailRoleResponse[];
   seeking: string;
   aboutUs: string;
   teamCulture: TeamCulture;
-  imageUrl: string;
+  imageUrl: string | null;
 }
 
 export type GetPostDetailResponse = SuccessResponse<PostDetailResponse>;

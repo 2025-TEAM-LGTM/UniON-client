@@ -27,7 +27,7 @@ export const toPostFormValues = (
   title: detail.title,
   domainIds: detail.domains.map((domain) => domain.id),
   recruitPeriod: detail.recruitPeriod,
-  homepageUrl: detail.homepageUrl,
+  homepageUrl: detail.homepageUrl ?? '',
   contact: detail.contact,
   currentRoles: toRoleCountValues(detail.currentRoles),
   recruitRoles: toRoleCountValues(detail.recruitRoles),
@@ -36,7 +36,7 @@ export const toPostFormValues = (
   teamCulture: detail.teamCulture,
   image: {
     file: null,
-    previewUrl: detail.imageUrl,
+    previewUrl: detail.imageUrl ?? null,
   },
 });
 
