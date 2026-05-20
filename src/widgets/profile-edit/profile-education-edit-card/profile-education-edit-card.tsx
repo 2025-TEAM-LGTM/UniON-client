@@ -7,36 +7,34 @@ import UniversityContent, {
   type UniversityOption,
 } from '@shared/ui/components/dropdown/dropdown-content/university-content';
 import TextField from '@shared/ui/components/field/textfield/textfield';
+import { toAcademicStatusItems } from '@shared/utils/academic-status/to-academic-status-items';
 import type { AcademicStatusKey } from '@shared/utils/academic-status/types';
 import ProfileSection from '@widgets/profile/profile-section/profile-section';
 
 import * as styles from './profile-education-edit-card.css';
 
-const ACADEMIC_STATUS_OPTIONS: { value: AcademicStatusKey; label: string }[] = [
-  { value: 'ENROLLED', label: '재학' },
-  { value: 'LEAVE', label: '휴학' },
-  { value: 'GRADUATED', label: '졸업' },
-  { value: 'DEFERRED', label: '유예' },
-];
+const ACADEMIC_STATUS_OPTIONS = toAcademicStatusItems();
 
 interface ProfileEducationEditCardProps {
   university: UniversityOption | null;
   entranceYear: number;
   academicStatus: AcademicStatusKey;
+  universityOptions: UniversityOption[];
   onUniversityChange: (university: UniversityOption) => void;
   onEntranceYearChange: (value: number) => void;
   onAcademicStatusChange: (value: AcademicStatusKey) => void;
+  onSearchUniversity: (query: string) => void;
 }
-
-// TODO: 전공 수정 기능은 API 수정 후 추가
 
 const ProfileEducationEditCard = ({
   university,
   entranceYear,
   academicStatus,
+  universityOptions,
   onUniversityChange,
   onEntranceYearChange,
   onAcademicStatusChange,
+  onSearchUniversity,
 }: ProfileEducationEditCardProps) => {
   return (
     <ProfileSection title='학력'>
@@ -48,20 +46,10 @@ const ProfileEducationEditCard = ({
           />
           <DropdownPanel>
             <UniversityContent
-              options={[
-                { id: 372, name: '이화여자대학교' },
-                { id: 373, name: '연세대학교' },
-                { id: 374, name: '고려대학교' },
-                { id: 375, name: '서울대학교' },
-                { id: 376, name: 'ㅇㅇㅇㅇ' },
-                { id: 377, name: 'ㅁㅁㅁㅁ' },
-              ]}
+              options={universityOptions}
               value={university?.id ?? null}
               onChange={onUniversityChange}
-              onSearchChange={(query) => {
-                // TODO: 검색어로 대학 목록 fetch
-                console.log('대학 검색:', query);
-              }}
+              onSearchChange={onSearchUniversity}
             />
           </DropdownPanel>
         </Dropdown>
@@ -76,16 +64,16 @@ const ProfileEducationEditCard = ({
           placeholder='입학년도'
         />
         <div className={styles.statusContainer}>
-          {ACADEMIC_STATUS_OPTIONS.map(({ value, label }) => (
+          {ACADEMIC_STATUS_OPTIONS.map(({ key, label }) => (
             <button
-              key={value}
+              key={key}
               type='button'
               className={
-                academicStatus === value
+                academicStatus === key
                   ? styles.statusButtonActive
                   : styles.statusButton
               }
-              onClick={() => onAcademicStatusChange(value)}
+              onClick={() => onAcademicStatusChange(key)}
             >
               {label}
             </button>
