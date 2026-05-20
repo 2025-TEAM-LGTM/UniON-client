@@ -15,7 +15,7 @@ export const headerTitle = style({
 
 export const buttonContainer = style({
   display: 'flex',
-  width: '14.1rem',
+  gap: '1rem',
 });
 
 export const pageContainer = style({
