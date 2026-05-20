@@ -63,11 +63,15 @@ const PostDetailPage = () => {
 
   const handleDelete = async () => {
     if (!postId) return;
+    if (!Number.isInteger(numericPostId) || numericPostId <= 0) {
+      toast.error('유효하지 않은 공고입니다.');
+      return;
+    }
 
     try {
       await deletePost(numericPostId);
       toast.success('공고가 삭제되었어요.');
-      navigate(ROUTE_PATH.POSTS);
+      navigate(ROUTE_PATH.POSTS, { replace: true });
     } catch {
       toast.error('공고 삭제에 실패했어요. 다시 시도해 주세요.');
     }
