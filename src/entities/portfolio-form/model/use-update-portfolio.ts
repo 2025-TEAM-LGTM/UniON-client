@@ -13,7 +13,7 @@ export const useUpdatePortfolio = (portfolioId: string) => {
       const imageMeta =
         values.image.file != null
           ? await uploadImage(values.image.file)
-          : { imageKey: null, imageSize: null };
+          : { imageKey: undefined, imageSize: undefined };
 
       return updatePortfolio(portfolioId, {
         title: values.title.trim(),
