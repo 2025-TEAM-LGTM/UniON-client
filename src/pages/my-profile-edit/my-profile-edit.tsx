@@ -1,7 +1,15 @@
+import { useGetMyPortfolios } from '@entities/portfolio/api/use-get-portfolio';
 import { toPortfolios } from '@entities/portfolio/model/adapters';
+import { useGetMyProfile } from '@entities/profile/api/use-get-profile';
+import { useUpdateMyProfile } from '@entities/profile/api/use-update-my-profile';
 import { toProfileViewModel } from '@entities/profile/model/adapters';
+import { useGetSkills } from '@entities/skill/api/use-get-skills';
+import { useGetUniversities } from '@entities/university/api/use-get-universities';
+import { parseFieldSkillResponse } from '@shared/lib/filter/parse-field-skill-response';
 import Button from '@shared/ui/components/button/button';
 import type { UniversityOption } from '@shared/ui/components/dropdown/dropdown-content/university-content';
+import Loading from '@shared/ui/components/loading/loading';
+import { useToast } from '@shared/ui/components/toast/toast-context';
 import type { AcademicStatusKey } from '@shared/utils/academic-status/types';
 import type { Personality } from '@shared/utils/personality/types';
 import PortfolioEditSection from '@widgets/portfolio-edit-section/portfolio-edit-section';
@@ -11,12 +19,9 @@ import ProfileEducationEditCard from '@widgets/profile-edit/profile-education-ed
 import ProfilePersonalityEditCard from '@widgets/profile-edit/profile-personality-edit-card/profile-personality-edit-card';
 import ProfileSkillEditCard from '@widgets/profile-edit/profile-skill-edit-card/profile-skill-edit-card';
 import ProfileSummaryEditCard from '@widgets/profile-edit/profile-summary-edit-card/profile-summary-edit-card';
-import { useState } from 'react';
+import { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import { MOCK_PORTFOLIOS_RESPONSE } from './mocks/mock-portfolios';
-import { MOCK_PROFILE_RESPONSE } from './mocks/mock-profile-response';
-import { MOCK_FIELD_SKILL_RESPONSE } from './mocks/mock-skill-options';
 import * as styles from './my-profile-edit.css';
 
 interface HardSkill {
@@ -24,7 +29,6 @@ interface HardSkill {
   name: string;
 }
 
-// TODO: major 수정 기능 추가되면 prop 추가
 interface ProfileEditFormValues {
   email: string;
   university: UniversityOption | null;
@@ -35,46 +39,61 @@ interface ProfileEditFormValues {
   imageFile: File | null;
 }
 
-const fieldSkillItems = MOCK_FIELD_SKILL_RESPONSE.data.items;
-const fields = fieldSkillItems.map((item) => item.field);
-const skillsByFieldOptions = Object.fromEntries(
-  fieldSkillItems.map((item) => [item.field.id, item.skills]),
-);
-const MyProfileEditPage = () => {
-  const profile = toProfileViewModel(MOCK_PROFILE_RESPONSE.data);
-  const raw = MOCK_PROFILE_RESPONSE.data;
+interface MyProfileEditFormProps {
+  initialValues: ProfileEditFormValues;
+  username: string;
+  birthYearLabel: string;
+  mainRoleName: string;
+  profileImageUrl: string | null;
+  fields: { id: number; name: string }[];
+  skillsByFieldOptions: Record<number, { id: number; name: string }[]>;
+  universityOptions: UniversityOption[];
+  onSearchUniversity: (query: string) => void;
+  initialPortfolios: ReturnType<typeof toPortfolios>;
+}
 
-  const [portfolios, setPortfolios] = useState(
-    toPortfolios(MOCK_PORTFOLIOS_RESPONSE.data.portfolios),
-  );
-
-  const [values, setValues] = useState<ProfileEditFormValues>({
-    email: profile.email,
-    university: {
-      id: raw.university.id,
-      name: raw.university.name,
-    },
-    entranceYear: raw.entranceYear,
-    academicStatus: raw.status,
-    hardSkills: raw.hardSkills,
-    personality: raw.personality,
-    imageFile: null,
-  });
-
+const MyProfileEditForm = ({
+  initialValues,
+  username,
+  birthYearLabel,
+  mainRoleName,
+  profileImageUrl,
+  fields,
+  skillsByFieldOptions,
+  universityOptions,
+  onSearchUniversity,
+  initialPortfolios,
+}: MyProfileEditFormProps) => {
   const navigate = useNavigate();
+  const toast = useToast();
 
-  const handleCancel = () => {
-    navigate('/me/profile');
-  };
+  const [values, setValues] = useState<ProfileEditFormValues>(initialValues);
+  const [portfolios, setPortfolios] = useState(initialPortfolios);
+  const { mutateAsync: updateProfile, isPending } = useUpdateMyProfile();
 
-  const handleSave = () => {
-    // TODO: API 연결 시 변경된 필드만 추출하여 PATCH 요청
-    console.log('저장할 값:', values);
-    navigate('/me/profile');
+  const handleCancel = () => navigate('/me/profile');
+
+  const handleSave = async () => {
+    try {
+      await updateProfile({
+        request: {
+          email: values.email,
+          universityId: values.university?.id,
+          entranceYear: values.entranceYear,
+          status: values.academicStatus,
+          hardSkills: values.hardSkills.map((s) => s.id),
+          personality: values.personality,
+        },
+        imageFile: values.imageFile,
+      });
+      toast.success('프로필이 저장되었어요.');
+      navigate('/me/profile');
+    } catch {
+      toast.error('프로필 저장에 실패했어요. 다시 시도해 주세요.');
+    }
   };
 
   const handlePortfolioDelete = (portfolioId: number) => {
-    // TODO: API 연결 시 DELETE 요청 후 목록 갱신
     setPortfolios((prev) => prev.filter((p) => p.portfolioId !== portfolioId));
   };
 
@@ -82,30 +101,28 @@ const MyProfileEditPage = () => {
     navigate(`/portfolio/${portfolioId}`);
   };
 
-  const handleAddPortfolioClick = () => {
-    navigate('/portfolio/new');
-  };
+  const handleAddPortfolioClick = () => navigate('/portfolio/new');
 
   return (
     <main className={styles.pageContainer}>
       <div className={styles.pageHeader}>
         <p className={styles.headerTitle}>마이페이지</p>
         <div className={styles.buttonContainer}>
-          <Button color='gray' onClick={handleCancel}>
+          <Button color='gray' onClick={handleCancel} disabled={isPending}>
             취소하기
           </Button>
-          <Button color='primary' onClick={handleSave}>
-            저장하기
+          <Button color='primary' onClick={handleSave} disabled={isPending}>
+            {isPending ? '저장 중...' : '저장하기'}
           </Button>
         </div>
       </div>
       <ProfileFormLayout
         summary={
           <ProfileSummaryEditCard
-            username={profile.username}
-            birthYearLabel={profile.birthYearLabel}
-            mainRoleName={profile.mainRoleName}
-            profileImageUrl={profile.profileImageUrl}
+            username={username}
+            birthYearLabel={birthYearLabel}
+            mainRoleName={mainRoleName}
+            profileImageUrl={profileImageUrl}
             onImageChange={(file) => setValues({ ...values, imageFile: file })}
           />
         }
@@ -129,6 +146,8 @@ const MyProfileEditPage = () => {
             onAcademicStatusChange={(academicStatus) =>
               setValues({ ...values, academicStatus })
             }
+            universityOptions={universityOptions}
+            onSearchUniversity={onSearchUniversity}
           />
         }
         skills={
@@ -157,6 +176,67 @@ const MyProfileEditPage = () => {
         onDeleteClick={handlePortfolioDelete}
       />
     </main>
+  );
+};
+
+const MyProfileEditPage = () => {
+  const {
+    data: profileData,
+    isLoading: isProfileLoading,
+    isError: isProfileError,
+  } = useGetMyProfile();
+  const { data: portfolioData, isLoading: isPortfolioLoading } =
+    useGetMyPortfolios();
+  const { data: skillData } = useGetSkills();
+  const [universityQuery, setUniversityQuery] = useState('');
+  const { data: universityData } = useGetUniversities(universityQuery);
+
+  const { fields, skillsByFieldOptions } = useMemo(
+    () => parseFieldSkillResponse(skillData ?? []),
+    [skillData],
+  );
+
+  const universityOptions = universityData ?? [];
+
+  if (isProfileLoading || isPortfolioLoading) return <Loading />;
+
+  if (isProfileError || profileData == null) {
+    return (
+      <main className={styles.pageContainer}>
+        <p>프로필을 불러올 수 없어요.</p>
+      </main>
+    );
+  }
+
+  const viewModel = toProfileViewModel(profileData);
+  const portfolios = toPortfolios(portfolioData?.portfolios ?? []);
+
+  const initialValues: ProfileEditFormValues = {
+    email: profileData.email,
+    university: {
+      id: profileData.university.id,
+      name: profileData.university.name,
+    },
+    entranceYear: profileData.entranceYear,
+    academicStatus: profileData.status,
+    hardSkills: profileData.hardSkills,
+    personality: profileData.personality,
+    imageFile: null,
+  };
+
+  return (
+    <MyProfileEditForm
+      initialValues={initialValues}
+      username={viewModel.username}
+      birthYearLabel={viewModel.birthYearLabel}
+      mainRoleName={viewModel.mainRoleName}
+      profileImageUrl={profileData.imageUrl}
+      fields={fields}
+      skillsByFieldOptions={skillsByFieldOptions}
+      universityOptions={universityOptions}
+      onSearchUniversity={setUniversityQuery}
+      initialPortfolios={portfolios}
+    />
   );
 };
 
