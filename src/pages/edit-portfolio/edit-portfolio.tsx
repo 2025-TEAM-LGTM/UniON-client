@@ -35,9 +35,21 @@ const EditPortfolioForm = ({
   const navigate = useNavigate();
   const toast = useToast();
 
-  const [formValues, setFormValues] = useState<PortfolioFormValues>(() =>
-    toPortfolioFormValues(portfolioDetail),
-  );
+  const [formValues, setFormValues] = useState<PortfolioFormValues>(() => {
+    const base = toPortfolioFormValues(portfolioDetail);
+
+    const fieldId =
+      base.roleId != null
+        ? (Object.entries(rolesByFieldOptions).find(([, roles]) =>
+            roles.some((r) => r.id === base.roleId),
+          )?.[0] ?? null)
+        : null;
+
+    return {
+      ...base,
+      fieldId: fieldId != null ? Number(fieldId) : null,
+    };
+  });
 
   const { mutateAsync: updatePortfolio, isPending } =
     useUpdatePortfolio(portfolioId);
