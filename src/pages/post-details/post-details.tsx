@@ -75,7 +75,6 @@ const PostDetailPage = () => {
 
   const handleEdit = () => {
     if (!postId) return;
-    toast.success('공고 수정이 완료되었어요.');
     navigate(ROUTE_BUILDER.postEdit(postId));
   };
 
