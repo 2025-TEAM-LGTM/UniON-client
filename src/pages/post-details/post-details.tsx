@@ -1,6 +1,7 @@
 import { useGetPostDetail } from '@entities/post-details/api/use-get-post-detail';
+import { useDeletePost } from '@entities/posts/api/use-delete-post';
 import { useToggleApply } from '@entities/posts/api/use-toggle-apply';
-import { ROUTE_BUILDER } from '@shared/constants/path';
+import { ROUTE_BUILDER, ROUTE_PATH } from '@shared/constants/path';
 import CtaButton from '@shared/ui/components/cta-button/cta-button';
 import Loading from '@shared/ui/components/loading/loading';
 import { useToast } from '@shared/ui/components/toast/toast-context';
@@ -23,6 +24,7 @@ const PostDetailPage = () => {
 
   const { data, isLoading, isError } = useGetPostDetail(numericPostId);
   const { mutateAsync: toggleApply } = useToggleApply();
+  const { mutateAsync: deletePost, isPending: isDeleting } = useDeletePost();
 
   const isAuthor = data?.owner ?? false;
 
@@ -59,13 +61,21 @@ const PostDetailPage = () => {
     }
   };
 
-  const handleDelete = () => {
-    // TODO: 삭제하기 API 연결
-    toast.success('삭제가 완료되었어요.');
+  const handleDelete = async () => {
+    if (!postId) return;
+
+    try {
+      await deletePost(numericPostId);
+      toast.success('공고가 삭제되었어요.');
+      navigate(ROUTE_PATH.POSTS);
+    } catch {
+      toast.error('공고 삭제에 실패했어요. 다시 시도해 주세요.');
+    }
   };
 
   const handleEdit = () => {
     if (!postId) return;
+    toast.success('공고 수정이 완료되었어요.');
     navigate(ROUTE_BUILDER.postEdit(postId));
   };
 
@@ -103,10 +113,18 @@ const PostDetailPage = () => {
           <div className={styles.ctaContainer}>
             {isAuthor ? (
               <>
-                <CtaButton color='gray' onClick={handleDelete}>
-                  삭제하기
+                <CtaButton
+                  color='gray'
+                  onClick={handleDelete}
+                  disabled={isDeleting}
+                >
+                  {isDeleting ? '삭제 중...' : '삭제하기'}
                 </CtaButton>
-                <CtaButton color='primary' onClick={handleEdit}>
+                <CtaButton
+                  color='primary'
+                  onClick={handleEdit}
+                  disabled={isDeleting}
+                >
                   수정하기
                 </CtaButton>
               </>
