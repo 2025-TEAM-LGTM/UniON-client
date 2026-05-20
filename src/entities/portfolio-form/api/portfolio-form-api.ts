@@ -1,4 +1,4 @@
-import { patch, post } from '@shared/api/http';
+import { del, patch, post } from '@shared/api/http';
 
 import type {
   CreatePortfolioRequest,
@@ -24,4 +24,8 @@ export const updatePortfolio = (
     `/api/me/portfolio/${portfolioId}`,
     body,
   );
+};
+
+export const deletePortfolio = (portfolioId: string): Promise<null> => {
+  return del<null>(`/api/me/portfolio/${portfolioId}`);
 };
