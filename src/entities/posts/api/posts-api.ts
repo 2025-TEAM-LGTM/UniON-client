@@ -1,4 +1,5 @@
-import { get } from '@shared/api/http';
+import type { CreatePostRequest } from '@entities/post-create/api/types';
+import { get, patch } from '@shared/api/http';
 
 import type { PostsDataResponse } from './types';
 
@@ -16,4 +17,14 @@ export const getPosts = (
     ...(params.f != null && { f: params.f }),
     ...(params.r && params.r.length > 0 && { r: params.r }),
   });
+};
+
+export const updatePost = (
+  postId: number,
+  body: CreatePostRequest,
+): Promise<{ postId: number }> => {
+  return patch<{ postId: number }, CreatePostRequest>(
+    `/api/posts/${postId}`,
+    body,
+  );
 };
