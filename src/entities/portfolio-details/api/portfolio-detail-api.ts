@@ -14,5 +14,5 @@ export const getMemberPortfolioDetail = (
 export const getMyPortfolioDetail = (
   portfolioId: string,
 ): Promise<PortfolioDetailResponse> => {
-  return get<PortfolioDetailResponse>(`/api/users/portfolios/${portfolioId}`);
+  return get<PortfolioDetailResponse>(`/api/me/portfolio/${portfolioId}`);
 };

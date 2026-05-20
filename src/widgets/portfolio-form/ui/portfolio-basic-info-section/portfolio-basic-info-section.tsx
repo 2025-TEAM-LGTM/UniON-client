@@ -1,5 +1,6 @@
 import type { Option } from '@shared/types/common';
 import {
+  DomainContent,
   Dropdown,
   DropdownPanel,
   DropdownTrigger,
@@ -8,12 +9,15 @@ import {
 import TextField from '@shared/ui/components/field/textfield/textfield';
 import { Label } from '@shared/ui/components/label/label';
 import Stepper from '@shared/ui/components/stepper/stepper';
+import { useMemo } from 'react';
 
 import * as styles from './portfolio-basic-info-section.css';
 
 interface PortfolioBasicInfoFormSectionProps {
   title: string;
   summary: string;
+  domainId: number | null;
+  domainOptions: Option[];
   fieldId: number | null;
   roleId: number | null;
   headcount: number;
@@ -22,8 +26,11 @@ interface PortfolioBasicInfoFormSectionProps {
   rolesByFieldOptions: Record<number, Option[]>;
   onChangeTitle: (value: string) => void;
   onChangeSummary: (value: string) => void;
-  onChangeField: (fieldId: number | null) => void;
-  onChangeRole: (roleId: number | null) => void;
+  onChangeDomain: (domainId: number | null) => void;
+  onChangeFieldRole: (next: {
+    fieldId: number | null;
+    roleId: number | null;
+  }) => void;
   onChangeHeadcount: (value: number) => void;
   onChangeExternUrl: (value: string) => void;
 }
@@ -31,6 +38,8 @@ interface PortfolioBasicInfoFormSectionProps {
 const PortfolioBasicInfoFormSection = ({
   title,
   summary,
+  domainId,
+  domainOptions,
   fieldId,
   roleId,
   headcount,
@@ -39,8 +48,8 @@ const PortfolioBasicInfoFormSection = ({
   rolesByFieldOptions,
   onChangeTitle,
   onChangeSummary,
-  onChangeField,
-  onChangeRole,
+  onChangeDomain,
+  onChangeFieldRole,
   onChangeHeadcount,
   onChangeExternUrl,
 }: PortfolioBasicInfoFormSectionProps) => {
@@ -51,16 +60,16 @@ const PortfolioBasicInfoFormSection = ({
 
   const roleLabel = selectedRole != null ? selectedRole.name : undefined;
 
-  const selectedField =
-    fieldId != null ? roleFields.find((f) => f.id === fieldId) : null;
-  const fieldLabel = selectedField != null ? selectedField.name : undefined;
+  const selectedDomain = useMemo(
+    () => domainOptions.find((d) => d.id === domainId) ?? null,
+    [domainId, domainOptions],
+  );
 
-  const handleFieldRoleChange = (next: {
-    fieldId: number | null;
-    roleIds: number[];
-  }) => {
-    onChangeField(next.fieldId);
-    onChangeRole(next.roleIds[0] != null ? next.roleIds[0] : null);
+  const domainLabel = selectedDomain?.name;
+
+  const handleDomainChange = (nextDomainIds: number[]) => {
+    const last = nextDomainIds[nextDomainIds.length - 1] ?? null;
+    onChangeDomain(last);
   };
 
   return (
@@ -92,15 +101,12 @@ const PortfolioBasicInfoFormSection = ({
       <div className={styles.fieldRowContainer}>
         <Label>활동 분야</Label>
         <Dropdown>
-          <DropdownTrigger placeholder='분야' label={fieldLabel} />
+          <DropdownTrigger placeholder='분야 선택' label={domainLabel} />
           <DropdownPanel>
-            <FieldRoleContent
-              fields={roleFields}
-              rolesByFieldOptions={rolesByFieldOptions}
-              fieldId={fieldId}
-              roleIds={roleId != null ? [roleId] : []}
-              onChange={handleFieldRoleChange}
-              singleSelect
+            <DomainContent
+              options={domainOptions}
+              value={domainId != null ? [domainId] : []}
+              onChange={handleDomainChange}
             />
           </DropdownPanel>
         </Dropdown>
@@ -117,7 +123,12 @@ const PortfolioBasicInfoFormSection = ({
                 rolesByFieldOptions={rolesByFieldOptions}
                 fieldId={fieldId}
                 roleIds={roleId != null ? [roleId] : []}
-                onChange={handleFieldRoleChange}
+                onChange={(next) =>
+                  onChangeFieldRole({
+                    fieldId: next.fieldId,
+                    roleId: next.roleIds[0] ?? null,
+                  })
+                }
                 singleSelect
               />
             </DropdownPanel>

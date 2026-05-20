@@ -1,5 +1,6 @@
 import { useGetMyPortfolioDetail } from '@entities/portfolio-details/api/use-get-portfolio-details';
 import { toPortfolioDetailViewModel } from '@entities/portfolio-details/model/adapters';
+import { useDeletePortfolio } from '@entities/portfolio-form/model/use-delete-portfolio';
 import { ROUTE_BUILDER, ROUTE_PATH } from '@shared/constants/path';
 import CtaButton from '@shared/ui/components/cta-button/cta-button';
 import { useToast } from '@shared/ui/components/toast/toast-context';
@@ -17,6 +18,9 @@ const MyPortfolioDetailsPage = () => {
 
   const { data } = useGetMyPortfolioDetail(portfolioId);
 
+  const { mutateAsync: deletePortfolio, isPending: isDeleting } =
+    useDeletePortfolio();
+
   const portfolio = data ? toPortfolioDetailViewModel(data) : null;
 
   const handleEdit = () => {
@@ -28,8 +32,19 @@ const MyPortfolioDetailsPage = () => {
     navigate(ROUTE_BUILDER.editPortfolio(portfolioId));
   };
 
-  const handleDelete = () => {
-    toast.error('준비중인 기능이에요!');
+  const handleDelete = async () => {
+    if (portfolioId == null) {
+      toast.error('잘못된 접근입니다.');
+      return;
+    }
+
+    try {
+      await deletePortfolio(portfolioId);
+      toast.success('포트폴리오가 삭제되었어요.');
+      navigate(ROUTE_PATH.MY_PROFILE);
+    } catch {
+      toast.error('포트폴리오 삭제에 실패했어요. 다시 시도해 주세요.');
+    }
   };
 
   if (portfolio == null) {
@@ -63,8 +78,12 @@ const MyPortfolioDetailsPage = () => {
             <CtaButton color='primary' onClick={handleEdit}>
               수정하기
             </CtaButton>
-            <CtaButton color='gray' onClick={handleDelete}>
-              삭제하기
+            <CtaButton
+              color='gray'
+              onClick={handleDelete}
+              disabled={isDeleting}
+            >
+              {isDeleting ? '삭제 중...' : '삭제하기'}
             </CtaButton>
           </div>
         </section>

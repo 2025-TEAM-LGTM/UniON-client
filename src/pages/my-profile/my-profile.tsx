@@ -1,3 +1,4 @@
+import { useLogout } from '@entities/logout/api/use-logout';
 import { useGetMyPortfolios } from '@entities/portfolio/api/use-get-portfolio';
 import { toPortfolios } from '@entities/portfolio/model/adapters';
 import { useGetMyProfile } from '@entities/profile/api/use-get-profile';
@@ -28,6 +29,8 @@ const MyProfilePage = () => {
     isLoading: isPortfoliosLoading,
     error: portfoliosError,
   } = useGetMyPortfolios();
+
+  const { mutate: logoutMutate, isPending: isLoggingOut } = useLogout();
 
   const profile = profileData ? toProfileViewModel(profileData) : null;
   const portfolios = portfoliosData
@@ -60,6 +63,13 @@ const MyProfilePage = () => {
       <div className={styles.pageHeader}>
         <p className={styles.headerTitle}>마이페이지</p>
         <div className={styles.buttonContainer}>
+          <Button
+            color='gray'
+            onClick={() => logoutMutate()}
+            disabled={isLoggingOut}
+          >
+            {isLoggingOut ? '로그아웃 중...' : '로그아웃'}
+          </Button>
           <Button color='primary' onClick={handleEditProfileClick}>
             수정하기
           </Button>

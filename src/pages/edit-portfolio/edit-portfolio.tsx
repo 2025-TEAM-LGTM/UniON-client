@@ -1,82 +1,110 @@
+import { useGetDomains } from '@entities/domain/api/use-get-domain';
+import { useGetFieldRole } from '@entities/field-role/api/use-field-role';
+import { useGetMyPortfolioDetail } from '@entities/portfolio-details/api/use-get-portfolio-details';
+import type { PortfolioDetailResponse } from '@entities/portfolio-form/api/types';
 import { toPortfolioFormValues } from '@entities/portfolio-form/model/adapters';
+import type { PortfolioFormValues } from '@entities/portfolio-form/model/portfolio-form';
+import { useUpdatePortfolio } from '@entities/portfolio-form/model/use-update-portfolio';
 import { ROUTE_BUILDER, ROUTE_PATH } from '@shared/constants/path';
+import { parseFieldRoleResponse } from '@shared/lib/filter/parse-field-role-response';
 import type { Option } from '@shared/types/common';
+import Loading from '@shared/ui/components/loading/loading';
+import { useToast } from '@shared/ui/components/toast/toast-context';
 import PageBackHeader from '@widgets/page-back-header/page-back-header';
 import PortfolioFormContent from '@widgets/portfolio-form/portfolio-form-content';
-import { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useMemo, useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import * as styles from './edit-portfolio.css';
-import { MOCK_PORTFOLIO_DETAIL } from './mock/mock-portfolio-detail';
 
-interface FieldRoleOptionGroup {
-  field: Option;
-  roles: Option[];
+interface EditPortfolioFormProps {
+  portfolioId: string;
+  portfolioDetail: PortfolioDetailResponse;
+  roleFields: Option[];
+  rolesByFieldOptions: Record<number, Option[]>;
+  domainOptions: Option[];
 }
 
-const MOCK_FIELD_ROLE_OPTION_GROUPS: FieldRoleOptionGroup[] = [
-  {
-    field: { id: 1, name: '기획' },
-    roles: [
-      { id: 101, name: 'PM' },
-      { id: 102, name: '서비스 기획자' },
-      { id: 103, name: '사업 기획자' },
-    ],
-  },
-  {
-    field: { id: 2, name: '디자인' },
-    roles: [
-      { id: 201, name: 'UX 디자이너' },
-      { id: 202, name: 'UI 디자이너' },
-      { id: 203, name: 'BX 디자이너' },
-    ],
-  },
-  {
-    field: { id: 3, name: '개발' },
-    roles: [
-      { id: 301, name: '프론트엔드 개발자' },
-      { id: 302, name: '백엔드 개발자' },
-      { id: 303, name: 'AI 엔지니어' },
-      { id: 304, name: 'iOS 개발자' },
-      { id: 305, name: 'Android 개발자' },
-    ],
-  },
-  {
-    field: { id: 4, name: '마케팅' },
-    roles: [
-      { id: 401, name: '콘텐츠 마케터' },
-      { id: 402, name: '퍼포먼스 마케터' },
-    ],
-  },
-];
+const EditPortfolioForm = ({
+  portfolioId,
+  portfolioDetail,
+  roleFields,
+  rolesByFieldOptions,
+  domainOptions,
+}: EditPortfolioFormProps) => {
+  const navigate = useNavigate();
+  const toast = useToast();
 
-const MOCK_ROLE_FIELDS: Option[] = MOCK_FIELD_ROLE_OPTION_GROUPS.map(
-  ({ field }) => field,
-);
+  const [formValues, setFormValues] = useState<PortfolioFormValues>(() => {
+    const base = toPortfolioFormValues(portfolioDetail);
 
-const MOCK_ROLES_BY_FIELD_OPTIONS: Record<number, Option[]> =
-  MOCK_FIELD_ROLE_OPTION_GROUPS.reduce<Record<number, Option[]>>(
-    (acc, { field, roles }) => {
-      acc[field.id] = roles;
-      return acc;
-    },
-    {},
+    const fieldId =
+      base.roleId != null
+        ? (Object.entries(rolesByFieldOptions).find(([, roles]) =>
+            roles.some((r) => r.id === base.roleId),
+          )?.[0] ?? null)
+        : null;
+
+    return {
+      ...base,
+      fieldId: fieldId != null ? Number(fieldId) : null,
+    };
+  });
+
+  const { mutateAsync: updatePortfolio, isPending } =
+    useUpdatePortfolio(portfolioId);
+
+  const handleSubmit = async () => {
+    try {
+      await updatePortfolio(formValues);
+      toast.success('포트폴리오가 수정되었어요.');
+      navigate(ROUTE_BUILDER.portfolioDetails(portfolioId));
+    } catch {
+      toast.error('포트폴리오 수정에 실패했어요. 다시 시도해 주세요.');
+    }
+  };
+
+  return (
+    <PortfolioFormContent
+      values={formValues}
+      onChange={setFormValues}
+      roleFields={roleFields}
+      rolesByFieldOptions={rolesByFieldOptions}
+      domainOptions={domainOptions}
+      onSubmit={handleSubmit}
+      submitLabel={isPending ? '수정 중...' : '수정하기'}
+      disabled={isPending}
+    />
   );
+};
 
 const EditPortfolioPage = () => {
   const { portfolioId } = useParams();
 
-  // TODO: GET /api/portfolios/:portfolioId 연결
-  const portfolioDetail = MOCK_PORTFOLIO_DETAIL;
+  const { data: fieldRoleData } = useGetFieldRole();
+  const { data: domainData } = useGetDomains();
+  const {
+    data: portfolioDetail,
+    isLoading,
+    isError,
+  } = useGetMyPortfolioDetail(portfolioId);
 
-  const [formValues, setFormValues] = useState(
-    toPortfolioFormValues(portfolioDetail),
+  const { fields: roleFields, rolesByFieldOptions } = useMemo(
+    () => parseFieldRoleResponse(fieldRoleData ?? []),
+    [fieldRoleData],
   );
 
-  const handleSubmit = () => {
-    // TODO: PATCH /api/portfolios/:portfolioId 연결
-    console.log(formValues);
-  };
+  const domainOptions = domainData ?? [];
+
+  if (isLoading) return <Loading />;
+
+  if (isError || portfolioDetail == null || portfolioId == null) {
+    return (
+      <main className={styles.pageContainer}>
+        <p>포트폴리오를 불러올 수 없어요.</p>
+      </main>
+    );
+  }
 
   return (
     <>
@@ -93,13 +121,12 @@ const EditPortfolioPage = () => {
       </section>
 
       <main className={styles.pageContainer}>
-        <PortfolioFormContent
-          values={formValues}
-          onChange={setFormValues}
-          roleFields={MOCK_ROLE_FIELDS}
-          rolesByFieldOptions={MOCK_ROLES_BY_FIELD_OPTIONS}
-          onSubmit={handleSubmit}
-          submitLabel='수정하기'
+        <EditPortfolioForm
+          portfolioId={portfolioId}
+          portfolioDetail={portfolioDetail}
+          roleFields={roleFields}
+          rolesByFieldOptions={rolesByFieldOptions}
+          domainOptions={domainOptions}
         />
       </main>
     </>
