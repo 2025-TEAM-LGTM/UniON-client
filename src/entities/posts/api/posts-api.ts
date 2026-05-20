@@ -1,5 +1,5 @@
 import type { CreatePostRequest } from '@entities/post-create/api/types';
-import { get, patch } from '@shared/api/http';
+import { del, get, patch } from '@shared/api/http';
 
 import type { PostsDataResponse } from './types';
 
@@ -27,4 +27,8 @@ export const updatePost = (
     `/api/posts/${postId}`,
     body,
   );
+};
+
+export const deletePost = (postId: number): Promise<number> => {
+  return del<number>(`/api/posts/${postId}`);
 };
