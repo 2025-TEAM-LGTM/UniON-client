@@ -74,7 +74,6 @@ export const link = style({
 export const imageWrapper = style({
   marginTop: '3rem',
   width: '100%',
-  aspectRatio: '16 / 9',
   overflow: 'hidden',
   borderRadius: '12px',
   backgroundColor: themeVars.color.gray_100,
