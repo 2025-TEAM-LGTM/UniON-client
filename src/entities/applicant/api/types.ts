@@ -16,7 +16,7 @@ export interface ApplicantMemberResponse {
   username: string;
   imageUrl: string | null;
   role: ApplicantMemberRole;
-  hardSkill: ApplicantMemberSkill[];
+  hardSkills: ApplicantMemberSkill[];
   personality: Personality;
 }
 
