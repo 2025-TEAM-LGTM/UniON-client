@@ -2,7 +2,7 @@ import type { ApplicantMemberResponse } from '@entities/applicant/api/types';
 import type { MemberCardModel } from '@entities/members/model/adapters';
 
 const getHardSkills = (member: ApplicantMemberResponse): string[] =>
-  (member.hardSkill ?? []).map((skill) => skill.name);
+  (member.hardSkills ?? []).map((skill) => skill.name);
 
 export const toApplicantMemberCardModel = (
   member: ApplicantMemberResponse,
